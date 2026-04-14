@@ -1,0 +1,73 @@
+<a
+  class="hy-button" 
+  *ngIf="!popconfirmTitle" 
+  nz-button 
+  nzType="link" 
+  type="button" 
+  [nzDanger]="isDangerBtn"
+   nz-tooltip
+  [nzTooltipTrigger]="null" 
+  [nzTooltipTitle]="(btnImg || nzIconName || hyIconName) ? tooltipTitle : undefined"
+  [nzTooltipVisible]="tooltipVisible" 
+  [nzTooltipOverlayClassName]="'hyToolTip'" 
+  (mouseleave)="mouseleave()"
+  (mouseenter)="mouseenter()" 
+  (click)="click()" 
+  [disabled]="!_enable">
+  <img *ngIf="btnImg" src="assets/images/app/{{btnImg}}">
+  <span *ngIf="btnLink">
+    {{title}}
+    <nz-divider nzType="vertical" *ngIf="showDivider" style="margin: 0px;left: 5px;"></nz-divider>
+  </span>
+  <hy-icon 
+    *ngIf="nzIconName || hyIconName " 
+    [nzIconName]="nzIconName" 
+    [hyIconName]="hyIconName" 
+    [iconStyle]="iconStyle"
+    class="cell-btn" 
+    [iconClass]="_iconClass">
+  </hy-icon>
+</a>
+
+
+<a 
+  class="hy-button" 
+  *ngIf="popconfirmTitle" 
+  nz-button nzType="link" 
+  type="button" 
+  [nzDanger]="isDangerBtn" 
+  title=""
+  (click)="click()" 
+  [disabled]="!_enable" 
+  nz-tooltip 
+  [nzTooltipTrigger]="null"
+  [nzTooltipTitle]="(btnImg || nzIconName || hyIconName) ? tooltipTitle : undefined" 
+  [nzTooltipVisible]="tooltipVisible"
+  [nzTooltipOverlayClassName]="'hyToolTip'" 
+  (mouseleave)="mouseleave()" 
+  (mouseenter)="mouseenter()"
+  nz-popconfirm
+  [nzTooltipTitle]="popconfirmTitle" 
+  [nzIcon]="popconfirmIcon"
+  [nzCancelText]="cancelText || i18nService.getFrameI18n('hy-cell-btn.取消')"
+  [nzOkText]="confirmText || i18nService.getFrameI18n('hy-cell-btn.确认')" 
+  (nzOnCancel)="onClickCancel()"
+  (nzOnConfirm)="onClickConfirm()">
+  <img *ngIf="btnImg" src="assets/images/app/{{btnImg}}">
+  <span *ngIf="btnLink">
+    {{title}}
+    <nz-divider nzType="vertical" *ngIf="showDivider" style="margin: 0px;left: 5px;"></nz-divider>
+  </span>
+  <hy-icon 
+    *ngIf="nzIconName || hyIconName" 
+    [nzIconName]="nzIconName" 
+    [hyIconName]="hyIconName" 
+    [iconStyle]="iconStyle"
+    class="cell-btn" 
+    [iconClass]="_iconClass">
+  </hy-icon>
+</a>
+
+<ng-template #tooltipTitle>
+  <span> {{title}} </span>
+</ng-template>

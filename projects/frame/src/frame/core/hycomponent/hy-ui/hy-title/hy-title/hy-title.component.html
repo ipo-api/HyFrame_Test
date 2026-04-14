@@ -1,0 +1,10 @@
+<div [ngClass]="{'temp-title':!_titleString}" class="title {{class}}" title="">
+  <ng-container *ngIf="_titleString; else titleTemp">{{_titleTemp}}</ng-container>
+  <span *ngIf="tip && tip.length>0 &&_titleString"
+    style="margin-left: 5px;position: relative; bottom: 1px;cursor: pointer" nz-tooltip [nzTooltipTitle]="tip">
+    <hy-icon nzIconName="info-circle" [iconStyle]="{'font-size':'14px'}"></hy-icon>
+  </span>
+  <ng-template #titleTemp>
+    <ng-template [ngTemplateOutlet]="_titleTemp"></ng-template>
+  </ng-template>
+</div>

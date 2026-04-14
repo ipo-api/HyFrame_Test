@@ -1,0 +1,27 @@
+
+<div class="hy-button-style" title="">
+  <button
+    type="button"
+    nz-button
+    nz-dropdown
+    [nzDropdownMenu]="menu"
+    [nzType]="type"
+    [nzSize]="size"
+    [nzTrigger]="dropdownButtonTrigger"
+    [nzPlacement]="dropdownMenuPlacement"
+    [disabled]="(formService.formGroup.invalid && check) || !enable"
+  >
+    <span title="{{ title }}">{{ title }}</span>
+    <i nz-icon nzType="down"></i>
+  </button>
+</div>
+
+
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item *ngFor="let data of dropdownButtonArray" [nzDisabled]="data.enable == undefined ? false : !data.enable" [ngClass]="{'enable-button': data.enable == false}" (click)="click(data)">
+      <span [class]="data.color">{{ data.title }}</span>
+    </li>
+  </ul>
+</nz-dropdown-menu>

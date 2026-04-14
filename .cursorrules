@@ -1,0 +1,464 @@
+# HyFrame 4.0 组件使用规范
+
+## 组件架构规则
+
+### 表单相关组件使用规范
+
+#### 1. hy-button 组件使用规则
+- **必须条件**: hy-button 必须放在 hy-form 标签内
+- **可选条件**: hy-button 在 hy-gt 标签内也可以，但不是必须的
+- **正确示例**:
+```html
+<!-- 方式1：直接在 hy-form 内 -->
+<hy-form>
+  <hy-button title="确认" (onClick)="confirm()"></hy-button>
+  <hy-button title="取消" (onClick)="cancel()"></hy-button>
+</hy-form>
+
+<!-- 方式2：在 hy-form 和 hy-gt 内（也是正确的） -->
+<hy-form>
+  <hy-gt model="buttonGroup">
+    <hy-button title="确认" (onClick)="confirm()"></hy-button>
+    <hy-button title="取消" (onClick)="cancel()"></hy-button>
+  </hy-gt>
+</hy-form>
+```
+- **错误示例**:
+```html
+<!-- 错误：缺少 hy-form 包装 -->
+<hy-button title="确认" (onClick)="confirm()"></hy-button>
+
+<!-- 错误：只有 hy-gt 没有 hy-form -->
+<hy-gt model="buttonGroup">
+  <hy-button title="确认" (onClick)="confirm()"></hy-button>
+</hy-gt>
+```
+
+#### 2. 表单组件必须配合 hy-gt 使用
+以下组件必须在 hy-form 和 hy-gt 标签内使用：
+
+**表单输入组件**:
+- `hy-text` (输入框)
+- `hy-textarea` (文本框)  
+- `hy-number` (数值输入框)
+- `hy-date` (日期选择器)
+- `hy-time` (时间选择器)
+- `hy-select` (选择器)
+- `hy-radio` (单选框)
+- `hy-checkbox` (多选框)
+- `hy-slider` (滑动条)
+- `hy-treeSelect` (树形选择器)
+- `hy-transfer` (穿梭框)
+
+**表单布局组件**:
+- `hy-group` (组)
+- `hy-step` (步骤条)
+- `hy-gt` (表单组)
+
+**正确示例**:
+```html
+<!-- 方式1：按钮在 hy-gt 外 -->
+<hy-form>
+  <hy-gt model="userForm">
+    <hy-text title="用户名" model="username" placeholder="请输入用户名"></hy-text>
+    <hy-select title="部门" model="department" [options]="deptOptions"></hy-select>
+    <hy-date title="入职日期" model="joinDate"></hy-date>
+  </hy-gt>
+  <hy-button title="提交" (onClick)="submit()"></hy-button>
+</hy-form>
+
+<!-- 方式2：按钮在 hy-gt 内（也是正确的） -->
+<hy-form>
+  <hy-gt model="userForm">
+    <hy-text title="用户名" model="username" placeholder="请输入用户名"></hy-text>
+    <hy-select title="部门" model="department" [options]="deptOptions"></hy-select>
+    <hy-date title="入职日期" model="joinDate"></hy-date>
+    <hy-button title="提交" (onClick)="submit()"></hy-button>
+  </hy-gt>
+</hy-form>
+```
+
+**错误示例**:
+```html
+<!-- 错误：表单组件缺少 hy-gt 包装 -->
+<hy-form>
+  <hy-text title="用户名" model="username"></hy-text>
+  <hy-button title="提交" (onClick)="submit()"></hy-button>
+</hy-form>
+
+<!-- 错误：表单组件缺少 hy-form 包装 -->
+<hy-gt model="userForm">
+  <hy-text title="用户名" model="username"></hy-text>
+</hy-gt>
+```
+
+#### 3. 非表单组件使用规则
+以下组件不需要 hy-form 和 hy-gt 包装，可以独立使用：
+
+**展示组件**:
+- `hy-list` (列表)
+- `hy-progress` (进度条)
+- `hy-tag` (标签)
+- `hy-icon` (图标)
+- `hy-upload` (上传)
+
+**正确示例**:
+```html
+<!-- 独立使用 -->
+<hy-list [data]="listData" (onSelect)="handleSelect($event)"></hy-list>
+<hy-progress [percent]="75"></hy-progress>
+<hy-tag [datas]="tagData" (datasChange)="handleTagChange($event)"></hy-tag>
+```
+
+### 代码风格规范
+
+#### 1. 组件属性书写
+- 使用方括号 `[]` 绑定动态属性
+- 使用圆括号 `()` 绑定事件
+- 字符串属性直接使用双引号
+
+```html
+<!-- 正确 -->
+<hy-text title="标题" [placeholder]="dynamicPlaceholder" (onChange)="handleChange($event)"></hy-text>
+
+<!-- 错误 -->
+<hy-text [title]="'标题'" placeholder="{{dynamicPlaceholder}}" onChange="handleChange($event)"></hy-text>
+```
+
+#### 2. 事件命名规范
+- 使用驼峰命名法
+- 事件处理函数以 `handle` 开头
+- 参数使用 `$event`
+
+```typescript
+// 正确
+handleClick($event: any) {
+  console.log('按钮点击', $event);
+}
+
+handleFormChange($event: any) {
+  this.formData = $event;
+}
+```
+
+#### 3. 模型绑定规范
+- model 属性使用有意义的命名
+- 避免使用 `test`、`data` 等无意义命名
+- 使用业务相关的命名
+
+```html
+<!-- 正确 -->
+<hy-gt model="userProfile">
+  <hy-text title="姓名" model="fullName"></hy-text>
+  <hy-text title="邮箱" model="email"></hy-text>
+</hy-gt>
+
+<!-- 错误 -->
+<hy-gt model="test">
+  <hy-text title="姓名" model="text1"></hy-text>
+  <hy-text title="邮箱" model="text2"></hy-text>
+</hy-gt>
+```
+
+### Storybook 文档规范
+
+#### 1. 文档结构
+每个组件的 Storybook 文档应包含以下章节：
+- **基础用法**: 展示组件的基本功能
+- **高级功能**: 展示组件的高级特性和配置
+- **综合应用示例**: 展示组件在实际业务中的应用
+
+#### 2. 代码示例
+- 提供完整的 HTML 模板示例
+- 提供相应的 TypeScript 组件代码
+- 包含详细的属性配置说明
+- 提供实际的业务应用场景
+- **必须包含 ModelService 服务配置**（表单组件文档）
+
+#### 3. 模块配置要求
+表单组件的 Storybook 文档必须包含正确的服务配置：
+
+```typescript
+import { ModelService } from '../../../common/domain/service/model.service';
+import { TableService } from '../../../common/domain/service/hytable.service';
+import { StoriesModule } from 'stories/stories.module';
+
+export default {
+  title: '表单组件/hy-xxx（组件名）',
+  component: HyXxxComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [CommonModule, BrowserAnimationsModule, BaseModule, StoriesModule],
+      providers: [{ provide: ModelService }, TableService]
+    }),
+  ],
+  argTypes,
+} as Meta;
+```
+
+#### 4. 文档描述
+- 使用中文描述
+- 包含详细的使用场景说明
+- 提供最佳实践建议
+- 包含注意事项和常见错误
+- **说明数据绑定机制**（表单组件文档）
+
+### 表单数据绑定和服务
+
+#### 1. ModelService 服务依赖
+所有使用表单组件的地方都必须注入相关服务：
+
+```typescript
+// Storybook 模块配置
+decorators: [
+  moduleMetadata({
+    imports: [CommonModule, BrowserAnimationsModule, BaseModule, StoriesModule],
+    providers: [{ provide: ModelService }, TableService]
+  }),
+]
+
+// 组件中注入服务
+constructor(
+  private modelService: ModelService,
+  private tableService: TableService
+) {}
+```
+
+#### 2. 表单数据操作规则
+- **读取数据**: 表单组件的值通过 ModelService 服务绑定
+- **修改数据**: 必须通过 `hyapi.model.setGtData` 方法修改
+- **数据同步**: 所有 hy-gt 内的组件值都与 ModelService 同步
+
+```typescript
+// 正确的数据修改方式
+hyapi.model.setGtData('modelName', 'fieldName', newValue);
+
+// 获取表单数据
+const formData = this.modelService.getGtData('modelName');
+
+// 错误方式：直接修改组件属性
+// this.componentValue = newValue; // ❌ 不要这样做
+```
+
+#### 3. 表单组件数据流
+```typescript
+// 1. 数据初始化
+ngOnInit() {
+  // 初始化表单数据
+  hyapi.model.setGtData('userForm', {
+    username: '',
+    department: '',
+    joinDate: null
+  });
+}
+
+// 2. 响应数据变化
+onFormChange(event: any) {
+  // 通过 ModelService 处理数据变化
+  const currentData = hyapi.model.getGtData('userForm');
+  console.log('表单数据:', currentData);
+}
+
+// 3. 提交表单
+submitForm() {
+  const formData = hyapi.model.getGtData('userForm');
+  // 验证和提交逻辑
+  this.apiService.submitForm(formData);
+}
+```
+
+### 开发注意事项
+
+1. **组件嵌套**: 严格遵循组件的嵌套规则，确保表单组件正确包装
+2. **数据绑定**: 确保模型绑定通过 ModelService 服务，使用 hyapi.model.setGtData 修改数据
+3. **服务注入**: 所有使用表单组件的模块必须注入 ModelService 和相关服务
+4. **事件处理**: 正确处理组件事件，避免内存泄漏
+5. **类型安全**: 使用 TypeScript 确保类型安全
+6. **性能优化**: 避免不必要的数据绑定和事件监听
+
+### 代码检查规则
+
+#### 必须检查的模式
+
+❌ **错误模式**:
+```html
+<!-- 错误：hy-button 缺少 hy-form 包装 -->
+<hy-button title="提交"></hy-button>
+
+<!-- 错误：只有 hy-gt 没有 hy-form -->
+<hy-gt model="form">
+  <hy-text title="输入" model="input"></hy-text>
+  <hy-button title="提交"></hy-button>
+</hy-gt>
+
+<!-- 错误：表单组件缺少 hy-gt 包装 -->
+<hy-form>
+  <hy-text title="输入" model="input"></hy-text>
+  <hy-button title="提交"></hy-button>
+</hy-form>
+```
+
+✅ **正确模式**:
+```html
+<!-- 正确方式1：hy-button 在 hy-form 内（在 hy-gt 外） -->
+<hy-form>
+  <hy-gt model="form">
+    <hy-text title="输入" model="input"></hy-text>
+    <hy-select title="选择" model="select" [options]="options"></hy-select>
+  </hy-gt>
+  <hy-button title="提交" (onClick)="submit()"></hy-button>
+  <hy-button title="重置" (onClick)="reset()"></hy-button>
+</hy-form>
+
+<!-- 正确方式2：hy-button 在 hy-form 和 hy-gt 内 -->
+<hy-form>
+  <hy-gt model="form">
+    <hy-text title="输入" model="input"></hy-text>
+    <hy-select title="选择" model="select" [options]="options"></hy-select>
+    <hy-button title="提交" (onClick)="submit()"></hy-button>
+    <hy-button title="重置" (onClick)="reset()"></hy-button>
+  </hy-gt>
+</hy-form>
+
+<!-- 正确：展示组件独立使用 -->
+<hy-list [data]="listData"></hy-list>
+<hy-progress [percent]="50"></hy-progress>
+<hy-tag [datas]="tagData"></hy-tag>
+```
+
+#### 表单数据操作正确示例：
+```typescript
+// 正确的表单数据操作
+export class FormComponent {
+  constructor(private modelService: ModelService) {}
+
+  ngOnInit() {
+    // 初始化表单数据
+    hyapi.model.setGtData('form', {
+      input: '',
+      select: ''
+    });
+  }
+
+  submit() {
+    // 获取表单数据
+    const formData = hyapi.model.getGtData('form');
+    console.log('提交数据：', formData);
+  }
+
+  updateField() {
+    // 修改特定字段
+    hyapi.model.setGtData('form', 'input', '新值');
+  }
+
+  reset() {
+    // 重置表单
+    hyapi.model.setGtData('form', {
+      input: '',
+      select: ''
+    });
+  }
+}
+```
+
+#### 自动检查清单
+
+在编写代码时，请自动检查：
+
+1. **hy-button 检查**:
+   - [ ] 是否在 `hy-form` 内？
+   - [ ] 如果在 `hy-gt` 内，`hy-gt` 是否也在 `hy-form` 内？
+
+2. **表单组件检查**:
+   - [ ] 是否在 `hy-form` 内？
+   - [ ] 是否在 `hy-gt` 内？
+   - [ ] `model` 属性是否有意义？
+
+3. **展示组件检查**:
+   - [ ] 是否正确地独立使用？
+   - [ ] 是否不需要表单包装？
+
+#### 常见错误场景
+
+🚨 **高危错误**:
+```html
+<!-- 绝对不要这样做：缺少 hy-form 包装 -->
+<hy-gt model="form">
+  <hy-text title="输入" model="input"></hy-text>
+  <hy-button title="提交"></hy-button>  <!-- 错误：没有hy-form包装 -->
+</hy-gt>
+```
+
+🚨 **常见错误**:
+```html
+<!-- 不要这样做 -->
+<div>
+  <hy-button title="提交"></hy-button>  <!-- 错误：缺少hy-form -->
+</div>
+```
+
+#### 表单数据操作错误示例：
+```typescript
+// ❌ 错误的数据操作方式
+export class WrongFormComponent {
+  formData = { input: '', select: '' }; // 错误：不使用ModelService
+
+  submit() {
+    // 错误：直接修改组件属性
+    this.formData.input = '新值';
+    
+    // 错误：不通过ModelService获取数据
+    console.log('提交数据：', this.formData);
+  }
+  
+  updateField(value: string) {
+    // 错误：直接赋值而不是通过hyapi.model.setGtData
+    this.formData.input = value;
+  }
+}
+
+// ❌ 错误的Storybook配置
+export default {
+  title: '表单组件/hy-text',
+  component: HyTextComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [CommonModule, BrowserAnimationsModule, BaseModule],
+      // 错误：缺少ModelService和TableService
+      providers: []
+    }),
+  ],
+}
+```
+
+### 代码审查要点
+
+在代码审查时，重点检查：
+
+1. **所有 hy-button 是否都在 hy-form 内（可以在 hy-gt 内，也可以不在）**
+2. **所有表单组件是否都在 hy-form 和 hy-gt 内**
+3. **展示组件是否正确独立使用**
+4. **model 属性命名是否合理**
+5. **事件处理函数是否符合命名规范**
+6. **ModelService 和 TableService 服务是否正确注入**
+7. **表单数据是否通过 hyapi.model.setGtData 修改**
+8. **Storybook 文档是否包含必要的服务配置**
+
+#### 表单组件审查清单
+
+✅ **服务配置检查**:
+- [ ] 导入了 ModelService 和 TableService
+- [ ] 在 providers 中正确配置了服务
+- [ ] 导入了 StoriesModule
+
+✅ **数据操作检查**:
+- [ ] 使用 hyapi.model.setGtData 修改表单数据
+- [ ] 使用 hyapi.model.getGtData 获取表单数据
+- [ ] 避免直接修改组件属性值
+
+✅ **组件结构检查**:
+- [ ] 表单组件在 hy-form 和 hy-gt 内
+- [ ] hy-button 在 hy-form 内
+- [ ] model 属性使用有意义的命名
+
+遵循以上规范可以确保 HyFrame 组件的正确使用和良好的代码质量。 

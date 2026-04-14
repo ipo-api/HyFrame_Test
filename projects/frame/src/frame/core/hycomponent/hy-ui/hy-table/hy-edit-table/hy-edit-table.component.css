@@ -1,0 +1,160 @@
+.head-content-class {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.editable-row-operations a {
+  margin-right: 8px;
+}
+
+.hy-glt .hy-glt-copm-title {
+  height: 40px;
+  line-height: 40px;
+  font-size: 15px;
+  font-weight: 600;
+  background: transparent;
+  padding-left: 5px;
+}
+.hy-glt .hy-glt-copm-title-height {
+  height:auto;
+}
+
+/*title为模板时，改变title的line-height*/
+:host ::ng-deep .hy-glt-copm-title-height .hy-element-flex:first-child{
+  line-height: 54px;
+}
+
+/*模板标题样式*/
+:host ::ng-deep .hy-glt-copm-title-height .hy-element-flex:last-child{
+  font-size: 13px;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.hy-glt.noBorder .hy-table-class {
+  border: none;
+}
+
+/*无边框时标题的间距*/
+.hy-glt.noBorder .hy-glt-copm-title{
+  padding-left: 16px;
+}
+
+.hy-glt.gltStyle1 .hy-table-class {
+  border-top: none !important;
+}
+
+.hy-table-class {
+  border: 1px solid #e8e8e8;
+  background-color: white;
+  padding: 0 16px;
+  margin-top: -1px;
+  position: relative;
+}
+
+.childrenGltStyle .hy-table-class {
+  border: none;
+  padding: 0;
+  background-color: transparent !important;
+}
+
+.hy-glt.grayTitle .hy-glt-copm-title {
+  background-color: #f5f5f5 !important;
+  padding-left: 16px;
+  margin: 8px 16px 0 16px;
+}
+
+.hy-glt.grayTitle .hy-table-class {
+  border: none;
+}
+
+
+/*覆盖阿里样式*/
+.hy-table-class ::ng-deep thead > tr > th .ant-table-header-column {
+  display: block !important;
+}
+
+/*新增的样式*/
+.hy-table-class ::ng-deep .ant-table table {
+  table-layout: fixed !important;
+}
+
+/*覆盖数据为空时阿里的样式*/
+.hy-table-class ::ng-deep .ant-table-empty .ant-table-placeholder {
+  border-bottom: none;
+}
+
+/* :host ::ng-deep  .hyGltTr:nth-child(odd) td {
+  background-color: #ffff;
+}
+:host ::ng-deep  .hyGltTr:nth-child(even) td {
+  background-color: #fafafa;
+} */
+
+/*可编辑虚拟滚动列表*/
+:host ::ng-deep  .virClass:nth-child(odd) td {
+  background-color: #fafafa;
+}
+:host ::ng-deep  .virClass:nth-child(even) td {
+  background-color: #ffff;
+}
+
+
+
+/*th背景颜色*/
+/* :host ::ng-deep .ant-table-thead > tr > th {
+  background-color: #f9f9f9;
+} */
+
+/*td线条颜色*/
+:host ::ng-deep .ant-table-tbody > tr > td {
+  border-bottom: 1px solid #f5f5f5;
+}
+
+/*th线条颜色*/
+:host ::ng-deep .ant-table-thead > tr > th {
+  border-bottom: 1px solid #f5f5f5;
+}
+
+
+/*th过滤下拉面板的样式*/
+
+.search-box {
+  padding: 8px;
+}
+
+.search-box input {
+  width: 188px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+
+/*临时解决虚拟滚动空数据在弹框里，图标位置不能居中对齐*/
+.hy-empty{
+  position: absolute;
+  z-index: 10;
+  bottom: 60px;
+  width: 98%;
+  color: rgba(0,0,0,.25);
+}
+
+:host ::ng-deep.ant-empty-image {
+  height: 40px;
+}
+
+/* 隐藏表头之间的间隔样式(此修改覆盖阿里原本的样式) */
+:host ::ng-deep .ant-table-cell::before {
+  background-color: transparent !important;
+}
+
+:host ::ng-deep  .hyGltTr.edit-row td {
+  background-color: #e6f7ff;
+}
+
+.li-menu-item{
+  text-align: center;
+  padding-right: 20px;
+  padding-left: 20px;
+}

@@ -1,0 +1,45 @@
+.li-style {
+  outline: none;
+}
+
+.menu-span{
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  width: 100%;
+}
+
+.menu-span span:nth-child(1){
+  width: 26px;
+}
+.menu-span span:nth-child(2){
+  flex: 5;
+}
+
+.menu-img{
+  opacity: 0.65;
+  /* margin-right: 10px; */
+}
+
+.menu-title:hover .menu-img{
+  opacity: 1;
+}
+
+.ant-menu-item-selected .menu-img{
+  opacity: 1;
+}
+
+
+/*修复阿里定位问题菜单缩起值只显示图标*/
+:host ::ng-deep .ant-menu-inline-collapsed > .ant-menu-item .menu-title {
+  display: inline-block;
+  max-width: 0;
+  opacity: 0;
+}
+
+:host ::ng-deep .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title .menu-img + span {
+  display: inline-block;
+  max-width: 0;
+  opacity: 0;
+}
+

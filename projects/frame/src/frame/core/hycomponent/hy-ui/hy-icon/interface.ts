@@ -1,0 +1,1 @@
+export type HyIconClass = 'red' | 'blue' | 'orange' | 'green' | 'pointer' | 'enable' | 'gray' | '' | null;

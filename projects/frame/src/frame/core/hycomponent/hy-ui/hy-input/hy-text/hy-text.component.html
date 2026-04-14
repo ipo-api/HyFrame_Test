@@ -1,0 +1,132 @@
+<div class="hy-col-{{ flex == undefined ? cols : 0 }}" [ngStyle]="{display: flex == undefined ? 'block' : 'inline-block'}" title="">
+  <nz-form-item class="hy-form-item hy-text" >
+    <hy-comm-label
+      *ngIf="!noLabel"
+      [noLabel]="noLabel"
+      [labelWidth]="labelWidth" 
+      [ckRequired]="ckRequired" 
+      [noColon]="noColon" 
+      [title]="title" 
+      [isWrap]="isLabelWrap ?? tableService.isLabelWrap">
+    </hy-comm-label>
+    <span class="required-icon" *ngIf="noLabel && ckRequired && isShowNoLabelRequired">*</span>
+    <!-- <nz-form-label class="form-label" *ngIf="!noLabel" [ngStyle]="{width: labelWidth}" [nzRequired]="ckRequired" [nzNoColon]="noColon">{{title}}</nz-form-label> -->
+    <nz-form-control [ngStyle]="{width: flex == undefined ? '100%' : flex}" [nzValidateStatus]="formControl.pristine ? 'success' : formControl" [ngClass]="{'tipBottomLine' : tipType=='bottomTip'}">
+      <ng-container *ngIf="suffix == undefined && prefix == undefined && addOnBefore == undefined && addOnAfter == undefined">
+        <ng-container *ngIf="type == 'text'">
+          <span 
+            nz-tooltip 
+            [nzTooltipTitle]="formControl.errors && formControl.errors['msg'] ? formControl.errors['msg'] : ''" 
+            nzTooltipPlacement="topRight"
+            [nzTooltipTrigger]="null"
+            nzTooltipOverlayClassName="rooltipColorRed"
+            [nzTooltipVisible]="formControl.errors && formControl.errors['msg'] && !formControl.pristine ? true : false">
+            <input
+              nz-input
+              [nzAutocomplete]="auto"
+              [class.ui-disabled]="!enable || !tableService.enable"
+              [attr.readonly]="!enable || !tableService.enable ? '' : null"
+              [placeholder]="placeholder"
+              [formControl]="formControl"
+              [(ngModel)]="modelService[tableService.modelName][modelName]"
+              (ngModelChange)="onModelChange($event)"
+              (blur)="onBlurFn($event)"
+              (keyup)="$event.keyCode === 13 ? keyupFuction() : undefined"
+            />
+          </span>
+        </ng-container>
+        <ng-container *ngIf="type == 'password'">
+          <nz-input-group [nzSuffix]="isShowEye ? suffixPawssTemplate : null" [class.input-affix-wrapper-disabled]="!enable || !tableService.enable" nz-tooltip
+          [nzTooltipTitle]="formControl.errors && formControl.errors['msg'] ? formControl.errors['msg'] : ''" 
+          nzTooltipPlacement="topRight"
+          [nzTooltipTrigger]="null"
+          nzTooltipOverlayClassName="rooltipColorRed"
+          [nzTooltipVisible]="formControl.errors && formControl.errors['msg'] && !formControl.pristine ? true : false"  >
+              <input
+                (copy)="copyFunction()"
+                (cut)="cutFunction()"
+                nz-input
+                [class.ui-disabled]="!enable || !tableService.enable"
+                [attr.readonly]="!enable || !tableService.enable ? '' : null"
+                [disabled]="!enable || !tableService.enable"
+                [placeholder]="placeholder"
+                [type]="passwordVisible ? 'text' : 'password'"
+                [(ngModel)]="modelService[tableService.modelName][modelName]"
+                [formControl]="formControl"
+                (ngModelChange)="onModelChange($event)"
+                (blur)="onBlurFn($event)"
+                (keyup)="$event.keyCode === 13 ? keyupFuction() : undefined"
+              />
+          </nz-input-group>
+          <ng-template #suffixPawssTemplate>
+            <i nz-icon [nzType]="!passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+          </ng-template>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="suffix || prefix || addOnBefore || addOnAfter">
+        <nz-input-group 
+          nz-tooltip 
+          [ngClass]="{'affixFocuse':addOnBefore}" 
+          [nzSuffix]="suffix ? _suffix : null" 
+          [nzPrefix]="prefix" 
+          [nzAddOnBefore]="addOnBefore ? _addOnBefore : null" 
+          [nzAddOnAfter]="addOnAfter ? _addOnAfter : null" 
+          [nzCompact]="compact" [nzSearch]="search"  
+          [class.input-affix-wrapper-disabled]="!enable || !tableService.enable"             
+          [nzTooltipTitle]="formControl.errors && formControl.errors['msg'] ? formControl.errors['msg'] :''" 
+          nzTooltipPlacement="topRight"
+          [nzTooltipTrigger]="null"
+          nzTooltipOverlayClassName="rooltipColorRed"
+          [nzTooltipVisible]="formControl.errors && formControl.errors['msg'] && !formControl.pristine ? true : false"  >
+            <ng-template #defaultTemplate></ng-template>
+            <input
+              [nzAutocomplete]="auto"
+              nz-input
+              [class.ui-disabled]="!enable || !tableService.enable"
+              [attr.readonly]="!enable || !tableService.enable ? '' : null"
+              [placeholder]="placeholder"
+              [(ngModel)]="modelService[tableService.modelName][modelName]"
+              [formControl]="formControl"
+              (ngModelChange)="onModelChange($event)"
+              (blur)="onBlurFn($event)"
+              (keyup)="$event.keyCode === 13 ? keyupFuction() : undefined"
+            />
+            <ng-template #defaultBeforeTemplate></ng-template>
+        </nz-input-group>
+      </ng-container>
+      <hy-comm-tip *ngIf="tip && tipType == 'bottomTip'" [tip]="tip" tipType="bottom"></hy-comm-tip>
+    </nz-form-control>
+
+    <span class="hy-explain-text"  *ngIf="_explainTemplate || _explainString">
+      <ng-container *ngIf="_explainString; else explainTemp">{{_explainTemplate}}</ng-container>
+      <ng-template #explainTemp>
+        <ng-template [ngTemplateOutlet]="_explainTemplate"></ng-template>
+      </ng-template>
+    </span>
+
+    <div *ngIf="tableService.showTip" class="tipStyleClass">
+      <div *ngIf="tip && tipType=='default'">
+        <hy-comm-tip [tip]="tip" tipType="default"></hy-comm-tip>
+      </div>
+    </div>
+  </nz-form-item>
+</div>
+
+<ng-template #addOnBeforeTemplate>
+  <ng-container [hyTemplateWrapper]="addOnBefore" [item]="item" [index]="index"></ng-container>
+</ng-template>
+
+<ng-template #addOnAftertemplate>
+  <ng-container [hyTemplateWrapper]="addOnAfter" [item]="item" [index]="index"></ng-container>
+</ng-template>
+
+<ng-template #suffixTemplate>
+  <ng-container [hyTemplateWrapper]="suffix" [item]="item" [index]="index"></ng-container>
+</ng-template>
+
+<nz-autocomplete #auto>
+  <nz-auto-option *ngFor="let option of filteredOptions" [nzValue]="option.id" [nzLabel]="option.text">
+    {{ option.text }}
+  </nz-auto-option>
+</nz-autocomplete>

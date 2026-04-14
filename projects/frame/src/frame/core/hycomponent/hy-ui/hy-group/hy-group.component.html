@@ -1,0 +1,53 @@
+<div class="hy-col-{{flex == undefined ? cols : 0}}" [ngStyle]="{display: flex == undefined ? 'block' : 'inline-block'}">
+  <nz-form-item class="hy-form-item">
+    <hy-comm-label
+      *ngIf="!noLabel"
+      [noLabel]="noLabel"
+      [labelWidth]="labelWidth" 
+      [ckRequired]="ckRequired" 
+      [noColon]="noColon" 
+      [title]="title" 
+      [isWrap]="isLabelWrap ?? tableService.isLabelWrap">
+    </hy-comm-label>
+
+    <nz-form-control [ngStyle]="{width: flex == undefined ? '100%' : flex}" [nzValidateStatus]="formControl?.pristine? 'success' : formControl">
+      <ng-container *ngFor="let item of list;let index = index;">
+        <div class="hy-group-item" >
+          <div 
+            class="title" 
+            [ngStyle]="{'margin-top':index === 0 ? mainHeader?.nativeElement?.offsetHeight + 'px' : '0px'}"
+            *ngIf="rowTitle">
+            {{rowTitle}}{{index}}
+          </div>
+          <div class="main" #main>
+            <div #mainHeader class="main-header" nz-row *ngIf="index === 0">
+              <div *ngFor="let head of heads" nz-col [nzSpan]="head.cols" [ngClass]="{'main-header-required': head.required}">{{head.th}}</div>
+            </div>
+            <ng-container [hyTemplateWrapper]="itemTemplate" [item]="item" [index]="index" (afterTemplateInit)="afterTemplateInit()"></ng-container>
+          </div>
+          <div 
+            class="opt"
+            [ngStyle]="{width: list.length > 1 ? '40px' : '20px','margin-top':index === 0 ? mainHeader?.nativeElement?.offsetHeight + 'px' : '0px'}" 
+            *ngIf="(!(maxRow === 1) || list.length > 1) && !noOperation">
+            <a class="icon-add" [ngClass]="{'icon-add-disabled': !formService.formGroup.valid}" nz-button nzType="text" [disabled]="!formService.formGroup.valid" *ngIf="index === list.length - 1 && maxRow > list.length">
+              <i nz-tooltip [nzTooltipTitle]="'hy-group.新增' | i18nF" (click)="addRow()" nz-icon nzType="plus-circle" nzTheme="outline"></i>
+            </a>
+            <a class="icon-del" nz-button nzType="text">
+              <i nz-tooltip [nzTooltipTitle]="'hy-group.删除' | i18nF" *ngIf="list.length > 1" (click)="removeRow(item)" nz-icon nzType="delete" nzTheme="outline"></i>
+            </a>
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="tipBottom" *ngIf="tip && tipType == 'bottomTip'">
+        <hy-comm-tip *ngIf="tip && tipType == 'bottomTip'" [tip]="tip" tipType="bottom"></hy-comm-tip>
+      </div>
+    </nz-form-control>
+    <!--gt中任何一个组件有tip，以下div需显示，目的是对齐-->
+    <div *ngIf="tableService.showTip" class="tipStyleClass"></div>
+  </nz-form-item>
+</div>
+
+<hy-monitor [data]="modelService[tableService.modelName][modelName]" (dataChange)="mdsDataChange()"></hy-monitor>
+
+

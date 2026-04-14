@@ -1,0 +1,30 @@
+<div nz-menu [nzMode]="'inline'" class="menu-ul-class">
+  <div class="login-name-ul">
+    <div style="height: 10px;"></div>
+    <div *ngFor="let menu of userPanelData">
+      <a href="javascript:;" class="login-name-li" *ngFor="let vaule of menu.usrNameData">
+        <span class="font-class">{{ vaule.name }}：</span>
+        <span class="font-class" style="font-weight: bold;">{{ vaule.value }}</span>
+      </a>
+    </div>
+  </div>
+
+  <div style="border-bottom: 1px solid #e4e4e4; margin: 8px 0 8px 0;" *ngIf="userPanelData && userPanelData.length > 0"></div>
+
+  <div *ngFor="let menu of userPanelData">
+    <div *ngFor="let value of menu.infoMenuData">
+      <li class="header-menu-class" nz-menu-item *ngIf="!value.children" [nzPaddingLeft]="16">
+        <span title>
+          <hy-icon [hyIconName]="value.hyIconName" [nzIconName]="value.nzIconName" [iconStyle]="{'font-size': '16px','margin-right':'10px'}"></hy-icon>
+          <span class="menu-title" (click)="value.click()">{{ value.name }}</span>
+        </span>
+      </li>
+    </div>
+  </div>
+  <div style="border-bottom: 1px solid #e4e4e4; margin: 6px 0 6px 0;" *ngIf="userPanelData && userPanelData[1]"></div>
+  <li class="login-out-li">
+    <a (click)="logout()" class="login-out-image">
+      <span style="position: relative; bottom: 2px;">{{i18nService.getFrameI18n('header-menu.退出')}}</span>
+    </a>
+  </li>
+</div>

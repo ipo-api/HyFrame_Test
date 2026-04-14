@@ -1,0 +1,10 @@
+.hide{
+  display: none;
+}
+
+/* 隐藏表头之间的间隔样式(此修改覆盖阿里原本的样式) */
+:host ::ng-deep .ant-table-cell::before {
+  background-color: transparent !important;
+}
+
+

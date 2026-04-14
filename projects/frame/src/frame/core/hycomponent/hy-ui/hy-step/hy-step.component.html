@@ -1,0 +1,23 @@
+<div class="step-width"  [ngStyle]="{'width':stepWidth}">
+  <nz-steps [nzCurrent]="current" [nzSize]="size" style="margin: 0 20px;">
+    <nz-step *ngFor="let item of stepTitle; let index = index" nzTitle="{{ item.title }}" [nzIcon]="item.icon"></nz-step>
+  </nz-steps>
+</div>
+
+<div class="steps-content">
+  <ng-content></ng-content>
+</div>
+
+<div class="steps-action"  *ngIf="showButton">
+  <button nz-button type="button" nzType="default"  (click)="pre()" *ngIf="current > 0">
+    <span>{{I18nService.getFrameI18n('hy-step.返回')}}</span>
+  </button>
+
+  <button nz-button type="button" nzType="default" (click)="next()" *ngIf="current < stepTitle.length - 1">
+    <span>{{I18nService.getFrameI18n('hy-step.下一步')}}</span>
+  </button>
+
+  <button nz-button  type="button" nzType="primary" (click)="done()" *ngIf="current === stepTitle.length - 1">
+    <span>{{I18nService.getFrameI18n('hy-step.确认')}}</span>
+  </button>
+</div>

@@ -1,0 +1,1 @@
+export type HyProgressStatusType = 'success' | 'exception' | 'active' | 'normal';

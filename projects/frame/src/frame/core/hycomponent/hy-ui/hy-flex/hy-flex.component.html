@@ -1,0 +1,18 @@
+<div #main
+    class="hy-col-{{cols == undefined ? 0 : cols}} hy-flex-box" 
+    [ngStyle]="{'height':wrap ? height : 'auto'}" 
+    [ngClass]="{
+        'hy-bg':showBg,
+        'hy-flex-box-padding':showPadding,
+        'top-padding':showTopPadding,
+        'bottom-padding':showBottomPadding,
+        'left-padding':showLeftPadding,
+        'right-padding':showRightPadding,
+        'top-margin':showTopMargin,
+        'bottom-margin':showBottomMargin
+    }"
+    >
+    <div [id]="id" *ngIf="id" class="hy-flex-box-main" #content [ngClass]="{'auto-layout':autoLayout}" [ngStyle]="{'flex-direction':direction,'flex-wrap':wrap ? 'wrap' :'nowrap'}">
+        <ng-content ></ng-content>
+    </div>
+</div>

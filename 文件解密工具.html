@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文件解密工具</title>
+    <!-- 引入CryptoJS库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .preview {
+            max-width: 100%;
+            margin-top: 15px;
+        }
+        .tabs {
+            display: flex;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #f1f1f1;
+            margin-right: 5px;
+            border-radius: 4px 4px 0 0;
+        }
+        .tab.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .success {
+            color: green;
+            margin-top: 10px;
+        }
+        .debug-info {
+            font-size: 12px;
+            max-height: 100px;
+            overflow: auto;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+        .checkbox-wrapper {
+            margin-top: 10px;
+        }
+        .checkbox-wrapper label {
+            display: inline;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>文件解密工具</h1>
+        
+        <div class="form-group">
+            <label for="uuid">UUID密钥:</label>
+            <input type="text" id="uuid" placeholder="输入加密时使用的UUID密钥">
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="file">加密文件</div>
+            <div class="tab" data-tab="text">加密文本</div>
+        </div>
+
+        <div class="tab-content active" id="fileTab">
+            <div class="form-group">
+                <label for="encryptedFile">选择加密文件:</label>
+                <input type="file" id="encryptedFile">
+            </div>
+        </div>
+
+        <div class="tab-content" id="textTab">
+            <div class="form-group">
+                <label for="encryptedText">加密的Base64文本:</label>
+                <textarea id="encryptedText" rows="5" placeholder="粘贴加密后的Base64文本"></textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="fileType">文件类型:</label>
+            <select id="fileType">
+                <option value="application/octet-stream">二进制文件 (通用)</option>
+                <option value="image/jpeg">图片 (JPEG)</option>
+                <option value="image/png">图片 (PNG)</option>
+                <option value="image/gif">图片 (GIF)</option>
+                <option value="application/pdf">PDF文档</option>
+                <option value="text/plain">文本文件</option>
+                <option value="application/vnd.openxmlformats-officedocument.wordprocessingml.document">Word文档</option>
+                <option value="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">Excel表格</option>
+                <option value="application/zip">ZIP压缩文件</option>
+                <option value="audio/mpeg">音频 (MP3)</option>
+                <option value="video/mp4">视频 (MP4)</option>
+                <option value="custom">自定义...</option>
+            </select>
+            <input type="text" id="customFileType" placeholder="输入自定义MIME类型" style="display:none; margin-top:5px;">
+        </div>
+
+        <div class="form-group">
+            <label for="fileName">输出文件名:</label>
+            <input type="text" id="fileName" placeholder="解密后的文件名">
+        </div>
+
+        <div class="checkbox-wrapper">
+            <input type="checkbox" id="debugMode">
+            <label for="debugMode">调试模式</label>
+        </div>
+
+        <button id="decryptBtn">解密文件</button>
+        
+        <div id="message" class="error" style="display:none;"></div>
+        <div id="debugInfo" class="debug-info"></div>
+        
+        <div class="result" id="result" style="display:none;">
+            <h3>解密结果:</h3>
+            <div id="downloadContainer"></div>
+            <div id="previewContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        // 切换标签页
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                this.classList.add('active');
+                document.getElementById(this.dataset.tab + 'Tab').classList.add('active');
+            });
+        });
+
+        // 文件类型选择逻辑
+        document.getElementById('fileType').addEventListener('change', function() {
+            if (this.value === 'custom') {
+                document.getElementById('customFileType').style.display = 'block';
+            } else {
+                document.getElementById('customFileType').style.display = 'none';
+            }
+        });
+
+        // 调试模式切换
+        document.getElementById('debugMode').addEventListener('change', function() {
+            document.getElementById('debugInfo').style.display = this.checked ? 'block' : 'none';
+        });
+
+        // 解密按钮点击事件
+        document.getElementById('decryptBtn').addEventListener('click', function() {
+            try {
+                const uuid = document.getElementById('uuid').value.trim();
+                if (!uuid) {
+                    showMessage('请输入UUID密钥', 'error');
+                    return;
+                }
+
+                // 获取文件类型
+                let fileType = document.getElementById('fileType').value;
+                if (fileType === 'custom') {
+                    fileType = document.getElementById('customFileType').value.trim();
+                    if (!fileType) {
+                        showMessage('请输入自定义文件类型', 'error');
+                        return;
+                    }
+                }
+
+                // 获取文件名
+                let fileName = document.getElementById('fileName').value.trim() || 'decrypted-file';
+                
+                // 判断是处理文件还是文本
+                const activeTab = document.querySelector('.tab.active').dataset.tab;
+                
+                if (activeTab === 'file') {
+                    const fileInput = document.getElementById('encryptedFile');
+                    if (!fileInput.files || fileInput.files.length === 0) {
+                        showMessage('请选择加密文件', 'error');
+                        return;
+                    }
+
+                    const file = fileInput.files[0];
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        try {
+                            // 根据HyFrameUpload的加密方式，文件内容是文本形式的Base64
+                            // 不需要分割dataURL，直接读取文本内容
+                            reader.onload = function(e) {
+                                try {
+                                    // 读取为文本，因为HyFrameUpload存储的是Base64文本
+                                    const encryptedContent = e.target.result;
+                                    processDecryption(encryptedContent, uuid, fileType, fileName);
+                                } catch (error) {
+                                    showMessage('解析文件失败: ' + error.message, 'error');
+                                    logDebug('解析错误详情: ' + error.stack);
+                                }
+                            };
+                            reader.readAsText(file);
+                        } catch (error) {
+                            showMessage('解析文件失败: ' + error.message, 'error');
+                            logDebug('解析错误详情: ' + error.stack);
+                        }
+                    };
+                    
+                    reader.onerror = function(error) {
+                        showMessage('读取文件失败', 'error');
+                        logDebug('读取错误详情: ' + error);
+                    };
+                    
+                    reader.readAsArrayBuffer(file);
+                } else {
+                    // 处理文本输入
+                    const encryptedBase64 = document.getElementById('encryptedText').value.trim();
+                    if (!encryptedBase64) {
+                        showMessage('请输入加密文本', 'error');
+                        return;
+                    }
+                    
+                    processDecryption(encryptedBase64, uuid, fileType, fileName);
+                }
+            } catch (error) {
+                showMessage('发生错误: ' + error.message, 'error');
+                logDebug('错误详情: ' + error.stack);
+            }
+        });
+
+        // 处理解密
+        function processDecryption(encryptedContent, uuid, fileType, fileName) {
+            try {
+                logDebug('开始解密，内容长度: ' + encryptedContent.length);
+                logDebug('UUID: ' + uuid);
+                logDebug('文件类型: ' + fileType);
+                
+                // 解密文件
+                const decryptedBlob = decryptFile(encryptedContent, uuid, fileType);
+                
+                // 显示下载链接
+                const downloadUrl = URL.createObjectURL(decryptedBlob);
+                
+                const downloadContainer = document.getElementById('downloadContainer');
+                downloadContainer.innerHTML = '';
+                
+                const downloadLink = document.createElement('a');
+                downloadLink.href = downloadUrl;
+                downloadLink.download = fileName;
+                downloadLink.textContent = '点击下载解密文件';
+                downloadLink.className = 'download-link';
+                downloadLink.style.display = 'block';
+                downloadLink.style.marginBottom = '10px';
+                downloadContainer.appendChild(downloadLink);
+                
+                // 添加预览功能
+                const previewContainer = document.getElementById('previewContainer');
+                previewContainer.innerHTML = '';
+                
+                // 根据文件类型预览
+                if (fileType.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = downloadUrl;
+                    img.className = 'preview';
+                    img.alt = '图片预览';
+                    previewContainer.appendChild(img);
+                } else if (fileType === 'text/plain') {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const pre = document.createElement('pre');
+                        pre.textContent = e.target.result;
+                        pre.style.maxHeight = '300px';
+                        pre.style.overflow = 'auto';
+                        pre.style.border = '1px solid #ddd';
+                        pre.style.padding = '10px';
+                        previewContainer.appendChild(pre);
+                    };
+                    reader.readAsText(decryptedBlob);
+                } else if (fileType === 'application/pdf') {
+                    const iframe = document.createElement('iframe');
+                    iframe.src = downloadUrl;
+                    iframe.width = '100%';
+                    iframe.height = '500px';
+                    previewContainer.appendChild(iframe);
+                } else if (fileType.startsWith('audio/')) {
+                    const audio = document.createElement('audio');
+                    audio.src = downloadUrl;
+                    audio.controls = true;
+                    audio.style.width = '100%';
+                    previewContainer.appendChild(audio);
+                } else if (fileType.startsWith('video/')) {
+                    const video = document.createElement('video');
+                    video.src = downloadUrl;
+                    video.controls = true;
+                    video.style.width = '100%';
+                    video.style.maxHeight = '400px';
+                    previewContainer.appendChild(video);
+                } else {
+                    previewContainer.textContent = '该文件类型无法预览，请下载后查看。';
+                }
+                
+                document.getElementById('result').style.display = 'block';
+                showMessage('文件解密成功！', 'success');
+            } catch (error) {
+                showMessage('解密失败: ' + error.message, 'error');
+                logDebug('解密错误详情: ' + error.stack);
+            }
+        }
+
+        /**
+         * 解密加密后的文件内容 - 修改版
+         * 根据HyUpload组件的加密逻辑进行对应的解密
+         */
+        function decryptFile(encryptedContent, uuid, fileType) {
+            try {
+                logDebug('解密文件内容起始: ' + encryptedContent.substring(0, 50) + '...');
+                
+                // 使用相同的UUID作为密钥
+                const key = CryptoJS.enc.Utf8.parse(uuid);
+                
+                // HyUpload加密过程是先加密然后转为Base64文本，所以这里需要先解析Base64
+                const ciphertext = CryptoJS.enc.Base64.parse(encryptedContent);
+                
+                // 创建CipherParams对象用于解密
+                const cipherParams = CryptoJS.lib.CipherParams.create({
+                    ciphertext: ciphertext
+                });
+                
+                logDebug('创建了密文参数对象，准备解密');
+                
+                // 使用AES解密，使用与加密时相同的参数
+                const decrypted = CryptoJS.AES.decrypt(
+                    cipherParams, 
+                    key, 
+                    { 
+                        mode: CryptoJS.mode.CBC, 
+                        padding: CryptoJS.pad.Pkcs7, 
+                        iv: key 
+                    }
+                );
+                
+                logDebug('解密完成，解密数据长度: ' + decrypted.sigBytes);
+                
+                // 将WordArray转换为ArrayBuffer
+                const arrayBuffer = wordArrayToArrayBuffer(decrypted);
+                
+                logDebug('转换为ArrayBuffer，长度: ' + arrayBuffer.byteLength);
+                
+                // 创建解密后的Blob对象
+                return new Blob([arrayBuffer], { type: fileType });
+            } catch (error) {
+                logDebug('解密处理中出错: ' + error);
+                throw error;
+            }
+        }
+
+        /**
+         * 将CryptoJS的WordArray转换为ArrayBuffer - 修正版
+         */
+        function wordArrayToArrayBuffer(wordArray) {
+            const words = wordArray.words;
+            const sigBytes = wordArray.sigBytes;
+            
+            // 创建ArrayBuffer和视图
+            const buffer = new ArrayBuffer(sigBytes);
+            const dataView = new DataView(buffer);
+            
+            // 填充数据 - 修正字节序处理
+            let offset = 0;
+            for (let i = 0; i < words.length && offset < sigBytes; i++) {
+                const word = words[i];
+                
+                // 确保不会越界，按字节填充
+                if (offset < sigBytes) dataView.setUint8(offset++, (word >>> 24) & 0xff);
+                if (offset < sigBytes) dataView.setUint8(offset++, (word >>> 16) & 0xff);
+                if (offset < sigBytes) dataView.setUint8(offset++, (word >>> 8) & 0xff);
+                if (offset < sigBytes) dataView.setUint8(offset++, word & 0xff);
+            }
+            
+            return buffer;
+        }
+
+        // 显示消息
+        function showMessage(message, type) {
+            const messageElement = document.getElementById('message');
+            messageElement.textContent = message;
+            messageElement.style.display = 'block';
+            
+            if (type === 'error') {
+                messageElement.className = 'error';
+                logDebug('错误: ' + message);
+            } else {
+                messageElement.className = 'success';
+                logDebug('成功: ' + message);
+            }
+            
+            // 5秒后自动隐藏
+            setTimeout(() => {
+                messageElement.style.display = 'none';
+            }, 5000);
+        }
+        
+        // 记录调试信息
+        function logDebug(message) {
+            const debugElement = document.getElementById('debugInfo');
+            const isChecked = document.getElementById('debugMode').checked;
+            
+            if (isChecked) {
+                const time = new Date().toTimeString().substr(0, 8);
+                debugElement.innerHTML += `<div>[${time}] ${message}</div>`;
+                debugElement.scrollTop = debugElement.scrollHeight;
+            }
+            
+            // 始终在控制台记录
+            console.log(message);
+        }
+    </script>
+</body>
+</html>

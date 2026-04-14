@@ -1,0 +1,13 @@
+.tag-box{
+    padding: 6px 0;
+    float: left;
+}
+
+.tag-box ::ng-deep .ant-cascader-picker-label, .ant-tag{
+    line-height: 22px !important;
+}
+
+.editable-tag {
+    background: rgb(255, 255, 255);
+    border-style: dashed;
+}

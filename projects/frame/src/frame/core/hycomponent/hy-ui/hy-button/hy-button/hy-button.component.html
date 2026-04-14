@@ -1,0 +1,84 @@
+<div class="hy-button-style {{class}}" title="" *ngIf="_type != 'link'">
+  <ng-container *ngIf="popoverButton">
+    <button class="btn-hover btn-hover-{{_type ? _type : 'default'}}{{isDangerBtn?'-danger':''}}"
+      nz-button
+      nz-popover
+      type="button"
+      [nzType]="_type"
+      [nzDanger]="isDangerBtn"
+      [nzShape]="shape"
+      [nzBlock]="block"
+      [nzSize]="size"
+      [nzLoading]="loading"
+      [nzGhost]="ghost"
+      [(nzPopoverVisible)]="visible"
+      (nzPopoverVisibleChange)="visibleChange.emit(visible)"
+      [nzPopoverTitle]="popoverTitle ? _popoverTitle : null"
+      [nzPopoverContent]="content"
+      [nzPopoverTrigger]="trigger"
+      [nzPopoverPlacement]="placement"
+      [nzPopoverOverlayStyle]="overlayStyle"
+      [nzSearch]="search"
+      *ngIf="_isShow && _authShow"
+      [disabled]="(formService.formGroup.invalid && check) || !enable || timeCountDisabled || (formService.formGroup.pristine && ckPristine)"
+      (click)="click()"
+    >
+      <ng-container [hyTemplateWrapper]="_titleContent"></ng-container>
+      <a *ngIf="title" href="#" title="{{ title }}"></a>
+      <hy-icon  *ngIf="hyIconName || nzIconName" [iconStyle]="iconStyle" [hyIconName]="hyIconName" [nzIconName]="nzIconName" ></hy-icon>
+      <span [ngClass]="{'title-pad':hyIconName || nzIconName}"> {{ btnType === '图标' ? "" : title }}</span>
+    </button>
+  </ng-container>
+
+  <ng-container *ngIf="!popoverButton">
+    <button  class="btn-hover btn-hover-{{_type ? _type : 'default'}}{{isDangerBtn?'-danger':''}}"
+      nz-button
+      type="button"
+      [nzType]="_type"
+      [nzDanger]="isDangerBtn"
+      [nzShape]="shape"
+      [nzBlock]="block"
+      [nzSize]="size"
+      [nzLoading]="loading"
+      [nzGhost]="ghost"
+      [nzSearch]="search"
+      *ngIf="_isShow && _authShow"
+      [disabled]="(formService.formGroup.invalid && check) || !enable || timeCountDisabled || (formService.formGroup.pristine && ckPristine)"
+      (click)="click()"
+    >
+      <hy-icon  *ngIf="hyIconName || nzIconName" [iconStyle]="iconStyle" [hyIconName]="hyIconName" [nzIconName]="nzIconName" ></hy-icon>
+      <span *ngIf="title" [ngClass]="{'title-pad':hyIconName || nzIconName}"> {{ btnType === '图标' ? "" : title }}</span>
+      <ng-container [hyTemplateWrapper]="_titleContent"></ng-container>
+    </button>
+  </ng-container>
+</div>
+
+<div class="hy-button-style-link" [ngClass]="{'hy-button-icon':_type === 'link' && (hyIconName || nzIconName)}" *ngIf="_type == 'link'" title="">
+  <a
+    class="{{class}}"
+    nz-button
+    nz-popover
+    nzType="link"
+    [nzDanger]="isDangerBtn"
+    [(nzPopoverVisible)]="visible"
+    (nzPopoverVisibleChange)="visibleChange.emit(visible)"
+    [nzPopoverTitle]="popoverTitle ? _popoverTitle : null"
+    [nzPopoverContent]="content"
+    [nzPopoverTrigger]="trigger"
+    [nzPopoverPlacement]="placement"
+    [nzPopoverOverlayStyle]="overlayStyle"
+    [disabled]="(formService.formGroup.invalid && check) || !enable || (formService.formGroup.pristine && ckPristine)"
+    (click)="click()">
+    <hy-icon  *ngIf="hyIconName || nzIconName " [iconStyle]="iconStyle" [hyIconName]="hyIconName" [nzIconName]="nzIconName" [iconClass]="iconClass"></hy-icon>
+    <span *ngIf="title">{{title}}</span>
+    <ng-container [hyTemplateWrapper]="_titleContent"></ng-container>
+  </a>
+</div>
+
+<ng-template #_popoverTitle>
+  <h3 style="margin-top: 0.5em;">{{popoverTitle}}</h3>
+</ng-template>
+
+<ng-template #_titleContent>
+  <ng-content></ng-content>
+</ng-template>

@@ -1,0 +1,81 @@
+.custom {
+  /* cursor: pointer; */
+  padding: 0 6px;
+  display: inline-block;
+  height: 24px;
+  /* border-radius: 2px; */
+  line-height: 24px;
+  /* padding-left: 2px; */
+}
+
+.folder {
+  /* cursor: pointer; */
+  white-space: nowrap;
+  user-select: none;
+}
+
+/*解决阿里9版本右键选中时没高亮*/
+
+.custom.active {
+  background-color: #bae7ff;
+}
+
+:host ::ng-deep .ant-tree .ant-tree-node-content-wrapper:hover {
+  background-color: transparent;
+}
+
+:host ::ng-deep .ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected {
+  background-color: #bae7ff !important;
+}
+
+:host ::ng-deep .ant-tree nz-tree-node-title {
+  padding: 0;
+  margin-left: 2px;
+  transition: all 0.3s;
+}
+
+:host ::ng-deep .ant-tree nz-tree-node-title :hover {
+  background-color: #daf0fa !important;
+  border-radius: 2px !important;
+}
+:host ::ng-deep .ant-tree .ant-tree-node-selected{
+  transition: all 0.3s;
+}
+:host ::ng-deep .ant-tree .ant-tree-node-selected :hover {
+  background-color: #bae7ff !important;
+  border-radius: 2px !important;
+}
+
+.show-scroll {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.hy-tree-box-template ::ng-deep .ant-tree .ant-tree-node-content-wrapper.ant-tree-node-selected {
+  background-color: transparent !important;
+}
+
+.li-button-tyle {
+  padding: 4px 28px;
+}
+
+.content:after {
+  content: "\e095";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  color: #c7c8c9;
+}
+
+.menu-item-li {
+  padding: 4px 20px;
+}
+
+.show-padding {
+  padding: 8px 16px;
+}
+
+.scroll {
+  overflow: auto;
+}

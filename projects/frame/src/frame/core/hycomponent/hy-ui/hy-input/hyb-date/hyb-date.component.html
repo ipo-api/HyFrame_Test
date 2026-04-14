@@ -1,0 +1,23 @@
+
+      <nz-date-picker
+        [nzSize]="size"
+        [nzDisabled]="_enable"
+        [nzFormat]="format"
+        [nzAllowClear]="allowClear"
+        [nzPlaceHolder]="placeholder || i18nService.getFrameI18n('hy-date.请选择日期')"
+        [nzShowToday]="showToday" [nzShowTime]="showTime"
+        [(ngModel)]="modelService[tableService.modelName][modelName]"
+        (nzOnOpenChange)="onStatusChange($event)"
+        (ngModelChange)="onModelChange($event)"
+        (nzOnOk)="onOk($event)"
+        [ngStyle]="{'width':width}"
+      ></nz-date-picker>
+
+
+
+
+
+
+
+
+

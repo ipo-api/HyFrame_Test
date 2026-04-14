@@ -1,0 +1,66 @@
+<div class="hy-tree-box" #hyTreeBox [ngStyle]="{'height':fullHeight ? _boxHeight : 'auto'}"
+  [ngClass]="{'show-padding':showPadding}">
+  <div style="padding: 6px 0;" *ngIf="search" #treeSearch>
+    <nz-input-group [nzSuffix]="suffixIcon">
+      <input type="text" nz-input [placeholder]="treeSearchPlaceholder || i18nService.getFrameI18n('hy-tree.请输入搜索内容')" [(ngModel)]="searchValue" />
+    </nz-input-group>
+    <ng-template #suffixIcon>
+      <hy-icon nzIconName="search"></hy-icon>
+    </ng-template>
+  </div>
+
+  <div [ngClass]="{'scroll':fullHeight}" [ngStyle]="{'height':fullHeight ? _treeBoxHeight : 'auto','padding' : '8px','background':fullHeight ? '#fff' : ''}">
+    <nz-tree 
+      [ngClass]="{'hy-tree-box-template' : itemTemplate,'show-scroll':!fullHeight}" 
+      #nzTreeComponent 
+      [nzTreeTemplate]="nzTreeTemplate"
+      [nzSearchValue]="searchValue" 
+      [nzData]="_datas || []" 
+      [nzCheckable]="checkable" 
+      [nzShowExpand]="showExpand"
+      [nzShowLine]="showLine" 
+      [nzMultiple]="_multiple" 
+      [nzExpandAll]="expandAll" 
+      [nzExpandedKeys]="_nzExpandedKeys"
+      [nzSearchFunc]="searchFunc"
+      [nzCheckedKeys]="checkedKeys" 
+      [nzSelectedKeys]="_activeNode"
+      [nzExpandedIcon]="nodeIconTemplate ? _nodeIconTemplate : null" 
+      [nzCheckStrictly]="checkStrictly"
+      [nzVirtualHeight]="virtualHeight"
+      (nzClick)="hyTreeNodeClick($event)"
+      (nzExpandChange)="nzExpandChange($event)" 
+      (nzCheckBoxChange)="nzCheckBoxChange($event)"
+      (nzDblClick)="hyTreeNodeDbClick($event)"
+      >
+    </nz-tree>
+  </div>
+
+  <!-- 自定义节点图标start -->
+  <ng-template #_nodeIconTemplate let-node>
+    <ng-container *ngIf="nodeIconTemplate && node.isLeaf" [hyTreeTemplateWrapper]="nodeIconTemplate" [item]="node">
+    </ng-container>
+    <hy-icon nzIconName="plus-square" *ngIf="!node?.isLeaf && !node?.isExpanded" [iconStyle]="{'font-size':'13px'}">
+    </hy-icon>
+    <hy-icon nzIconName="minus-square" *ngIf="!node?.isLeaf && node?.isExpanded" [iconStyle]="{'font-size':'13px'}">
+    </hy-icon>
+  </ng-template>
+  <!-- 自定义节点图标end -->
+
+  <ng-template #nzTreeTemplate let-node>
+    <span class="custom" (contextmenu)="contextMenu($event, node, menu)">
+      <span style="white-space: nowrap;" nz-dropdown [nzDropdownMenu]="menu" [nzTrigger]="node['trigger']" [(nzVisible)]="node['visible']" (nzVisibleChange)="dropdownChange(node);">
+        <ng-container *ngIf="nodeIconTemplate && !node.isLeaf" [hyTreeTemplateWrapper]="nodeIconTemplate" [item]="node">
+        </ng-container>
+        <span class="folder" [ngStyle]="{'margin-left' : nodeIconTemplate && !node.isLeaf ? '10px' : '0px'}"
+          [innerHTML]="node.title | stringHighlight : searchValue"></span>
+      </span>
+    </span>
+
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <div *ngIf="itemTemplate" (click)="clickMenu(node)">
+        <ng-template [hyTreeTemplateWrapper]="itemTemplate" [item]="node" [index]="node.key"></ng-template>
+      </div>
+    </nz-dropdown-menu>
+  </ng-template>
+</div>

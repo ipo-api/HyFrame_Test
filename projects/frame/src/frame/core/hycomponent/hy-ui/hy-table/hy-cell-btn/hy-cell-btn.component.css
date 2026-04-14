@@ -1,0 +1,42 @@
+
+
+/*覆盖阿里样式*/
+:host ::ng-deep .ant-btn{
+  padding: 0 4px;
+  height: 21px;
+  line-height: 20px;
+}
+
+:host ::ng-deep .ant-btn > span + .anticon{
+  margin-left: 0;
+}
+
+
+:host ::ng-deep .ant-btn:not(.ant-btn-circle):not(.ant-btn-circle-outline).ant-btn-icon-only{
+  padding-left: 6px;
+ padding-right: 6px;
+}
+
+.cell-btn{
+  vertical-align: middle;
+}
+
+
+
+
+:host ::ng-deep .ant-dropdown-menu{
+  box-shadow: none;
+}
+
+
+.blue{
+  background-color: #1890ff;
+}
+
+.red{
+  background-color: #fe4f4b;
+}
+
+.gray{
+  background-color: #666;
+}

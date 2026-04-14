@@ -1,0 +1,63 @@
+<div class="hy-col-{{flex == undefined ? cols : 0}}" [ngStyle]="{display: flex == undefined ? 'block' : 'inline-block'}" title="">
+  <nz-form-item class="hy-form-item hy-readonly-form-item">
+    <hy-comm-label
+      *ngIf="!noLabel"
+      [noLabel]="noLabel"
+      [labelWidth]="labelWidth"
+      [noColon]="noColon" 
+      [title]="title" 
+      [isWrap]="isLabelWrap ?? tableService.isLabelWrap">
+    </hy-comm-label>
+    <nz-form-control [ngStyle]="{width: flex == undefined ?'calc(100% - '+ labelWidth+')' : flex}">
+      <div class="div-height" [style]="{'height':height}" #textDiv>
+        <div class="text-style {{ textClass }} text-hover" [ngStyle]="textStyle">
+          <ng-container>
+            <ng-container 
+              [hyTreeTemplateWrapper]="valueTemplate"
+              [item]="dicName ? (dicName | hyDic: modelService[tableService.modelName][modelName] : modelService : separator) : modelService[tableService.modelName][modelName]">
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+</div>
+
+<ng-template #_textAfterTemplate>
+  <span style="margin-left: 4px;" *ngIf="textAfterTemplate">
+    <ng-container [hyTemplateWrapper]="textAfterTemplate" [item]="item" [index]="index"></ng-container>
+  </span>
+</ng-template>
+
+<!-- 值模板 -->
+<ng-template #valueTemplate let-value="item">
+  <div class="text-value">
+    <span 
+      class="text-box"
+      [ngClass]="{'textSpan':isShowLabelTooltip,'text-wrap':isWrap,'text-icon-one':isShowMore || isShowCopy ,'text-icon-two':isShowMore && isShowCopy}" 
+      nz-tooltip 
+      [nzTooltipPlacement]="['topLeft', 'leftTop']"
+      [nzTooltipTitle]="value"
+      #textSpan 
+      [ngStyle]="{'max-width':maxWidth}"
+      [nzTooltipMouseEnterDelay]="0.6"
+    >{{value}}<ng-content></ng-content>
+      <div class="icon-box">
+        <hy-icon 
+          class="more-icon"
+          #moreIcon 
+          *ngIf="isShowMore && value" 
+          nzIconName="double-right" 
+          iconClass="blue" 
+          (onClick)="clickMore()" 
+          [ngClass]="{'more-icon-open':isMoreOpen}"
+        >
+        </hy-icon>
+        <hy-icon class="copy" nzIconName="copy" style="cursor: pointer;margin-left: 4px;" [iconStyle]="{'font-size':'13px'}" iconClass="blue" *ngIf="isShowCopy && value" (onClick)="copy()"></hy-icon>
+      </div>
+    </span>
+    
+    
+    <ng-container [hyTemplateWrapper]="_textAfterTemplate"></ng-container>
+  </div>
+</ng-template>

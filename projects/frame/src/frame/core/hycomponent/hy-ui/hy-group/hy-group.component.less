@@ -1,0 +1,94 @@
+:host {
+  .hy-group-item {
+    display: flex;
+    margin-bottom: 6px;
+    overflow: hidden;
+
+    .title {
+      display: inline-flex;
+      align-items: center;
+      color: #999;
+      padding-right: 8px;
+    }
+
+    .main {
+      flex: 1;
+      margin-right: -12px;
+      ::ng-deep {
+        nz-form-item {
+          margin: 0px 12px 0px 0px;
+        }
+      }
+
+      .main-header{
+        color: #999;
+        .main-header-required{
+          padding-left: 12px;
+        }
+      }
+    }
+
+    .opt {
+      display: flex;
+      align-items: center;
+      width: 20px;
+      transition: all 0.3s;
+      justify-content: space-between;
+      margin-left: 12px;
+
+      .icon-add,
+      .icon-del {
+        width: 18px;
+        padding: 0;
+        i {
+          font-size: 16px;
+          cursor: pointer;
+        }
+
+        i:nth-child(1) {
+          margin-right: 8px;
+        }
+
+        i:last-child {
+          margin-right: 0px;
+        }
+      }
+
+      .icon-del {
+        i{
+          color: red;
+        }
+      }
+
+      .icon-del:hover{
+        opacity: 0.6;
+      }
+
+      .icon-del:active{
+        opacity: 1;
+      }
+
+      .icon-add {
+        i {
+          color: #1890ff;
+        }
+      }
+
+      .icon-add-disabled {
+        i{
+          color: #999;
+        }
+      }
+
+      .icon-add:hover {
+        opacity: 0.6;
+      }
+
+      .icon-add:active {
+        opacity: 1;
+      }
+
+
+    }
+  }
+}

@@ -1,0 +1,51 @@
+.hy-checkbox-div {
+  line-height: 25px;
+  height: 25px;
+  display: inline-block;
+  padding-right: 20px;
+  text-align: left;
+}
+
+.hy-checkbox-div:first-child {
+  line-height: 32px;
+}
+
+.hy-checkbox-div-clos {
+  line-height: 25px;
+  display: inline-block;
+}
+
+.hy-checkbox-div-clos-ellipsis{
+  ::ng-deep{
+    >label{
+      width: 100%;
+      >span:nth-child(2){
+        width: calc(100% - 16px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+}
+
+.hy-row {
+  position: relative;
+  height: auto;
+  margin-right: 0;
+  margin-left: 0;
+  zoom: 1;
+  display: block;
+  box-sizing: border-box;
+}
+
+.hy-row::before,
+.hy-row::after {
+  content: "";
+  display: table;
+}
+
+.hy-row::after,
+.hy-row::before {
+  clear: both;
+}

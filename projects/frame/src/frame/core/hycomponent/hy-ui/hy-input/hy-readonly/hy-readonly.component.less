@@ -1,0 +1,107 @@
+.hy-readonly-form-item{
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.text-style{
+  padding-left: 2px;
+  line-height: 32px;
+}
+
+.text-style span{
+  white-space: nowrap;
+}
+
+.blue{
+  color: #1890ff;
+}
+
+.red{
+  color: #fe4f4b;
+}
+
+.orange{
+  color: #ff8e09;
+}
+
+.green{
+  color: #52c41a
+}
+
+.gray{
+  color: #888;
+}
+
+.bold{
+  font-weight: 600;
+}
+
+.textSpan{
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.more-icon{
+  display: inline-block;
+  margin-left: 4px;
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  cursor: pointer;
+  width: 16px;
+}
+
+.more-icon-open{
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+}
+
+.text-value{
+  display: flex;
+  flex-direction: row;
+  .text-box{
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    position: relative;
+    .icon-box{
+      display: inline-block;
+    }
+  }
+  .text-wrap{
+    word-wrap: break-word;
+    word-break: break-all;
+    display: block;
+    white-space:normal;
+  }
+  .text-icon-one{
+    padding-right: 16px;
+  }
+  .text-icon-two{
+    padding-right: 32px;
+  }
+}
+.text-value:hover{
+  .copy{
+    opacity: 1;
+  }
+}
+
+.copy{
+  // display: none;
+  width: 16px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}

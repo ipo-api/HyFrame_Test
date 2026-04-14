@@ -1,0 +1,31 @@
+
+
+.btn-class{
+  border: none;
+}
+
+
+.btn{
+  border: none;
+  outline: 0!important;
+  background-color: transparent;
+  box-shadow: none!important;
+  width: auto;
+  /* line-height: 40px; */
+  padding: 0;
+  cursor: pointer;
+}
+.search-inco{
+  vertical-align: middle;
+  color: #666;
+  font-size: 16px;
+}
+
+
+.search-inco:hover{
+  color: #1890ff;
+}
+
+.show{
+  color: #1890ff;
+}

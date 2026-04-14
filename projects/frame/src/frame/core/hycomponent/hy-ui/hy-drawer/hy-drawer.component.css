@@ -1,0 +1,24 @@
+.drawer-content{
+  display:flex;
+  display: -webkit-flex;
+  flex-direction:column;
+  -webkit-flex-direction: column;
+  width:100%;
+  height:100%;
+}
+
+.drawer-body{
+  width:100%;
+  flex-grow:1;
+  overflow: auto;
+  padding: 16px 8px;
+  height: 100%;
+}
+
+
+.drawer-footer {
+  border-top: 1px solid rgb(232, 232, 232);
+  padding: 8px 16px;
+  background-color: #ffffff;
+  color: #fff;
+}

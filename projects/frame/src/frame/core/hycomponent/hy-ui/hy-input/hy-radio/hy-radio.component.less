@@ -1,0 +1,42 @@
+:host {
+ 
+  .label-radio-style {
+    height: 30px;
+    display: block !important;
+    line-height: 20px !important;
+  }
+
+  .label-radio {
+    line-height: 25px;
+    margin-right: 20px;
+    // min-height: 30px;
+    display: inline-flex !important;
+    align-items: center;
+
+    ::ng-deep {
+      .ant-radio {
+        width: 16px;
+        top: 0px;
+      }
+
+      >span:nth-child(2) {
+        flex: 1;
+        display: block;
+        word-break: break-all;
+      }
+    }
+  }
+
+  .hy-radio-ellipsis {
+    height: 30px;
+    ::ng-deep {
+      >span:nth-child(2) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 100%;
+        display: inline-block;
+      }
+    }
+  }
+}

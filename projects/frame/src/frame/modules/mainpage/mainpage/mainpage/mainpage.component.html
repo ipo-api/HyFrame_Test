@@ -1,0 +1,49 @@
+<nz-layout class="layout">
+  <nz-sider id="hySider" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null" style="overflow-y: auto; overflow-x: hidden;">
+    <div class="hy-logo">
+      <div class="hy-logo-style">
+        <a href="javascript:;" style="white-space: nowrap; overflow: hidden;cursor: unset">
+          <img src="../assets/images/new_mainpage/logo.png" *ngIf="!isCollapsed" alt="">
+          <img src="../assets/images/new_mainpage/logo_small.png" *ngIf="isCollapsed" alt="">
+          <!-- <img style="width: 30px;" src="../assets/images/new_mainpage/logo.svg" />
+          <img class="hy-logoText" [ngStyle]="{width: isCollapsed === true ? '0' : '100px'}" src="../assets/images/new_mainpage/logoText.svg" /> -->
+        </a>
+      </div>
+    </div>
+
+    <ul class="sys-menu-box" *ngIf="!isCollapsed" nz-menu nzMode="inline" nzTheme="dark" nz-dropdown [nzDropdownMenu]="sysMenu" [nzOverlayStyle]="{'margin':'0px'}">
+      <li class="sys-menu-box-li" nz-submenu [nzTitle]="systemName"></li>
+    </ul>
+
+    <nz-dropdown-menu #sysMenu="nzDropdownMenu">
+      <ul class="sys-menu-ul" nz-menu nzMode="inline" nzTheme="dark" [nzInlineCollapsed]="isCollapsed">
+        <li [ngClass]="{'mainpage-dropdown-menu-selected':value.id === _systemMenuId}" class="mainpage-dropdown-menu" style="margin: 0;" *ngFor="let value of systemsMenuDatas" [nzSelected]="systemMenuId === value.id" (click)="systemMenuId = value.id;" nz-menu-item (click)="systemsMenuItemFn(value)">{{value.menuname}}</li>
+      </ul>
+    </nz-dropdown-menu>
+
+    <hy-menu [menuDatas]="menuDatas" [inlineCollapsed]="isCollapsed"></hy-menu>
+  </nz-sider>
+  <nz-layout>
+    <header (headerClickF)="headerClickF($event)" [isHasLogoutFn]="isHasLogoutFn" [isCollapsed]="isCollapsed" [userPanelData]="userPanelData" style="z-index: 2" (onClick_logout)="logout()"></header>
+    <div class="licence" *ngIf="AppGlobal.isLicenseExpired_EarlyWarning == true || AppGlobal.isLicenseExpired == true">
+
+      <div class="info" *ngIf="AppGlobal.isLicenseExpired_EarlyWarning == true">
+        <span><hy-icon [nzIconName]="'exclamation-circle'" [iconClass]="'orange'"></hy-icon></span>
+        <span class="warnText" >{{licenceInfo ? licenceInfo.replace('%', AppGlobal.licenseValidDays.toString()) : i18nService.getFrameI18n('main-page.许可将于%天后到期，为不影响系统正常使用，请及时更换许可')}}</span>
+      </div>
+
+      <div class="info" *ngIf="AppGlobal.isLicenseExpired == true">
+        <span><hy-icon [nzIconName]="'exclamation-circle'" [iconClass]="'red'"></hy-icon></span>
+        <span class="errorText" >{{i18nService.getFrameI18n('main-page.许可已过期，为不影响系统正常使用，请联系管理员更换许可')}}</span>
+      </div>
+      <a *ngIf="showlicenceBtn == true" nz-button nzType="link" class="btn"  (click)="licenceBtnClickFn($event)">{{i18nService.getFrameI18n('main-page.更换许可')}}</a>
+    </div>
+
+
+    <nz-content style="z-index: 1;" cdkScrollable id="hyContent">
+      <div class="sso-maipage-div-iframe inner-content" style="height: 100%;">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

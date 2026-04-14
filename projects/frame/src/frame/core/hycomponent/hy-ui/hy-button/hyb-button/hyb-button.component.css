@@ -1,0 +1,20 @@
+.title-pad{
+  margin-left: 6px;
+}
+
+.btn-hover hy-icon{
+  transition: all 0.3s;
+}
+
+.btn-hover-default hy-icon, .btn-hover-dashed hy-icon{
+  color: #666;
+}
+
+.btn-hover:hover hy-icon,.btn-hover-dashed hy-icon:hover{
+  color: #40a9ff;
+}
+
+.btn-hover-primary hy-icon,.btn-hover-primary:hover hy-icon{
+  color: #fff;
+}
+

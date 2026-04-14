@@ -1,0 +1,57 @@
+.hy-button-style{
+  margin: 6px 12px 6px 0;
+  display: inline-block;
+}
+
+:host ::ng-deep .btn-hover.ant-btn-dangerous:hover{
+  color: #fff;
+  background-color:#ff7875 ;
+  border-color: #ff7875;
+}
+
+:host ::ng-deep .ant-btn-dangerous[disabled]:hover{
+  color: rgba(0, 0, 0, 0.35);
+  background-color: #f5f5f5;
+  border-color: #d9d9d9;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+.btn-hover hy-icon{
+  transition: all 0.3s;
+}
+
+.btn-hover-default hy-icon, .btn-hover-dashed hy-icon{
+  color: #666;
+}
+
+.btn-hover:hover hy-icon,.btn-hover-dashed hy-icon:hover{
+  color: #40a9ff;
+}
+
+.btn-hover-primary hy-icon,.btn-hover-primary:hover hy-icon{
+  color: #fff;
+}
+
+.btn-hover-default-danger:hover hy-icon,.btn-hover-primary-danger:hover hy-icon,.btn-hover-dashed-danger:hover hy-icon{
+  color: #fff;
+}
+
+
+.title-pad{
+  margin-left: 6px;
+}
+
+.hy-button-style-link{
+  display: inline-block;
+}
+
+:host ::ng-deep .hy-button-style-link .ant-btn{
+  padding-left: 0;
+  padding-right: 18px;
+}
+
+:host .hy-button-icon >a{
+  padding: 4.8px 0px;
+  margin-right: 18px;
+}

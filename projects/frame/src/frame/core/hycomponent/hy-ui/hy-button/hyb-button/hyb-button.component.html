@@ -1,0 +1,54 @@
+<ng-container *ngIf="type != 'link'">
+  <button
+    class="btn-hover btn-hover-{{type ? type : 'default'}}"
+    nz-button
+    nz-popover
+    type="button"
+    [ngStyle]="buttonStyle"
+    [nzType]="type"
+    [nzShape]="shape"
+    [nzBlock]="block"
+    [nzSize]="size"
+    [nzLoading]="loading"
+    [nzGhost]="ghost"
+    [nzPopoverTitle]="confirmTitle"
+    [nzPopoverContent]="contentTemplate || content"
+    [nzPopoverTrigger]="trigger"
+    [nzPopoverPlacement]="placement"
+    [nzPopoverOverlayStyle]="overlayStyle"
+    [nzSearch]="search"
+    *ngIf="isShow && _authShow"
+    [disabled]="(formService.formGroup.invalid && check) || !enable"
+    (click)="click()"
+  >
+    <hy-icon  *ngIf="hyIconName || nzIconName" [iconStyle]="iconStyle" [hyIconName]="hyIconName" [nzIconName]="nzIconName"></hy-icon>
+    <span [ngClass]="{'title-pad':hyIconName || nzIconName}"> {{ btnType === i18nButtonType[i18nService?.language?.id]?.icon ? "" : title }}</span>
+  </button>
+</ng-container>
+
+<ng-container *ngIf="type == 'link'">
+  <a
+    nz-button
+    nz-popover
+    type="button"
+    [ngStyle]="buttonStyle"
+    [nzType]="type"
+    [nzShape]="shape"
+    [nzBlock]="block"
+    [nzSize]="size"
+    [nzLoading]="loading"
+    [nzGhost]="ghost"
+    [nzPopoverTitle]="confirmTitle"
+    [nzPopoverContent]="contentTemplate || content"
+    [nzPopoverTrigger]="trigger"
+    [nzPopoverPlacement]="placement"
+    [nzPopoverOverlayStyle]="overlayStyle"
+    [nzSearch]="search"
+    *ngIf="isShow && _authShow"
+    [disabled]="(formService.formGroup.invalid && check) || !enable"
+    (click)="click()"
+  >
+    <hy-icon  *ngIf="hyIconName || nzIconName" [iconStyle]="iconStyle" [hyIconName]="hyIconName" [nzIconName]="nzIconName"></hy-icon>
+    <span [ngClass]="{'title-pad':hyIconName || nzIconName}"> {{ btnType === i18nButtonType[i18nService?.language?.id]?.icon ? "" : title }}</span>
+  </a>
+</ng-container>

@@ -1,0 +1,48 @@
+<div class="hy-col-{{flex == undefined ? cols : 0}}"  [ngStyle]="{display: flex == undefined ? 'block' : 'inline-block'}" title="">
+    <nz-form-item class="hy-form-item">
+      <hy-comm-label
+      *ngIf="!noLabel"
+      [noLabel]="noLabel"
+      [labelWidth]="labelWidth" 
+      [ckRequired]="ckRequired" 
+      [noColon]="noColon" 
+      [title]="title" 
+      [isWrap]="isLabelWrap ?? tableService.isLabelWrap">
+    </hy-comm-label>
+      <nz-form-control [nzValidateStatus]="formControl.pristine ? 'success' : formControl" [ngStyle]="{width: flex == undefined ? '100%' : flex}">
+        <div class="slider-box">
+          <div>
+            <nz-slider 
+            [formControl]="formControl"
+            [(ngModel)]="modelService[tableService.modelName][modelName]" 
+            [nzDisabled]="!enable || !tableService.enable"
+            [nzDots]="dots"
+            [nzIncluded]="included"
+            [nzMarks]="marks"
+            [nzMax]="max"
+            [nzMin]="min"
+            [nzRange]="range"
+            [nzStep]="step"
+            [nzVertical]="vertical"
+            [nzReverse]="reverse"
+            [nzTooltipVisible]="tooltipVisible"
+            [nzTooltipPlacement]="tooltipPlacement"
+            (ngModelChange)="onModelChange($event)"
+            (nzOnAfterChange)="onAfterChange($event)">
+            </nz-slider>
+          </div>
+          <nz-input-number *ngIf="showInput" [nzStep]="step" [nzMin]="min" [nzMax]="max" [(ngModel)]="modelService[tableService.modelName][modelName]"></nz-input-number>
+        </div>
+        <div class="tipBottom" *ngIf="tip">
+          <hy-comm-tip *ngIf="tip && tipType == 'bottomTip'" [tip]="tip" tipType="bottom"></hy-comm-tip>
+        </div>
+      </nz-form-control>
+      <div *ngIf="tableService.showTip" class="tipStyleClass">
+        <div *ngIf="tip && tipType=='default'">
+          <hy-comm-tip [tip]="tip" tipType="default"></hy-comm-tip>
+        </div>
+      </div>
+    </nz-form-item>
+  </div>
+
+  

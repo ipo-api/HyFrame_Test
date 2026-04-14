@@ -1,0 +1,22 @@
+<ul [nzTheme]="'dark'" nz-menu [nzMode]="'inline'" [nzInlineCollapsed]="inlineCollapsed">
+  <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: menuDatas}"></ng-container>
+  <ng-template #menuTpl let-menuDatas>
+    <ng-container *ngFor="let menu of menuDatas">
+      <li (click)="clickMenu(menu.url)" class="li-style menu-title" [routerLink]="menu.url" routerLinkActive="active-link" [nzMatchRouter]="true" nz-menu-item [nzPaddingLeft]="inlineCollapsed ? undefined : menu.level * 24" *ngIf="!menu.children" [nzDisabled]="menu.disabled" >
+        <span title class="menu-span">
+          <span *ngIf="menu.menuImg"><img *ngIf="menu.menuImg" class="menu-img" src="assets/menuImage/{{menu.menuImg}}"/></span>
+          <span class="menu-title">{{ menu.name | i18n }}</span>
+        </span>
+      </li>
+      <li nz-submenu [nzPaddingLeft]="inlineCollapsed ? undefined : menu.level * 24" *ngIf="menu.children" (nzOpenChange)="openMenu(menu)" [(nzOpen)]="menu.open" [nzDisabled]="menu.disabled" class="menu-title">
+        <span title class="menu-span">
+          <span *ngIf="menu.menuImg"><img *ngIf="menu.menuImg" class="menu-img" src="assets/menuImage/{{menu.menuImg}}"/></span>
+          <span *ngIf="!inlineCollapsed" class="menu-title">{{ menu.name | i18n }}</span>
+        </span>
+        <ul>
+          <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: menu.children}"></ng-container>
+        </ul>
+      </li>
+    </ng-container>
+  </ng-template>
+</ul>

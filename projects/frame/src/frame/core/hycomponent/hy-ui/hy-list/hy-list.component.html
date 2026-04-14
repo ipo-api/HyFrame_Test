@@ -1,0 +1,39 @@
+<div class="hy-list-box" [ngStyle]="{width:width}" [ngClass]="{
+    'no-border':noBorder,
+    'top-border':topBorder,
+    'bottom-border':bottomBorder,
+    'left-border':leftBorder,
+    'right-border':rightBorder
+    }">
+    <div class="top" *ngIf="topTemplate">
+        <ng-container *ngTemplateOutlet="topTemplate"></ng-container>
+    </div>
+    <div nz-popover 
+        class="list" 
+        nzPopoverOverlayClassName="hy-list-pop" 
+        [nzPopoverTrigger]="item.isHideBtn || !operationTemplate ? null : 'hover'"
+        [(nzPopoverVisible)]="item.visible" 
+        (nzPopoverVisibleChange)="visibleChange(item)"
+        [ngClass]="{'selected':item.isSelected,'hovered':item.visible}" 
+        *ngFor="let item of data;let i = index;" 
+        (click)="clickItem(item)" [title]="item.title" 
+        [nzPopoverContent]="contentTemplate" 
+        nzPopoverPlacement="rightTop"
+    >
+        <span>{{item.title}}</span>
+        <ng-template #contentTemplate >
+            <div class="operation-list" [hidden]="!operationTemplate">
+                <ng-template [hyTemplateWrapper]="operationTemplate" [index]="i" [item]="item"></ng-template>
+            </div>
+        </ng-template>
+    </div>
+    <div class="hy-empty" *ngIf="!data || data.length === 0">
+        <nz-empty nzNotFoundImage="simple"></nz-empty>
+      </div>
+    <div class="bottom" *ngIf="bottomTemplate">
+        <ng-container *ngTemplateOutlet="bottomTemplate"></ng-container>
+    </div>
+</div>
+
+
+

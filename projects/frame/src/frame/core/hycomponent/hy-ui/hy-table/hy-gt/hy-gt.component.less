@@ -1,0 +1,142 @@
+.arrow:before,
+.arrow.open:before {
+  color: red;
+}
+
+.arrow:before {
+  width: 10px;
+  /*float: right;*/
+  margin-right: 5px;
+  margin-left: 5px;
+  display: inline;
+  font-size: 16px;
+  font-family: FontAwesome;
+  height: auto;
+  content: "\f105";
+  font-weight: 300;
+  text-shadow: none;
+}
+.arrow.open:before {
+  content: "\f107";
+  /*margin-right: 6px; */
+}
+
+.hy-gt .hy-gt-copm-title {
+  height: 40px;
+  line-height: 40px;
+  font-size: 15px;
+  font-weight: 600;
+  background: transparent;
+  padding-left: 5px;
+}
+.hy-gt .hy-gt-copm-title-height {
+  height:auto;
+}
+
+/*title为模板时，改变title的line-height*/
+:host ::ng-deep .hy-gt-copm-title-height .hy-element-flex:first-child{
+  line-height: 54px;
+}
+
+/*模板标题样式*/
+:host ::ng-deep .hy-gt-copm-title-height .hy-element-flex:last-child{
+  font-size: 13px;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+
+/*.hy-gt.noBorder .hy-gt-copm-title{*/
+/*background: #f5f5f5;*/
+/*}*/
+
+.hy-gt .hy-gt-content {
+  padding: 8px 16px;
+  background-color: #fff;
+  border: solid 1px #e4e4e4;
+}
+
+.hy-gt.gtStyle1 .hy-gt-copm-title {
+  border-bottom: solid 1px #e4e4e4;
+  margin: 0px 16px 0 16px;
+  padding-left: 0;
+}
+
+.hy-gt.grayTitle .hy-gt-copm-title {
+  background-color: #f5f5f5;
+  padding-left: 16px;
+  margin: 8px 16px 0 16px;
+}
+
+.hy-gt.grayTitle .hy-gt-content {
+  border: none;
+}
+
+.hy-gt.noBorder .hy-gt-content,
+.hy-gt.gtStyle1 .hy-gt-content {
+  border: none;
+}
+
+/*无边框时加上间距*/
+.hy-gt.noBorder .hy-gt-copm-title{
+  // padding-left: 16px;
+}
+
+.hy-gt-content .topMove {
+  margin-top: -1px;
+}
+
+.hy-gt.bgTransparent .hy-gt-content {
+  background-color: transparent;
+}
+
+.hy-gt-hide {
+  display: none !important;
+}
+
+
+
+
+.hy-row{
+  position: relative;
+  height: auto;
+  margin-right: 0;
+  margin-left: 0;
+  zoom: 1;
+  display: block;
+  box-sizing: border-box;
+}
+
+.hy-row::before, .hy-row::after {
+  content: '';
+  display: table;
+}
+
+.hy-row::after, .hy-row::before {
+  clear: both;
+}
+
+:host ::ng-deep .ant-empty{
+  color: rgba(0,0,0,.25);
+}
+
+.no-border{
+  border: none !important;
+}
+
+.no-padding{
+  padding: 0px !important;
+}
+
+.right-padding{
+  padding-right: 8px !important;
+}
+.top-padding{
+  padding-top: 16px !important;
+}
+.bottom-padding{
+  padding-bottom: 16px !important;
+}
+.left-padding{
+  padding-left: 8px !important;
+}

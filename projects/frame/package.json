@@ -1,0 +1,29 @@
+{
+  "name": "hy-frame",
+  "version": "4.7.3",
+  "peerDependencies": {
+    "@angular/common": "13.3.11",
+    "@angular/core": "13.3.11"
+  },
+  "publishConfig": {
+    "registry": "http://regprod.dev.haiyisec.com:8081/repository/npm-host-frame/"
+  },
+  "dependencies": {
+    "chart.js": "2.9.3",
+    "core-js": "2.5.4",
+    "crypto-js": "3.1.9-1",
+    "date-fns": "2.16.1",
+    "jsencrypt": "3.1.0",
+    "net": "1.0.2",
+    "ng-zorro-antd": "13.4.0",
+    "sockjs-client": "1.5.1",
+    "stompjs": "2.3.3",
+    "tslib": "2.3.0"
+  },
+  "devDependencies": {
+    "@types/sockjs-client": "^1.5.0"
+  },
+  "volta": {
+    "node": "14.21.3"
+  }
+}

@@ -1,0 +1,522 @@
+.hy-hide {
+  display: none;
+}
+
+.hy-layout-content {
+  padding: 16px;
+  height: 100%;
+}
+
+/*面包屑与tab页（无标题的单、多记录表）组合布局*/
+.hy-layout-content-combine {
+  padding: 0 16px 16px 16px;
+}
+
+.hy-buttons {
+  margin: 16px 20px 8px 0;
+}
+
+.hy-fullscreen{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  overflow: auto;
+  background-color: #f0f2f5;
+}
+
+.hy-element-left {
+  text-align: left;
+}
+
+.hy-element-right {
+  text-align: right;
+  /*margin-right: 16px;*/
+}
+
+.hy-element-center {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  float: none !important;
+  display: block;
+  text-align: center;
+}
+
+/*树组件布局*/
+.hy-layout-tree-combine {
+  display: flex;
+}
+
+.hy-layout-right-content {
+  flex: 1;
+  width: 0;
+}
+
+/*树组件左边布局*/
+.hy-layout-left-tree {
+  max-height: 839px;
+  overflow: auto;
+  flex: 0 0 260px;
+  background-color: #fff;
+  border: solid 1px #e4e4e4;
+  margin-right: 16px;
+  min-height: 150px;
+}
+
+/*tip的宽度设置全局class*/
+.tipStyleClass {
+  width: 20px;
+  line-height: 32px;
+  text-align: right;
+  flex: 0 0 auto;
+  cursor: pointer;
+  display: inline-block;
+}
+
+
+/*bootstrap的样式影响了组件*/
+/*label{*/
+/*margin: 0;*/
+/*font-weight: normal;*/
+/*}*/
+
+/*覆盖阿里多记录表按钮映射的样式*/
+.hy-table-class button,
+.hy-table-class [type="button"] {
+  -webkit-appearance: none;
+  /* Safari 和 Chrome */
+  appearance: none;
+  -moz-appearance: none;
+  /* Firefox */
+}
+
+/*覆盖阿里样式*/
+.inputBtn button,
+.inputBtn [type="button"] {
+  -webkit-appearance: none;
+  /* Safari 和 Chrome */
+  appearance: none;
+  -moz-appearance: none;
+  /* Firefox */
+}
+
+/*覆盖阿里单记录表按钮映射的样式*/
+.hy-gt-content-div button,
+.hy-gt-content-div [type="button"] {
+  -webkit-appearance: none;
+  /* Safari 和 Chrome */
+  appearance: none;
+  -moz-appearance: none;
+  /* Firefox */
+}
+
+/*组件在可编辑多记录表中编辑状态的间距*/
+.edit-row td .hy-form-item {
+  margin: 2px 0;
+}
+
+/*改变组件的高度、右边间距*/
+.ant-form-horizontal .hy-form-item {
+  margin: 6px 12px 6px 0;
+}
+
+/*覆盖屏幕小于575，组件lable变化*/
+@media (max-width: 575px) {
+
+  .ant-form .ant-form-item .ant-form-item-label,
+  .ant-form .ant-form-item .ant-form-item-control {
+    flex: 1 1 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .ant-form .ant-form-item .ant-form-item-label {
+    flex: none;
+    flex-grow: 0;
+  }
+
+  .ant-drawer {
+    overflow: auto;
+  }
+
+  .ant-drawer-right {
+    right: unset;
+  }
+
+  .ant-drawer-right, .ant-drawer-right .ant-drawer-content-wrapper{
+    right: unset;
+  }
+}
+
+@media (max-width: 575px) {
+  .ant-form-item .ant-form-item-label {
+    padding: 0 8px 0 0;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: right;
+    vertical-align: middle;
+  }
+}
+
+/*树组件操作面板的样式*/
+.hy-tree-dropDown-menu,
+.hy-tree-dropDown-menu-small {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  list-style-type: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-radius: 4px;
+  outline: none;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+
+  >*:nth-child(1) {
+    margin-top: 4px;
+  }
+
+  >*:nth-last-child(1) {
+    margin-bottom: 4px;
+  }
+}
+
+/*树组件操作面板的样式*/
+.hy-tree-dropDown-menu-small,
+.hy-tree-dropDown-menu-small-no-selected {
+  >*:nth-child(1) {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+  }
+
+  >*:nth-last-child(1) {
+    margin-bottom: 0px;
+  }
+
+  .ant-menu-item,
+  .ant-menu-submenu {
+    height: 30px !important;
+    line-height: 30px !important;
+  }
+
+  .ant-menu-submenu {
+    .ant-menu-submenu-title {
+      height: 30px !important;
+      line-height: 30px !important;
+      margin: 0;
+    }
+  }
+}
+
+.hy-tree-dropDown-menu-small-no-selected {
+  .ant-menu-item-selected,.ant-menu-submenu-selected {
+    background-color: unset !important;
+    color: #000 !important;
+  }
+}
+
+
+/*树组件操作面板的样式*/
+.hy-tree-menu-li {
+  padding: 4px 20px;
+  cursor: pointer;
+}
+
+.hy-tree-menu-li:hover {
+  background-color: #e6f7ff;
+}
+
+/*页面内容居中，剩余两边留白*/
+.hy-layout-center {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+/*固定宽度布局，换行class*/
+.hy-linebreak {
+  width: 100%;
+  height: 1px;
+}
+
+.required-icon{
+  height: 100%;
+  line-height: 32px;
+  margin-right: 4px;
+  color: #ff4d4f;
+  font-family: SimSun,sans-serif;
+}
+
+/*hy-cell-btn 图标按钮鼠标效果，覆盖阿里tip样式*/
+.hyToolTip .ant-tooltip-arrow {
+  display: none;
+}
+
+.hyToolTip .ant-tooltip-inner {
+  padding: 5px 10px;
+  background-color: #ffffff;
+  color: #4290f8;
+  /* font-size: 3px; */
+  border: 1px solid #b3d2fc;
+  box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+/*多记录表的标题UI效果*/
+.ant-table-thead>tr>th {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+/*flex布局时，标签class*/
+.compoent-flex {
+  display: inline-block;
+}
+
+
+/*嵌套子列表的样式*/
+.expend-tr-inner .hy-table-class {
+  padding: 0 !important;
+  background-color: #fafafa !important;
+}
+
+/*嵌套子列表的分页信息样式*/
+.expend-tr-inner .ant-table-pagination.ant-pagination {
+  margin-top: 30px;
+}
+
+/*hy-alert组件被hy-gt组件包裹的padding值*/
+.hy-gt-content .alert-space {
+  padding: 8px 0 !important;
+}
+
+// hy-select组件下拉样式修改
+.hy-select-box-option nz-option-item {
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+}
+
+
+/*海颐栅格属性*/
+.hy-col-1,
+.hy-col-2,
+.hy-col-3,
+.hy-col-4,
+.hy-col-5,
+.hy-col-6,
+.hy-col-7,
+.hy-col-8,
+.hy-col-9,
+.hy-col-10,
+.hy-col-11,
+.hy-col-12,
+.hy-col-13,
+.hy-col-14,
+.hy-col-15,
+.hy-col-16,
+.hy-col-17,
+.hy-col-18,
+.hy-col-19,
+.hy-col-20,
+.hy-col-21,
+.hy-col-22,
+.hy-col-23,
+.hy-col-24 {
+  -webkit-box-flex: 0;
+  flex: 0 0 auto;
+  float: left;
+}
+
+.hy-col-24 {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.hy-col-23 {
+  display: block;
+  box-sizing: border-box;
+  width: 95.83333333%;
+}
+
+.hy-col-22 {
+  display: block;
+  box-sizing: border-box;
+  width: 91.66666667%;
+}
+
+.hy-col-21 {
+  display: block;
+  box-sizing: border-box;
+  width: 87.5%;
+}
+
+.hy-col-20 {
+  display: block;
+  box-sizing: border-box;
+  width: 83.33333333%;
+}
+
+.hy-col-19 {
+  display: block;
+  box-sizing: border-box;
+  width: 79.16666667%;
+}
+
+.hy-col-18 {
+  display: block;
+  box-sizing: border-box;
+  width: 75%;
+}
+
+.hy-col-17 {
+  display: block;
+  box-sizing: border-box;
+  width: 70.83333333%;
+}
+
+.hy-col-16 {
+  display: block;
+  box-sizing: border-box;
+  width: 66.66666667%;
+}
+
+.hy-col-15 {
+  display: block;
+  box-sizing: border-box;
+  width: 62.5%;
+}
+
+.hy-col-14 {
+  display: block;
+  box-sizing: border-box;
+  width: 58.33333333%;
+}
+
+.hy-col-13 {
+  display: block;
+  box-sizing: border-box;
+  width: 54.16666667%;
+}
+
+.hy-col-12 {
+  display: block;
+  box-sizing: border-box;
+  width: 50%;
+}
+
+.hy-col-11 {
+  display: block;
+  box-sizing: border-box;
+  width: 45.83333333%;
+}
+
+.hy-col-10 {
+  display: block;
+  box-sizing: border-box;
+  width: 41.66666667%;
+}
+
+.hy-col-9 {
+  display: block;
+  box-sizing: border-box;
+  width: 37.5%;
+}
+
+.hy-col-8 {
+  display: block;
+  box-sizing: border-box;
+  width: 33.33333333%;
+}
+
+.hy-col-7 {
+  display: block;
+  box-sizing: border-box;
+  width: 29.16666667%;
+}
+
+.hy-col-6 {
+  display: block;
+  box-sizing: border-box;
+  width: 25%;
+}
+
+.hy-col-5 {
+  display: block;
+  box-sizing: border-box;
+  width: 20.83333333%;
+}
+
+.hy-col-4 {
+  display: block;
+  box-sizing: border-box;
+  width: 16.66666667%;
+}
+
+.hy-col-3 {
+  display: block;
+  box-sizing: border-box;
+  width: 12.5%;
+}
+
+.hy-col-2 {
+  display: block;
+  box-sizing: border-box;
+  width: 8.33333333%;
+}
+
+.hy-col-1 {
+  display: block;
+  box-sizing: border-box;
+  width: 4.16666667%;
+}
+
+.rooltipColorRed {
+  .ant-tooltip-inner {
+    color: #fe4f4b;
+    background-color: #ffe8e5;
+    box-shadow: none;
+  }
+
+  .ant-tooltip-arrow .ant-tooltip-arrow-content {
+    --antd-arrow-background-color: #ffe8e5;
+    background-color: #ffe8e5;
+    box-shadow: none;
+  }
+}
+
+// 修复抽屉no-mask时，无法点击其他区域问题
+.no-mask {
+  width: 0 !important;
+}
+
+nz-form-item {
+  flex-wrap: nowrap !important;
+  overflow: visible;
+}
+
+nz-form-control {
+  overflow: visible;
+  align-items: center;
+  justify-content: center;
+
+  .ant-form-item-control-input {
+    width: 100%;
+  }
+}
+
+.ant-dropdown-menu {
+  padding: 0 !important;
+}
+
+// 树选择器下拉样式
+.tree-select-open-panel {
+  padding: 5px;
+
+  .ant-select-tree-checkbox {
+    margin-left: 3.5px;
+  }
+}

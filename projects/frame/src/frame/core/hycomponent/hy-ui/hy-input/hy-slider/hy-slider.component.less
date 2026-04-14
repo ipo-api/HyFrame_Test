@@ -1,0 +1,22 @@
+.slider-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  div {
+    flex: 1;
+    margin-right: 16px;
+  }
+}
+
+/*tip底部文字提示样式*/
+.tipBottom {
+  font-size: 12px;
+  color: #888;
+  padding-top: 5px;
+}
+
+/*tip底部文字行高*/
+:host ::ng-deep .tipBottomLine .ant-form-item-control-input-content {
+  line-height: 1.5;
+}

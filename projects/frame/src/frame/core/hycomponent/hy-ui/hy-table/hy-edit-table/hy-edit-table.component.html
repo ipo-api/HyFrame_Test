@@ -1,0 +1,146 @@
+<div *ngIf="modelService[modelName + '_$Property']">
+  <div *ngFor="let item of datas_oneRow; let index = index" style="display: none;">
+    <ng-template [hyTemplateWrapper]="itemTemplate" [item]="item" [index]="index"></ng-template>
+  </div>
+  <div class="hy-glt {{ _class }}">
+    <div class="hy-glt-copm-title"  [ngClass]="{'hy-glt-copm-title-height':!_titleString&&tempTitleHeight}"  *ngIf="showTitle" title="">
+      <ng-container *ngIf="_titleString; else titleTemp">{{_titleTemp}}</ng-container>
+      <span  *ngIf="tip && tip.length>0 &&_titleString"   style="margin-left: 5px;position: relative; bottom: 1px;cursor: pointer" nz-tooltip  [nzTooltipTitle]="tip"  >
+           <hy-icon nzIconName="info-circle" [iconStyle]="{'font-size':'14px'}"></hy-icon>
+        </span>
+      <ng-template #titleTemp>
+        <ng-template [ngTemplateOutlet]="_titleTemp"></ng-template>
+      </ng-template>
+    </div>
+  
+    <div title="">
+      <div class="hy-table-class">
+  
+        <div class="hy-empty" *ngIf="modelService[modelName] && modelService[modelName].length == 0 && scroll">
+          <nz-empty nzNotFoundImage="simple"></nz-empty>
+        </div>
+  
+        <nz-table
+          class="hy-edit-table"
+          [ngStyle]="{'padding-top': _class == 'gltStyle1' || _class == 'noBorder' ? '0' : '16px', 'padding-bottom': showPagination ? '0' : '16px'}"
+          #rowSelectionTable
+          [nzShowPagination]="showPagination"
+          [nzSize]="size"
+          nzShowSizeChanger
+          [nzData]="modelService[modelName]"
+          (nzCurrentPageDataChange)="currentPageDataChange($event)"
+          (nzPageIndexChange)="pageIndexChange($event)"
+          (nzPageSizeChange)="pageSizeChange($event)"
+          [nzShowQuickJumper]="showQuickJumper"
+          [nzPageSizeOptions]="pageSizeOptions"
+          [nzPaginationPosition]="paginationPosition"
+          [nzFrontPagination]="frontPagination"
+          [nzTotal]="modelService[modelName + '_$Property'] ? modelService[modelName + '_$Property']['count'] : 0"
+          [nzPageIndex]="modelService[modelName + '_$Property'] ? modelService[modelName + '_$Property']['curPage'] : 0"
+          [nzPageSize]="modelService[modelName + '_$Property'] ? modelService[modelName + '_$Property']['pageSize'] : 0"
+          [nzLoadingDelay]="loadingDelay"
+          [nzShowTotal]="totalTemplate"
+          [nzScroll]="scroll"
+          [nzNoResult]="scroll ? noResultTemp : undefined"
+        >
+          <thead>
+            <tr>
+              <!-- <th  [nzWidth]="showCheckAll ? '70px' : '50px'" [nzLeft]="'0'"  *ngIf="showCheckbox" [nzShowCheckbox]="showCheckbox" [(nzChecked)]="isAllDisplayDataChecked" (nzCheckedChange)="checkAll($event)" [nzDisabled]="isEdit">
+                <div style="position: relative" *ngIf="showCheckAll">
+                  <hy-icon [nzIconName]="'caret-down'"  nz-dropdown [nzDropdownMenu]="selectionsMenu" [iconClass]="'pointer'" style="position: absolute; top: -18px; right: -6px;" [nzDisabled]="isEdit"></hy-icon>
+                </div>
+                <nz-dropdown-menu #selectionsMenu="nzDropdownMenu">
+                  <ul nz-menu nzSelectable>
+                    <li nz-menu-item class="li-menu-item" (click)="checkCurrentPage()" [nzSelected]="selectCurrentPage">{{i18nService.getFrameI18n('hy-edit-table.本页数据')}}</li>
+                    <li nz-menu-item class="li-menu-item" (click)="checkAllPageData()" [nzSelected]="selectAllPage">{{i18nService.getFrameI18n('hy-edit-table.所有数据')}}</li>
+                  </ul>
+                </nz-dropdown-menu>
+              </th>
+              <th style="text-align:center;" *ngIf="showOrderNum" nzWidth="45px" [nzLeft]="showCheckbox ? showCheckAll ? '70px' : '45px' : '0px'">{{ orderNumName ? orderNumName : "" }}</th> -->
+              <th
+                *ngIf="showCheckbox"
+                [nzWidth]="showCheckAll ? '70px' : '45px'"
+                [nzLeft]="getNzLeft(0)"
+                [nzShowCheckbox]="showCheckbox"
+                [(nzChecked)]="isAllDisplayDataChecked"
+                [nzDisabled]="!(listOfDisplayData.length > 0)"
+                (nzCheckedChange)="checkAll($event)">
+
+                <div style="position: relative" *ngIf="showCheckAll">
+                  <hy-icon [nzIconName]="'caret-down'" nz-dropdown [nzDropdownMenu]="selectionsMenu" [iconClass]="'pointer'" style="position: absolute; top: -18px; right: -6px;"></hy-icon>
+                </div>
+                <nz-dropdown-menu #selectionsMenu>
+                  <ul nz-menu>
+                    <li nz-menu-item class="li-menu-item" (click)="checkAllPageData()" [nzDisabled]="selectAllPage || !(listOfDisplayData.length > 0)">{{i18nService.getFrameI18n('hy-glt.所有数据')}}</li>
+                  </ul>
+                </nz-dropdown-menu>
+              </th>
+              <th *ngIf="showRadio" nzWidth="45px" [nzLeft]="getNzLeft(1)"></th>
+              <th style="text-align:center;" *ngIf="showOrderNum" nzWidth="45px" [nzLeft]="getNzLeft(2)">{{ orderNumName ? orderNumName : "" }}</th>
+              <th nzWidth="50px" nzShowExpand *ngIf="showExpand" [nzLeft]="getNzLeft(3)"></th>
+              <th
+                #head
+                *ngFor="let head of tableService.heads"
+                nz-dropdown
+                [nzDropdownMenu]="menu"
+                [nzCustomFilter]="head.filterType == 'inputFilter'"
+                [nzShowFilter]="head.filterType == 'dicFilter'"
+                [nzFilters]="head.filterDicValue ? head.filterDicValue : []"
+                [nzFilterMultiple]="head.filterMultiple"
+                (nzFilterChange)="head.hyCell.onFilterChange($event)"
+                [nzWidth]="head.width ? head.width : 'auto'"
+                [nzShowSort]="head.showSort"
+                [nzLeft]="head.nzLeft"
+                [nzRight]="head.nzRight"
+                (nzSortOrderChange)="sortOrderf($event,head.modelName)"
+              >
+                <div [ngClass]="{'head-content-class': this.tableService.isEllipsis}" [title]="isEllipsis==true ? head.content : ''" [innerHtml]="head.content | escapeHtml"></div>
+  
+                <div *ngIf="head.filterType == 'inputFilter'">
+                  <nz-filter-trigger [nzDropdownMenu]="menu" [(nzVisible)]="visible">
+                    <hy-icon nzIconName="search" [iconStyle]="{fontSize:'14px'}" class="ant-table-filter-icon"></hy-icon>
+                  </nz-filter-trigger>
+  
+                  <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <div class="search-box ant-table-filter-dropdown">
+                      <input type="text" nz-input [placeholder]="head.placeholder || i18nService.getFrameI18n('hy-glt.请输入')" [(ngModel)]="searchValue" />
+                      <hyb-button
+                        [title]="i18nService.getFrameI18n('hy-edit-table.重置')"
+                        size="small"
+                        type="default"
+                        [buttonStyle]="{width: '90px', marginRight: '9px'}"
+                        (onClick)="head.hyCell.onFilterChangeReset(); onFilterChangeReset()"
+                      ></hyb-button>
+                      <hyb-button [title]="i18nService.getFrameI18n('hy-edit-table.确认')" size="small" type="primary" [buttonStyle]="{width: '90px'}" (onClick)="head.hyCell.onFilterChangeOk(searchValue); onFilterChangeOk()"></hyb-button>
+                    </div>
+                  </nz-dropdown-menu>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-template ngFor let-data [ngForOf]="rowSelectionTable.data" let-i="index">
+              <tr *ngIf="!editCache[data[uniqueId]]?.edit" class="hyGltTr" [ngClass]="{'virClass':scroll!==undefined}">
+                <td *ngIf="showCheckbox" style="width: 50px" [nzLeft]="'0'"  [nzShowCheckbox]="showCheckbox" [nzChecked]=" checkboxDisable ? checkboxDisable : data.checked" (nzCheckedChange)="refreshStatus($event,data)"  [nzDisabled]="checkboxDisable ? checkboxDisable : (isEdit ? isEdit : data.disabled)"></td>
+                <td *ngIf="showOrderNum" [nzLeft]="showCheckbox ? showCheckAll ? '70px' : '45px' : '0px'" style="text-align:center">{{ i + 1 }}</td>
+                <ng-container [hyTemplateWrapper]="itemTemplate" [item]="data" [index]="i"  (afterTemplateInit)="afterTemplateInit($event)"></ng-container>
+              </tr>
+  
+              <tr *ngIf="editCache[data[uniqueId]]?.edit" class="hyGltTr edit-row">
+                <td *ngIf="showCheckbox" style="width: 50px"  [nzLeft]="'0'"></td>
+                <td *ngIf="showOrderNum" [nzLeft]="showCheckbox ? showCheckAll ? '70px' : '45px' : '0px'" style="text-align:center">{{ i + 1 }}</td>
+                <ng-container [hyTemplateWrapper]="afterTemplate" [item]="editCache[data[uniqueId]].data" [index]="i" (afterTemplateInit)="afterTemplateInit($event)"></ng-container>
+              </tr>
+            </ng-template>
+          </tbody>
+          <ng-template #totalTemplate let-total>{{i18nService.getFrameI18n('hy-edit-table.总条数',[total])}}&nbsp;&nbsp;</ng-template>
+        </nz-table>
+      </div>
+    </div>
+  </div>
+  
+  <ng-template #noResultTemp>
+    <div style="height: 134px" ></div>
+  </ng-template>
+  
+</div>

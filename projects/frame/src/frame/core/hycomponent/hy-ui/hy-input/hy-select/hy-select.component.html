@@ -1,0 +1,127 @@
+<div #selectBox class="hy-col-{{flex == undefined ? cols : 0}} hy-select-box" [ngStyle]="{display: flex == undefined ? 'block' : 'inline-block'}" title="">
+  <nz-form-item class="hy-form-item hy-select-item">
+    <hy-comm-label
+      *ngIf="!noLabel"
+      [noLabel]="noLabel"
+      [labelWidth]="labelWidth" 
+      [ckRequired]="ckRequired" 
+      [noColon]="noColon" 
+      [title]="title" 
+      [isWrap]="isLabelWrap ?? tableService.isLabelWrap">
+    </hy-comm-label>
+    <span class="required-icon" *ngIf="noLabel && ckRequired && isShowNoLabelRequired">*</span>
+    <nz-form-control [ngStyle]="{width: flex == undefined ? '100%' : flex}" [nzValidateStatus]="formControl.pristine ? 'success' : formControl" style="overflow: hidden;">
+      <div #selectDiv>
+        <nz-select
+          #select
+          nz-tooltip
+          [nzAllowClear]="allowClear"
+          [nzDisabled]="!enable || !tableService.enable"
+          [nzMode]="_mode"
+          [nzPlaceHolder]="placeholder || i18nService.getFrameI18n('hy-select.请选择')"
+          [nzSize]="size"
+          [nzShowSearch]="showFilter"
+          [nzMaxTagCount]="maxTagCount"
+          [(ngModel)]="datas"
+          [formControl]="formControl"
+          (ngModelChange)="onModelChange($event)"
+          (nzOpenChange)="selectOpen($event)"
+          [(nzOpen)]="open"
+          [nzTooltipTitle]="formControl.errors && formControl.errors['msg'] ? formControl.errors['msg'] :''" 
+          nzTooltipPlacement="topRight"
+          [nzTooltipTrigger]="null"
+          nzTooltipOverlayClassName="rooltipColorRed"
+          [nzTooltipVisible]="formControl.errors && formControl.errors['msg'] && !formControl.pristine ? true : false"  
+          nzDropdownClassName="hy-select-box-option"
+          (nzOnSearch)="nzOnSearch($event)"
+          (nzScrollToBottom)="nzScrollToBottom()"
+          [ngClass]="{
+            'hy-select-multiple':mode === 'multiple',
+            'hy-select-nowrap-multiple':mode === 'nowrapMultiple',
+            'hy-select-nowrap-multiple-flex':isHySelectNowrapMultipleFlex,
+            'hy-select-nowrap-multiple-max-width':mode === 'nowrapMultiple' && datas && datas.length>0
+          }"
+          [nzServerSearch]="isBigData"
+          [nzMaxTagPlaceholder]="mode === 'nowrapMultiple' ? tagPlaceHolder : null"
+          [nzDropdownRender]="isAddItem ? renderTemplate : null"
+        >
+          <ng-container *ngFor="let value of items">
+            <nz-option nzCustomContent [nzValue]="value?.id" [nzLabel]="value?.text" >
+              <span #option class="hy-select-option-hide">{{value?.text}}</span>
+              <div class="hy-select-option" [nzTooltipTrigger]="value?.showTip ? 'hover' : null" nzTooltipPlacement="right" [nzTooltipMouseEnterDelay]="0.6" nz-tooltip [nzTooltipTitle]="value?.text">{{value?.text}}</div>
+            </nz-option>
+          </ng-container>
+        </nz-select>
+      </div>
+
+      <!-- 组件下提示 -->
+      <hy-comm-tip *ngIf="tip && tipType == 'bottomTip'" [tip]="tip" tipType="bottom"></hy-comm-tip>
+    </nz-form-control>
+
+    <span class="hy-explain-text"  *ngIf="_explainTemplate || _explainString">
+      <ng-container *ngIf="_explainString; else explainTemp">{{_explainTemplate}}</ng-container>
+      <ng-template #explainTemp>
+        <ng-template [ngTemplateOutlet]="_explainTemplate"></ng-template>
+      </ng-template>
+    </span>
+
+    <div *ngIf="tableService.showTip" class="tipStyleClass">
+      <div *ngIf="tip && tipType=='default'">
+        <hy-comm-tip [tip]="tip" tipType="default"></hy-comm-tip>
+      </div>
+    </div>
+  </nz-form-item>
+</div>
+<ng-template #tagPlaceHolder let-selectedList>
+  <div class="max-tag-placeholder">
+    <div #maxTagPlaceholder>
+      <i *ngFor="let item of tagList" [title]="item.text">{{item.text}}</i>
+    </div>
+    <div [ngStyle]="{'opacity':overflowNumber ? '1' : '0','display':overflowNumber ? 'block' : 'none'}">+{{overflowNumber > 99 ? 99 : overflowNumber}}...</div> 
+  </div>
+</ng-template>
+
+<ng-template #renderTemplate>
+      <div>
+        <hy-form>
+          <hy-gt model="addItem" [noPadding]="true" [noBorder]="true" [(formValid)]="formValid">
+            <div style="display: flex;overflow: hidden;width: 100%;border-top: 1px solid #ddd;padding-left:8px;padding-top: 4px;align-items: center;">
+              <div style="flex: 1;">
+                <hy-text 
+                  cols="24" 
+                  [noLabel]="true" 
+                  model="text" 
+                  [ckRequired]="addItemTextCkRequired"
+                  [ckMaxLength]="addItemTextCkMaxLength"
+                  [ckMinLength]="addItemTextCkMinLength"
+                  [ckInteger]="addItemTextCkInteger"
+                  [ckNumber]="addItemTextCkNumber"
+                  [ckMax]="addItemTextCkMax"
+                  [ckMin]="addItemTextCkMin"
+                  [ckNoWhitespace]="true"
+                  [placeholder]="addItemTextPlaceholder"
+                ></hy-text>
+              </div>
+              <div>
+                <a *ngIf="!addItemButtonHyIconName" style="padding: 0;padding-right: 16px;" nz-button nzType="link" [disabled]="!formValid" (click)="addItem()">
+                  <i nz-icon [nzType]="addItemButtonNzIconName"></i>
+                  <span style="margin-left: 2px;" *ngIf="addItemButtonTitle">{{addItemButtonTitle}}</span>
+                </a>
+                <hy-button 
+                  *ngIf="addItemButtonHyIconName"
+                  [title]="addItemButtonTitle" 
+                  type="link"
+                  [hyIconName]="addItemButtonHyIconName ? addItemButtonHyIconName : null" 
+                  (onClick)="addItem()"
+                >
+                </hy-button>
+              </div>
+            </div>
+          </hy-gt>
+        </hy-form>
+      </div>
+</ng-template>
+
+<!-- 此span用于修复ng-zorro-antd@13的多选bug -->
+<span *ngIf="mode === 'multiple' || mode==='nowrapMultiple'" style="opacity: 0;position: fixed;left: -1000px;" #searchValueSpan>{{selectSearchValue}}</span>
+

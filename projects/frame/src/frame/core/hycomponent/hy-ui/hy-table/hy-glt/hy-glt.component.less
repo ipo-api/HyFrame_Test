@@ -1,0 +1,557 @@
+:host {
+  display: block;
+}
+
+.head-content-class {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hy-glt .hy-glt-copm-title {
+  height: 40px;
+  line-height: 40px;
+  font-size: 15px;
+  font-weight: 600;
+  background: transparent;
+  padding-left: 5px;
+}
+
+.hy-glt .hy-glt-copm-title-height {
+  height: auto;
+}
+
+/*title为模板时，改变title的line-height*/
+:host ::ng-deep .hy-glt-copm-title-height .hy-element-flex:first-child {
+  line-height: 54px;
+}
+
+/*模板标题样式*/
+:host ::ng-deep .hy-glt-copm-title-height .hy-element-flex:last-child {
+  font-size: 13px;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.hy-table-class {
+  border: 1px solid #e4e4e4;
+  background-color: white;
+  padding: 0 16px;
+  margin-top: -1px;
+  position: relative;
+}
+
+.childrenGltStyle .hy-table-class {
+  border: none;
+  padding: 0;
+  background-color: transparent !important;
+}
+
+.gltStyle1 .hy-table-class {
+  border-top: none !important;
+}
+
+/*!*上面那条线*!*/
+/*.gltStyle2 .hy-table-class{*/
+/*border-left: none;*/
+/*border-right: none;*/
+/*border-bottom: none;*/
+/*border-top:1px solid #e8e8e8;*/
+/*}*/
+
+.noBorder .hy-table-class {
+  border: none;
+}
+
+/*无边框时标题的间距*/
+.noBorder .hy-glt-copm-title {
+  padding-left: 16px;
+}
+
+.grayTitle .hy-glt-copm-title {
+  background-color: #f5f5f5 !important;
+  padding-left: 16px;
+  margin: 8px 16px 0 16px;
+}
+
+.grayTitle .hy-table-class {
+  border: none;
+}
+
+/*覆盖阿里样式*/
+.hy-table-class ::ng-deep thead>tr>th .ant-table-header-column {
+  display: block !important;
+}
+
+/*新增的样式*/
+.hy-table-class ::ng-deep .ant-table table {
+  table-layout: fixed !important;
+  /* overflow: hidden; */
+}
+
+/*覆盖数据为空时阿里的样式*/
+::ng-deep .ant-table-placeholder .ant-table-tbody>tr>td {
+  border-bottom: none;
+}
+
+/*!*修改td的高度*!*/
+/*.hy-table-class ::ng-deep .ant-table-tbody>tr>td, ::ng-deep .ant-table-thead>tr>th{*/
+/*padding: 12px;*/
+/*}*/
+
+/***radio***/
+
+.haiyi-radio-wrapper {
+  box-sizing: border-box;
+  /* margin: 0 8px 0 0; */
+  padding: 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  line-height: 1.5;
+  list-style: none;
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+  -o-font-feature-settings: "tnum";
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.haiyi-expand-wrapper ::ng-deep>button {
+  margin-left: 7px;
+}
+
+.haiyi-radio {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.65);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  list-style: none;
+  -webkit-font-feature-settings: "tnum";
+  font-feature-settings: "tnum";
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+  vertical-align: sub;
+  outline: 0;
+  cursor: pointer;
+}
+
+.haiyi-radio-input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.haiyi-radio-inner {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 18px;
+  height: 18px;
+  background-color: #fff;
+  border-radius: 100px;
+  transition: all 0.3s;
+  border: 1px solid #d9d9d9;
+}
+
+.haiyi-radio-inner::after {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  display: table;
+  width: 10px;
+  height: 10px;
+  background-color: #3d8df8;
+  border-top: 0;
+  border-left: 0;
+  border-radius: 15px;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+  content: " ";
+}
+
+.haiyi-radio:hover .haiyi-radio-inner {
+  border-color: #3d8df8;
+}
+
+.magic-radio:checked+.haiyi-radio-inner {
+  border-color: #3d8df8;
+  /*-webkit-box-shadow: 0 0 5px 3px rgba(89, 163, 231, 0.2);*/
+  /*box-shadow: 0 0 5px 3px rgba(89, 163, 231, 0.2);*/
+}
+
+.magic-radio:checked+.haiyi-radio-inner::after {
+  transform: scale(0.875);
+  opacity: 1;
+  transition: all 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
+
+/***radio波浪效果***/
+
+.haiyi-radio-checked {
+  position: relative;
+}
+
+.haiyi-radio-checked:focus {
+  outline: none;
+}
+
+.haiyi-radio-checked:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  pointer-events: none;
+  background-color: #3d8df8;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  opacity: 0;
+  transition: all 0.4s;
+  border-radius: 50%;
+}
+
+.haiyi-radio-checked:active:after {
+  opacity: 0.4;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0s;
+  background-color: transparent;
+  border: 1px solid #d9d9d9;
+}
+
+/*th过滤下拉面板的样式*/
+
+.search-box {
+  padding: 8px;
+}
+
+.search-box input {
+  width: 188px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/*解决y轴高度没出现滚动条时的问题*/
+:host ::ng-deep.cdk-virtual-scroll-viewport {
+  overflow-y: scroll;
+}
+
+/*嵌套子列表大小为middle样式问题，阿里官网也有这个问题*/
+:host ::ng-deep .ant-table-tbody>tr .ant-table-wrapper:only-child .ant-table {
+  margin: -12px 0px -16px 33px;
+}
+
+/*普通的*/
+/* :host ::ng-deep .hyGltTr:nth-child(odd) td {
+  background-color: #ffff;
+}
+:host ::ng-deep .hyGltTr:nth-child(even) td {
+  background-color: #fafafa;
+} */
+
+/*虚拟滚动列表td样式*/
+:host ::ng-deep nz-table-inner-scroll .hyGltTr:nth-child(odd) td {
+  background-color: #fafafa;
+}
+
+:host ::ng-deep nz-table-inner-scroll .hyGltTr:nth-child(even) td {
+  background-color: #ffff;
+}
+
+:host ::ng-deep nz-table-inner-scroll .hyGltTr:hover td {
+  background-color: #e6f7ff;
+}
+
+/*嵌套列表td样式*/
+:host ::ng-deep nz-table-inner-default .expend-tr:nth-child(2n + 2) td {
+  background-color: #fafafa;
+}
+
+:host ::ng-deep nz-table-inner-default .expend-tr:nth-child(2n + 1) td {
+  background-color: #ffff;
+}
+
+:host ::ng-deep nz-table-inner-default .expend-tr:hover td {
+  background-color: #e6f7ff;
+}
+
+/*th背景颜色*/
+/* :host ::ng-deep .ant-table-thead > tr > th {
+  background-color: #f9f9f9;
+} */
+
+/*td线条颜色*/
+:host ::ng-deep .ant-table-tbody>tr>td {
+  border-bottom: 1px solid #f5f5f5;
+}
+
+/*th线条颜色*/
+:host ::ng-deep .ant-table-thead>tr>th {
+  border-bottom: 1px solid #f5f5f5;
+}
+
+/*临时解决虚拟滚动空数据在弹框里，图标位置不能居中对齐*/
+.hy-empty {
+  position: absolute;
+  z-index: 10;
+  bottom: 60px;
+  width: calc(100% - 32px);
+  color: rgba(0, 0, 0, .25);
+}
+
+:host ::ng-deep.ant-empty-image {
+  height: 40px;
+}
+
+/* 隐藏表头之间的间隔样式(此修改覆盖阿里原本的样式) */
+:host ::ng-deep .ant-table-cell::before {
+  background-color: transparent !important;
+}
+
+
+.li-menu-item {
+  text-align: center;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+/*修改嵌套子列表背景为白色，透明时虚拟滚动CheckBox、radio、number有问题*/
+:host ::ng-deep.ant-table-tbody>tr .ant-table-wrapper:only-child .ant-table td {
+  background: #fff;
+}
+
+/* 修改nz-table底部footer模版样式 */
+:host .hy-glt::ng-deep nz-table-title-footer {
+  padding: 0;
+  background-color: #fff;
+  overflow: hidden;
+  display: block;
+  float: left;
+  width: 100%;
+}
+
+:host .hy-glt::ng-deep nz-table-inner-default nz-table-title-footer {
+  padding-right: 8px;
+  background-color: transparent;
+  margin-bottom: -16px;
+}
+
+:host .hy-glt::ng-deep nz-table-inner-default nz-pagination {
+  margin-bottom: 4px;
+}
+
+:host ::ng-deep nz-table-inner-default .hyGltTr-height-light,:host ::ng-deep nz-table-inner-scroll .hyGltTr-height-light{
+  >td {
+    background-color: #f0f2f5 !important;
+  }
+}
+
+
+.no-total-page {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  margin: 16px 0;
+}
+
+.no-total-page-count {
+  min-width: 100px;
+  line-height: 24px;
+}
+
+.no-total-page-count>a {
+  line-height: unset;
+  margin: 0;
+  padding: 0;
+  height: unset;
+}
+
+@keyframes example {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.3);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.no-total-page-count-loading {
+  display: inline-flex;
+  align-items: center;
+  color: #999;
+}
+
+.no-total-page-count-loading>div {
+  min-width: 20px;
+  display: flex;
+  margin-left: 4px;
+  color: #999;
+}
+
+.no-total-page-count-loading>div>i {
+  display: block;
+  width: 2px;
+  min-width: 2px;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 50%;
+  /* transition: all 0.1s; */
+  background: #999;
+  transform: scale(1);
+  margin-right: 5px;
+  animation-name: example;
+  animation-duration: 1.2s;
+
+  animation-iteration-count: infinite;
+}
+
+.no-total-page-count-loading>div>i:nth-child(1) {
+  animation-delay: 0.4s;
+}
+
+.no-total-page-count-loading>div>i:nth-child(2) {
+  animation-delay: 0.8s;
+}
+
+.no-total-page-count-loading>div>i:nth-child(3) {
+  animation-delay: 1.2s;
+}
+
+.no-total-page-disabled {
+  cursor: default !important;
+  color: #666;
+  opacity: 0;
+  display: none !important;
+}
+
+.no-total-page-next {
+  border: 1px solid;
+  display: inline-block;
+  height: 24px;
+  margin-right: 6px;
+  margin-left: 6px;
+}
+
+.no-total-page-more {
+  height: 24px;
+  display: inline-flex;
+  cursor: pointer;
+  position: relative;
+  width: 20px;
+  float: left;
+  align-items: center;
+  justify-content: center;
+
+  >span {
+    opacity: 1;
+    color: #999;
+  }
+
+  >hy-icon {
+    opacity: 0;
+    margin-left: -13px;
+  }
+}
+
+.no-total-page-more:hover {
+  >span {
+    opacity: 0;
+    color: #1890ff;
+    transition: all 0.3s;
+  }
+
+  >hy-icon {
+    opacity: 1;
+    transition: all 0.3s;
+  }
+}
+
+.no-total-page-box {
+  overflow: hidden;
+  float: right;
+  flex: 1;
+}
+
+.no-total-page-box nz-pagination ::ng-deep .ant-pagination-disabled {
+  cursor: default;
+  min-width: 0px;
+}
+
+.no-total-page-box nz-pagination ::ng-deep .ant-pagination-item-active {
+  border-color: transparent;
+}
+
+
+.no-total-page-box-count {
+  float: left;
+  height: 24px;
+  line-height: 24px;
+  margin-right: 16px;
+}
+
+.no-total-page-default {
+  cursor: pointer !important;
+  color: #1890ff;
+}
+
+.no-total-page-default:hover {
+  color: #40a9ff;
+}
+
+:host .hy-glt-tip {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  background: #E2F6FF;
+
+  >td {
+    position: relative;
+  }
+}
+
+:host .hy-glt-refresh-div {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 8px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+
+:host .hy-glt-refresh-div:hover .hy-glt-refresh {
+  color: #40a9ff;
+  transform: rotate(180deg);
+}
+
+:host .hy-glt-refresh {
+  color: #3d8df8;
+  transition: all .3s;
+  border-radius: 50%;
+  border: 1px solid transparent;
+}

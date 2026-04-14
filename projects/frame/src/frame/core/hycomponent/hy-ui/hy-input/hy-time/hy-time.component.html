@@ -1,0 +1,59 @@
+<div class="hy-col-{{flex == undefined ? cols : 0}}"  [ngStyle]="{display: flex == undefined ? 'block' : 'inline-block'}" title="">
+  <nz-form-item class="hy-form-item">
+    <hy-comm-label
+      *ngIf="!noLabel"
+      [noLabel]="noLabel"
+      [labelWidth]="labelWidth" 
+      [ckRequired]="ckRequired" 
+      [noColon]="noColon" 
+      [title]="title" 
+      [isWrap]="isLabelWrap ?? tableService.isLabelWrap">
+    </hy-comm-label>
+    <span class="required-icon" *ngIf="noLabel && ckRequired && isShowNoLabelRequired">*</span>
+    <nz-form-control [ngStyle]="{width: noOwnWidth ? (flex ? flex : '100%') : 'auto'}" [nzValidateStatus]="formControl.pristine?'success' : formControl">
+      <nz-time-picker
+        [id]="inputId"
+        nz-tooltip
+        [nzSize]="size"
+        [nzFormat]="format"
+        [nzAllowEmpty]="allowClear"
+        [nzClearText]="clearText"
+        [nzDisabled]="!enable || !tableService.enable"
+        [nzDefaultOpenValue]="defaultOpenValue"
+        [nzHourStep]="hourStep"
+        [nzMinuteStep]="minuteStep"
+        [nzSecondStep]="secondStep"
+        [nzPlaceHolder]="placeholder || i18nService.getFrameI18n('hy-time.请选择时间')"
+        (nzOpenChange)="nzOpenChange($event)"
+        [nzUse12Hours]="use12Hours"
+        [ngModel]="modelService[tableService.modelName][modelName] | toTime"
+        (ngModelChange)="onModelChange($event)"
+        [nzTooltipTitle]="formControl.errors && formControl.errors['msg'] ? formControl.errors['msg'] : ''" 
+        nzTooltipPlacement="topRight"
+        [nzTooltipTrigger]="null"
+        nzTooltipOverlayClassName="rooltipColorRed"
+        [nzTooltipVisible]="formControl.errors && formControl.errors['msg'] && !formControl.pristine ? true : false"  
+        [ngStyle]="{width : noOwnWidth ? '100%' : 'auto'}"
+      ></nz-time-picker>
+      <span class="hy-explain-text" *ngIf="_explainTemplate || _explainString">
+       <ng-container *ngIf="_explainString; else explainTemp">{{_explainTemplate}}</ng-container>
+       <ng-template #explainTemp>
+        <ng-template [ngTemplateOutlet]="_explainTemplate"></ng-template>
+       </ng-template>
+      </span>
+
+      <div *ngIf="tableService.showTip" class="tipStyleClass">
+        <div *ngIf="tip && tipType=='default'">
+          <hy-comm-tip [tip]="tip" tipType="default"></hy-comm-tip>
+        </div>
+      </div>
+
+      <div class="tipBottom" *ngIf="tip && tipType == 'bottomTip'">
+        <hy-comm-tip *ngIf="tip && tipType == 'bottomTip'" [tip]="tip" tipType="bottom"></hy-comm-tip>
+      </div>
+    </nz-form-control>
+    <!--gt中任何一个组件有tip，以下div需显示，目的是对齐-->
+    <div *ngIf="tableService.showTip" class="tipStyleClass"></div>
+  </nz-form-item>
+</div>
+<input type="hidden" [formControl]="formControl" [ngModel]="modelService[tableService.modelName][modelName]"/>

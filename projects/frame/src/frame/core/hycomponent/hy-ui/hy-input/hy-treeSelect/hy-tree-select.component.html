@@ -1,0 +1,80 @@
+<div class="hy-col-{{flex == undefined ? cols : 0}} hy-tree-select-box" [ngClass]="{'hy-tree-select-box-tip':tableService.showTip}" [ngStyle]="{display: flex == undefined ? 'block' : 'inline-block'}" title="">
+  <nz-form-item class="hy-form-item">
+    <hy-comm-label
+      *ngIf="!noLabel"
+      [noLabel]="noLabel"
+      [labelWidth]="labelWidth" 
+      [ckRequired]="ckRequired" 
+      [noColon]="noColon" 
+      [title]="title" 
+      [isWrap]="isLabelWrap ?? tableService.isLabelWrap">
+    </hy-comm-label>
+    <span class="required-icon" *ngIf="noLabel && ckRequired && isShowNoLabelRequired">*</span>
+    <nz-form-control [ngStyle]="{width: flex == undefined ? '100%' : flex}" [nzValidateStatus]="formControl.pristine?'success' : formControl">
+      <nz-tree-select
+        nz-tooltip
+        #treeSelect
+        nzDropdownClassName="tree-select-open-panel"
+        [nzDisabled]="!enable || !tableService.enable"
+        [nzNodes]="datas || []"
+        [nzSize]="size"
+        [nzCheckable]="checkable"
+        [nzShowExpand]="showExpand"
+        [nzShowLine]="showLine"
+        [nzDefaultExpandAll]="defaultExpandAll"
+        [nzExpandedKeys]="defaultExpandedKeys"
+        [nzMultiple]="multiple"
+        [nzMaxTagCount]="maxTagCount"
+        [nzShowSearch]="showSearch"
+        [nzPlaceHolder]="placeholder || i18nService.getFrameI18n('hy-tree-select.请选择')"
+        [nzDropdownStyle]="dropdownStyle"
+        [nzAllowClear]="allowClear"
+        [formControl]="formControl"
+        [nzTreeTemplate]="nzTreeTemplate"
+        [nzExpandedIcon]="nodeIconTemplate ? _nodeIconTemplate : null" 
+        [(ngModel)]="modelService[tableService.modelName][modelName]"
+        [nzCheckStrictly]="checkStrictly"
+        (nzExpandChange)="nzExpandChange($event)"
+        (ngModelChange)="onModelChange($event)"
+        (nzOpenChange)="nzOpenChange($event)"
+        [nzTooltipTitle]="formControl.errors && formControl.errors['msg'] ? formControl.errors['msg'] :''" 
+        nzTooltipPlacement="topRight"
+        [nzTooltipTrigger]="null"
+        nzTooltipOverlayClassName="rooltipColorRed"
+        [nzTooltipVisible]="formControl.errors && formControl.errors['msg'] && !formControl.pristine ? true : false"
+        [nzVirtualHeight]="virtualHeight"
+        (keyup)="searchValueChange($event)"  
+      >
+      </nz-tree-select>
+      <div *ngIf="tableService.showTip" class="tipStyleClass">
+        <div *ngIf="tip && tipType=='default'">
+          <hy-comm-tip [tip]="tip" tipType="default"></hy-comm-tip>
+        </div>
+      </div>
+  
+      <div class="tipBottom" *ngIf="tip && tipType == 'bottomTip'">
+        <hy-comm-tip *ngIf="tip && tipType == 'bottomTip'" [tip]="tip" tipType="bottom"></hy-comm-tip>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+</div>
+
+<!-- 自定义节点图标start -->
+  <ng-template #_nodeIconTemplate let-node>
+    <ng-container *ngIf="nodeIconTemplate && node.isLeaf" [hyTemplateWrapper]="nodeIconTemplate" [item]="node">
+    </ng-container>
+    <hy-icon nzIconName="plus-square" *ngIf="!node?.isLeaf && !node?.isExpanded" [iconStyle]="{'font-size':'13px'}">
+    </hy-icon>
+    <hy-icon nzIconName="minus-square" *ngIf="!node?.isLeaf && node?.isExpanded" [iconStyle]="{'font-size':'13px'}">
+    </hy-icon>
+  </ng-template>
+<!-- 自定义节点图标end -->
+
+<ng-template #nzTreeTemplate let-node>
+  <span class="custom">
+    <span style="white-space: nowrap;">
+      <ng-container *ngIf="nodeIconTemplate && !node.isLeaf" [hyTemplateWrapper]="nodeIconTemplate" [item]="node"></ng-container>
+      <span class="folder" [ngStyle]="{'margin-left' : nodeIconTemplate && !node.isLeaf ? '8px' : '0px'}" [innerHTML]="node.title | stringHighlight : searchValue"></span>
+    </span>
+  </span>
+</ng-template>

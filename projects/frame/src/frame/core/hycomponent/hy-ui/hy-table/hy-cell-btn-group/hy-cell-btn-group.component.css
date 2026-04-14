@@ -1,0 +1,31 @@
+/*更多操作按钮不可编辑样式，pointer-events:none;取消掉了cursor属性,没有禁止图标*/
+.enable-button{
+  pointer-events: none;
+}
+.enable-button span{
+  color: #c0c0c0 !important;
+}
+
+.red span{
+  color: #fe4f4b;
+}
+
+.enable span{
+  color: #c0c0c0;
+}
+
+.blue span{
+  color: #1890ff;
+}
+
+.orange span{
+  color: #ff8e09;
+}
+
+.green span{
+  color: #52c41a
+}
+
+.gray span{
+  color: #666;
+}

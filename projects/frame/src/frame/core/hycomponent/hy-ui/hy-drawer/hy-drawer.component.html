@@ -1,0 +1,15 @@
+<ng-template #draweTemp>
+  <div class="drawer-content">
+    <div class="drawer-body">
+      <!--<ng-content></ng-content>-->
+      <ng-container *ngTemplateOutlet="contentTemplate"></ng-container>
+    </div>
+
+    <div class="drawer-footer" *ngIf="footerTemplate">
+      <ng-container *ngTemplateOutlet="footerTemplate"></ng-container>
+    </div>
+  </div>
+</ng-template>
+
+
+

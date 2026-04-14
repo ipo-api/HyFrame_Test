@@ -1,0 +1,29 @@
+<a title=""
+   nz-dropdown
+   [nzDropdownMenu]="menu"
+   [(nzVisible)]="isVisible"
+   [nzPlacement]="'bottomLeft'">
+  <span>{{ title }}</span>
+  <i nz-icon nzType="down" style="margin-left: 2px;"></i>
+</a>
+
+<nz-dropdown-menu #menu="nzDropdownMenu" >
+  <ul nz-menu *ngIf="btnArray && btnArray.length>0">
+    <li 
+      nz-menu-item 
+      *ngFor="let data of btnArray" 
+      [nzDisabled]="data.enable ? !data.enable(itemData) : false"
+      [ngClass]="{
+        'enable-button': data.enable && data.enable(itemData) == false, 
+        'red' : data.title === i18nButtonType[i18nService?.language?.id]?.delete || data.color === 'red',
+        'enable' : data.color === 'enable',
+        'blue' : data.color === 'blue',
+        'green' : data.color === 'green',
+        'gray' : data.color === 'gray'
+      }" 
+      (click)="data.click(itemData);isVisible = false;">
+      <span>{{ data.title }}</span>
+    </li>
+  </ul>
+</nz-dropdown-menu>
+

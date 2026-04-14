@@ -1,0 +1,28 @@
+<div class="hy-gt" [ngClass]="_class">
+    <div>
+      <div class="hy-gt-copm-title"  [ngClass]="{'hy-gt-copm-title-height':!_titleString&&tempTitleHeight}"  *ngIf="showTitle" title="">
+        <ng-container *ngIf="_titleString; else titleTemp">{{_titleTemp}}</ng-container>
+        <span  *ngIf="tip && tip.length>0 &&_titleString"   style="margin-left: 5px;position: relative; bottom: 1px;cursor: pointer" nz-tooltip  [nzTooltipTitle]="tip"  >
+         <hy-icon nzIconName="info-circle" [iconStyle]="{'font-size':'14px'}"></hy-icon>
+      </span>
+        <ng-template #titleTemp>
+          <ng-template [ngTemplateOutlet]="_titleTemp"></ng-template>
+        </ng-template>
+      </div>
+      <div class="hy-gt-content" [ngClass]="{
+        'no-border':noBorder,
+        'no-padding':noPadding,
+        'top-padding':showTopPadding,
+        'bottom-padding':showBottomPadding,
+        'left-padding':showLeftPadding,
+        'right-padding':showRightPadding}">
+        <div class="hy-gt-content-div hy-row" [ngClass]="{'hy-gt-hide':!isShow,'topMove':!showTitle}" *ngIf="!isEmpty">
+            <ng-content></ng-content>
+        </div>
+        <div *ngIf="isEmpty">
+          <nz-empty nzNotFoundImage="simple"></nz-empty>
+        </div>
+      </div>
+    </div>
+</div>
+

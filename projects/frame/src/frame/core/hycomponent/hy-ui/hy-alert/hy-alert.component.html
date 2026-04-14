@@ -1,0 +1,12 @@
+<div [ngClass]="{'alert-space':!isBanner}">
+  <nz-alert
+    [nzType]="alertType"
+    [nzMessage]="message"
+    [nzDescription]="description"
+    [nzBanner]="isBanner"
+    [nzCloseable]="closeable"
+    [nzShowIcon]="showIcon"
+    [nzCloseText]="closeText"
+    (nzOnClose)="onClick_Close($event)"
+  ></nz-alert>
+</div>

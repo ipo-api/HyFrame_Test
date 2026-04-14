@@ -1,0 +1,55 @@
+<div class="hy-col-{{flex == undefined ? cols : 0}}" [ngStyle]="{display: flex == undefined ? 'block' : 'inline-block'}" title="">
+  <nz-form-item class="hy-form-item">
+    <hy-comm-label
+      *ngIf="!noLabel"
+      [noLabel]="noLabel"
+      [labelWidth]="labelWidth" 
+      [ckRequired]="ckRequired" 
+      [noColon]="noColon" 
+      [title]="title" 
+      [isWrap]="isLabelWrap ?? tableService.isLabelWrap">
+    </hy-comm-label>
+    <span class="required-icon" *ngIf="noLabel && ckRequired && isShowNoLabelRequired">*</span>
+    <nz-form-control [ngStyle]="{width: noOwnWidth ? (flex ? flex : '100%') : 'auto'}"  [nzValidateStatus]="formControl.pristine? 'success' : formControl">
+      <ng-container *ngTemplateOutlet="numberAfterTemplate ? numberAfterTemplate : defaultTemplate"></ng-container>
+      <nz-input-number
+        [ngStyle]="{width : noOwnWidth ? '100%' : '90px'}"
+        nz-tooltip
+        [nzPlaceHolder]="placeholder"
+        [nzMin]="min"
+        [nzMax]="max"
+        [nzStep]="step"
+        [nzDisabled]="!enable || !tableService.enable"
+        [nzSize]="size"
+        [nzFormatter]="formatter ? formatter : _formatter"
+        [nzParser]="parser ? parser : _parser"
+        [nzPrecision]="precision"
+        [formControl]="formControl"
+        [(ngModel)]="modelService[tableService.modelName][modelName]"
+        (ngModelChange)="onModelChange($event)"
+        [nzTooltipTitle]="formControl.errors && formControl.errors['msg'] ? formControl.errors['msg'] : ''" 
+        nzTooltipPlacement="topRight"
+        [nzTooltipTrigger]="null"
+        nzTooltipOverlayClassName="rooltipColorRed"
+        [nzTooltipVisible]="formControl.errors && formControl.errors['msg'] && !formControl.pristine ? true : false"   
+      >
+      </nz-input-number>
+
+      <div *ngIf="tableService.showTip" class="tipStyleClass">
+        <div *ngIf="tip && tipType=='default'">
+          <hy-comm-tip [tip]="tip" tipType="default"></hy-comm-tip>
+        </div>
+      </div>
+
+      <div class="tipBottom" *ngIf="tip && tipType == 'bottomTip'">
+        <hy-comm-tip *ngIf="tip && tipType == 'bottomTip'" [tip]="tip" tipType="bottom"></hy-comm-tip>
+      </div>
+
+      <ng-container *ngTemplateOutlet="numberBeforeTemplate ? numberBeforeTemplate : defaultTemplate"></ng-container>
+
+      <ng-template #defaultTemplate></ng-template>
+    </nz-form-control>
+    <!--gt中任何一个组件有tip，以下div需显示，目的是对齐-->
+    <div *ngIf="tableService.showTip" class="tipStyleClass"></div>
+  </nz-form-item>
+</div>

@@ -1,0 +1,90 @@
+.menu-ul-class {
+  width: auto;
+  border-right: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  min-width: 240px;
+}
+
+.login-out-li {
+  height: 34px;
+  padding-left: 17px;
+  line-height: 34px;
+}
+
+li a {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+li:focus {
+  outline: none;
+}
+
+.font-class {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.login-name-ul {
+  /*height: 68px;*/
+  padding: 0 16px;
+}
+
+.login-name-li {
+  line-height: 30px;
+  white-space: nowrap;
+  display: block;
+}
+
+.login-name-li-Two {
+  height: 32px;
+  line-height: 32px;
+}
+
+.login-out-li:hover a span {
+  color: #1890ff;
+}
+
+.login-out-li:hover .icon-hover-class {
+  color: #1890ff;
+}
+
+
+:host ::ng-deep .ant-dropdown-menu-item:hover, .ant-dropdown-menu-submenu-title:hover {
+  color: #1890ff;
+  background-color: transparent;
+}
+
+
+.login-out-li:hover .login-out-image {
+  background-image: url("/assets/images/new_mainpage/powerButtonHover.svg");
+  background-repeat: no-repeat;
+  padding-left: 25px;
+}
+
+.login-out-li .login-out-image {
+  background-image: url("/assets/images/new_mainpage/powerButton.svg");
+  background-repeat: no-repeat;
+  padding-left: 25px;
+}
+
+/*覆盖阿里样式*/
+:host::ng-deep .ant-menu-inline .ant-menu-item {
+  height: 32px;
+  margin: 0;
+  line-height: 32px;
+}
+
+/*:host::ng-deep  .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title{*/
+/*height: 30px;*/
+/*line-height: 30px;*/
+/*margin-bottom: 0;*/
+
+/*}*/
+
+/*:host::ng-deep  .ant-menu-submenu-title .anticon{*/
+/*margin-right: 6px;*/
+/*}*/
+
+/*:host::ng-deep .ant-menu-submenu-inline > .ant-menu-submenu-title .ant-menu-submenu-arrow{*/
+/*top: 73%;*/
+/*}*/

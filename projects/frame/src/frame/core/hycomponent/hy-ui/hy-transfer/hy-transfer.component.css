@@ -1,0 +1,58 @@
+/*覆盖阿里transfer，宽度自适应时，中间操作的位置*/
+.hy-transfer ::ng-deep .ant-transfer-operation{
+  flex: 0 0 auto;
+  align-self: center;
+}
+/*覆盖阿里transfer，宽度自适应时*/
+.hy-transfer ::ng-deep .ant-transfer-list{
+  flex: 1;
+  /*width:auto;*/
+}
+
+/*覆盖阿里样式，传模板数据也需要出现滚动条*/
+:host ::ng-deep .ant-transfer-customize-list .ant-transfer-list-body-with-search {
+  /* padding-top: 44px; */
+}
+
+:host ::ng-deep .ant-transfer-customize-list .ant-transfer-list-body-search-wrapper{
+  /* position: absolute; */
+}
+
+:host ::ng-deep .ant-transfer-customize-list .ant-transfer-list{
+  width: 160px;
+  min-width: 160px;
+}
+
+
+:host ::ng-deep .ant-transfer-customize-list .ant-transfer-list-body-customize-wrapper{
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+  list-style: none;
+}
+
+/*修改显示项的间距*/
+:host ::ng-deep .ant-transfer-list-header{
+  padding-left: 16px;
+}
+
+/*修改过滤输入框的间距*/
+:host ::ng-deep .ant-transfer-list-body-search-wrapper{
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+:host ::ng-deep .ant-transfer-list-content-item{
+  padding-left: 16px;
+}
+
+/*可选择项对齐下面*/
+:host ::ng-deep .ant-transfer-list-header-title{
+  right: 16px;
+}
+
+/*搜索图标的距离*/
+:host ::ng-deep.ant-transfer-list-search-action{
+  right: 18px;
+}

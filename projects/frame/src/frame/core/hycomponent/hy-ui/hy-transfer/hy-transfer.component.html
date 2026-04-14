@@ -1,0 +1,61 @@
+<div style="padding: 8px 0;display: block; width: 100%; flex: 0 0 auto;  float: left;" title="">
+  <nz-form-item class="hy-form-item">
+    <hy-comm-label
+      *ngIf="!noLabel"
+      [noLabel]="noLabel"
+      [labelWidth]="labelWidth" 
+      [ckRequired]="ckRequired" 
+      [noColon]="noColon" 
+      [title]="title" 
+      [isWrap]="isLabelWrap ?? tableService.isLabelWrap">
+    </hy-comm-label>
+    <span class="required-icon" *ngIf="noLabel && ckRequired && isShowNoLabelRequired">*</span>
+    <nz-form-control 
+      nz-tooltip
+      [nzTooltipTitle]="formControl.errors && formControl.errors['msg'] ? formControl.errors['msg'] : ''" 
+      nzTooltipPlacement="topRight"
+      [nzTooltipTrigger]="null"
+      nzTooltipOverlayClassName="rooltipColorRed"
+      [nzTooltipVisible]="formControl.errors && formControl.errors['msg'] && !formControl.pristine ? true : false">
+      <nz-transfer
+        style="display: flex;"
+        class="hy-transfer"
+        [nzDataSource]="data || []"
+        [nzTitles]="titles || [i18nService.getFrameI18n('hy-transfer.可选择项'),i18nService.getFrameI18n('hy-transfer.已选择项')]"
+        [nzShowSearch]="showSearch"
+        [nzSearchPlaceholder]="placeholder"
+        [nzOperations]="operations"
+        [nzListStyle]="listStyle"
+        [nzItemsUnit]="itemsUnit"
+        [nzRenderList]="!tempConfigs ? undefined : [renderList,renderList]"
+        [nzRender]="render"
+        [nzFilterOption]="filterOption"
+        (nzSelectChange)="select_change.emit($event)"
+        (nzChange)="change($event)"
+        (nzSearchChange)="searchChange($event)"
+        [nzDisabled]="disabled"
+      >
+      </nz-transfer>
+    </nz-form-control>
+  </nz-form-item>
+</div>
+
+<ng-template #render let-item>
+  <span *ngIf="item.nzIconName == undefined && item.hyIconName == undefined">{{ item.title }}</span>
+  <span *ngIf="item.nzIconName || item.hyIconName "> <hy-icon [nzIconName]="item.nzIconName" [hyIconName]="item.hyIconName" [iconStyle]="{fontSize:' 14px',paddingRight:' 8px',color: '#888'}"></hy-icon>{{ item.title }}</span>
+</ng-template>
+
+<ng-template #renderList let-items let-direction="direction" let-stat="stat" let-i="direction=='left'?0:1" let-onItemSelectAll="onItemSelectAll" let-onItemSelect="onItemSelect" let-disabled="disabled">
+  <hy-transfer-temp
+    [data]="convertItems(items,direction,tempConfigs[i],stat) || []"
+    (onItemSelectAll)="onItemSelectAll($event)"
+    (onItemSelect)="onItemSelect($event)"
+    [disabled]="disabled"
+    [tempConfig]="tempConfigs[i]"
+    [ngStyle]="{'margin-top': showSearch ? '-16px' :'0px','display':showSearch ? 'block' :'inline'}"
+  ></hy-transfer-temp>
+</ng-template>
+
+<hy-monitor [data]="modelService[tableService.modelName]?.[modelName]" (dataChange)="setData()"></hy-monitor>
+
+

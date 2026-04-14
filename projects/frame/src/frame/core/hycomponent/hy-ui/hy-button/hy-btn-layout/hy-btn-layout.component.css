@@ -1,0 +1,17 @@
+.align{
+  text-align: right;
+}
+
+/*栅格布局时*/
+.colsAlign{
+  margin-right: -12px;
+}
+
+.margin-class{
+  margin:0 12px 0 0;
+}
+
+.padding-class{
+  height: 60px;
+  padding: 8px 16px;
+}

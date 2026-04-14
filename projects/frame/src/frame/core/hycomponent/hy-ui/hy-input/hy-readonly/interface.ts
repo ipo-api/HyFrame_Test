@@ -1,0 +1,1 @@
+export type HyReadonlyTextClass = 'red' | 'blue' | 'orange' | 'green' | 'gray' | 'bold' | '' | null;

@@ -1,0 +1,42 @@
+:host {
+  display: inline;
+  line-height: 1;
+}
+
+.icon-style {
+  font-size: 16px;
+  /* color: #666; */
+}
+
+.icon-style:hover {
+  opacity: 0.8;
+}
+
+
+.enable {
+  color: #c0c0c0;
+}
+
+.blue {
+  color: #1890ff;
+}
+
+.red {
+  color: #fe4f4b;
+}
+
+.orange {
+  color: #ff8e09;
+}
+
+.green {
+  color: #52c41a
+}
+
+.gray {
+  color: #666;
+}
+
+.pointer {
+  cursor: pointer;
+}

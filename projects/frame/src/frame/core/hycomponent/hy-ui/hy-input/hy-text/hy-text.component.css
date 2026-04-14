@@ -1,0 +1,131 @@
+.anticon-close-circle {
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+  font-size: 12px;
+}
+
+.anticon-close-circle:hover {
+  color: #999;
+}
+
+.anticon-close-circle:active {
+  color: #666;
+}
+i {
+  cursor: pointer;
+}
+
+.ant-tooltip-inner {
+  min-width: 30px;
+  min-height: 32px;
+  padding: 6px 8px;
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  word-wrap: break-word;
+  background-color: rgba(255, 64, 41, 0.75);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ui-disabled {
+  color: rgba(0, 0, 0, 0.25);
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 1;
+  touch-action: manipulation;
+  outline: 0 !important;
+}
+
+.ui-disabled:hover {
+  border-color: #e6d8d8;
+  border-right-width: 1px !important;
+  outline: 0 !important;
+}
+.ui-disabled:focus {
+  border-color: #e6d8d8;
+  border-right-width: 1px !important;
+  outline: 0 !important;
+  box-shadow: none;
+}
+
+.input-affix-wrapper-disabled{
+  color: rgba(0,0,0,.25);
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 1;
+  outline: 0 !important;
+  box-shadow: none !important;
+  border-color: #d9d9d9  !important;
+}
+
+
+.input-affix-wrapper-disabled:hover {
+  border-color: #d9d9d9 ;
+  border-right-width: 1px!important;
+  box-shadow: none !important;
+}
+
+.input-affix-wrapper-disabled:focus {
+  border-color: #d9d9d9;
+  border-right-width: 1px!important;
+  outline: 0 ;
+  box-shadow: none;
+}
+
+/*说明文字*/
+.hy-explain-text {
+  height: 32px;
+  line-height: 32px;
+  font-size: 12px;
+  padding-left: 8px;
+  color: #888;
+}
+
+/*12月29修改，浏览器渲染出来的值为padding:4.8px 11px,如果修改为5px 11px在火狐浏览器上，栅格布局换行的会有问题*/
+/*:host ::ng-deep .ant-input {*/
+  /*padding: 5px 11px;*/
+/*}*/
+
+:host ::ng-deep.ant-form-item-control-input-content {
+  line-height: 32px;
+}
+
+:host ::ng-deep nz-select {
+  outline: none;
+}
+
+/*9版本升级后的样式问题*/
+:host ::ng-deep  .ant-input-affix-wrapper:focus,.affixFocuse{
+  box-shadow: none;
+}
+
+:host ::ng-deep nz-select::ng-deep nz-select-top-control{
+  background-color: inherit !important;
+  border: none !important;
+  color: #333 !important;
+}
+
+:host ::ng-deep .ant-input-group-addon{
+  text-align: left;
+}
+
+/*tip底部文字提示样式*/
+.tipBottom{
+  font-size: 12px;
+  color: #888;
+  width: 100%;
+}
+
+/*tip底部文字行高*/
+:host ::ng-deep .tipBottomLine .ant-form-item-control-input-content{
+  line-height: 1.5;
+}
+
+/*火狐浏览器高度与其他浏览器高度不一致，参照hy-select修改。
+不能这么改,组件底部有说明文字时布局有问题，目前问题是组件高度不统一*/
+/*.hy-text{*/
+ /*height: 32px;*/
+/*}*/
+

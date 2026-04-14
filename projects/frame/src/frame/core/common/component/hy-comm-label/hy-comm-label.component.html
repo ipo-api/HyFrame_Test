@@ -1,0 +1,25 @@
+<div class="hy-comm-label-box" [ngClass]="'hy-comm-label-box-no-label'" [ngStyle]="style">
+    <nz-form-label 
+        class="form-label"
+        [ngClass]="{'form-label-ellipsis':isWrap && !ckRequired,'form-label-ellipsis-ckRequired':isWrap && ckRequired, 'form-label-no-label':noLabel}"  
+        [nzRequired]="ckRequired" 
+        [nzNoColon]="true">
+        <ng-container>
+            <span 
+                [nzTooltipTrigger]="isShowLabelTooltip ? 'hover' : null" 
+                nzTooltipPlacement="top"
+                nz-tooltip 
+                [nzTooltipTitle]="title" 
+                #textSpan 
+                [ngStyle]="{'max-width':maxWidth}">
+                {{title}}
+            </span>
+            <i style="position: absolute;right: 4px;font-style: normal;width: 4px;" *ngIf="!noColon && !noLabel">:</i>
+        </ng-container>
+    </nz-form-label>
+</div>
+<!-- 用于判断是否开启鼠标放上去显示 -->
+<nz-form-label style="position:fixed;left: -5000px;top:-5000px;opacity: 0;" *ngIf="!noLabel" [nzRequired]="ckRequired" [nzNoColon]="true">
+    <span id="label{{uuid}}">{{title}}</span>
+</nz-form-label>
+

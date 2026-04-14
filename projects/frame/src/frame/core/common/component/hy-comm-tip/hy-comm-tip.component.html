@@ -1,0 +1,9 @@
+<div class="hy-comm-tip-box" *ngIf="tip">
+    <i *ngIf="tipType === 'default'" nz-icon nzType="info-circle" nzTheme="outline" nzTooltipPlacement="left" nz-tooltip [nzTooltipTitle]="tip"></i>
+    <ng-container  *ngIf="tipType === 'bottom'">
+        <span class="string" *ngIf="isTemp">
+            <ng-container [ngTemplateOutlet]="tip" #tipeTemp></ng-container>
+        </span>
+        <span class="string" *ngIf="!isTemp">{{tip}}</span>
+    </ng-container>
+</div>

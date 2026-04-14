@@ -1,0 +1,73 @@
+// .title {
+//   height: 40px;
+//   line-height: 40px;
+//   font-size: 15px;
+//   font-weight: 600;
+//   background: transparent;
+//   padding-left: 5px;
+// }
+
+// .temp-title{
+//   height:54px;
+// }
+
+// .grayTitle{
+//   background-color: #f5f5f5;
+//   padding-left: 16px;
+//   margin: 8px 0 ;
+// }
+
+// /*title为模板时，改变title的line-height*/
+// :host ::ng-deep .temp-title .hy-element-flex:first-child{
+//   line-height: 54px;
+// }
+
+// /*模板标题样式*/
+// :host ::ng-deep .temp-title .hy-element-flex:last-child{
+//   font-size: 13px;
+//   font-weight: normal;
+//   color: rgba(0, 0, 0, 0.85);
+// }
+
+
+:host {
+
+  display: contents;
+
+  .title {
+    height: 40px;
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: 600;
+    background: transparent;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .grayTitle {
+    background-color: #f5f5f5;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin: 8px 0;
+  }
+
+  .temp-title {
+    height: 54px;
+
+    ::ng-deep {
+      .hy-element-align{
+        display: flex;
+        height: 100%;
+
+        .hy-element-flex{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
+    }
+
+  }
+}

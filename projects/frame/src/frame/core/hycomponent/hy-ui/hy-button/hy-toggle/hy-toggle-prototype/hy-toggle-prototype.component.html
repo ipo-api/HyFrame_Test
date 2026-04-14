@@ -1,0 +1,11 @@
+<nz-switch
+  [nzDisabled]="!enable"
+  [nzSize]="size"
+  [nzCheckedChildren]="showToggleText ? checkedChildren:''"
+  [nzUnCheckedChildren]="showToggleText ? unCheckedChildren:''"
+  [nzControl]="control"
+  [(ngModel)]="_ngModel"
+  (click)="clickData()"
+  [title]="_title"
+  [formControl]="formControlValue ? formControlValue: togglePrototypeformControl"
+></nz-switch>

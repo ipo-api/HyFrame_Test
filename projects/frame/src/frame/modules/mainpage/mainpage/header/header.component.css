@@ -1,0 +1,166 @@
+.hy-head {
+  padding: 0;
+  height: 56px;
+  line-height: 56px;
+  box-shadow: 0px 0px 2px 0.03px rgba(167, 167, 167, 0.78);
+}
+
+.hy-collapsed {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.hy-navbar-right {
+  height: 55px;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: relative;
+  float: right !important;
+}
+
+.hy-navbar-right > li {
+  float: left;
+  list-style: none;
+}
+
+.hy-navbar-right > li > a {
+  position: relative;
+  display: block;
+  padding: 0px 20px;
+  line-height: 55px;
+  height: 55px;
+}
+
+.hy-navbar-user-touxiang img {
+  padding-bottom: 5px;
+}
+
+.touxiang-style{
+  width: 50px;
+  height: 42px;
+  display: inline-block;
+  line-height: 42px;
+  text-align: center;
+}
+
+.touxiang-style:hover,.touxiang-style:active,.touxiang-style:focus{
+  background-color: #e6f7ff;
+}
+
+.touxiang-style-hover{
+  background-color: #e6f7ff;
+}
+
+
+.hy-topbar-user-username {
+  font-size: 16px;
+  color: #ffffff;
+  margin-left: 8px;
+}
+
+.hy-drop-down {
+  position: absolute;
+  z-index: 1000;
+  right: 0;
+  left: auto;
+}
+
+.hy-arrow-shallow {
+  position: relative;
+  color: #909090;
+  margin: 0 20px;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.hy-collapsed .trigger {
+  font-size: 18px;
+  cursor: pointer;
+  transition: color 0.3s;
+  padding-left: 16px;
+  opacity: 0.8;
+}
+
+.hy-collapsed:hover .trigger {
+  opacity: 1;
+}
+
+.hy-animation {
+  /*transform: scaleY(1);*/
+  /*transform-origin: 0% 0%;*/
+  transition: opacity 0.3s;
+}
+
+.hy-navbar-right-style {
+  width: auto;
+  position: relative;
+}
+
+.hy-navbar-right-style {
+  width: auto;
+  position: relative;
+  cursor: pointer;
+}
+
+
+/*鼠标hover，个人信息面板隐藏显示效果*/
+/*.hy-navbar-right-style .hy-drop-down {*/
+  /*display: none;*/
+  /*transition: all 1s linear;*/
+/*}*/
+
+/*.hy-navbar-right-style:hover .hy-drop-down {*/
+  /*display: block;*/
+/*}*/
+
+.arrow-shallow {
+  position: absolute;
+  top: 54%;
+  right: 16px;
+  width: 10px;
+}
+
+.arrow-shallow::after {
+  transform: rotate(-45deg) translateX(2px);
+  position: absolute;
+  width: 6px;
+  height: 1.5px;
+  border-radius: 2px;
+  transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+    -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  content: "";
+  background: #666;
+  opacity: 0.6;
+}
+
+.arrow-shallow::before {
+  transform: rotate(45deg) translateX(-2px);
+  position: absolute;
+  width: 6px;
+  height: 1.5px;
+  border-radius: 2px;
+  transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: background 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1),
+    -webkit-transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  content: "";
+  background: #666;
+  opacity: 0.6;
+}
+
+.hy-navbar-right-style:hover .arrow-shallow::after {
+  transform: rotate(45deg) translateX(2px);
+  -webkit-transform: rotate(45deg) translateX(2px);
+  opacity: 1;
+}
+
+.hy-navbar-right-style:hover .arrow-shallow::before {
+  transform: rotate(-45deg) translateX(-2px);
+  -webkit-transform: rotate(-45deg) translateX(-2px);
+  opacity: 1;
+}
+
+

@@ -1,0 +1,125 @@
+/*说明文字*/
+.hy-explain-text {
+  height: 32px;
+  line-height: 32px;
+  font-size: 12px;
+  padding-left: 8px;
+  color: #888;
+}
+
+/*tip底部文字提示样式*/
+.tipBottom {
+  font-size: 12px;
+  color: #888;
+  padding-top: 5px;
+}
+
+:host ::ng-deep .ant-select {
+  line-height: 30px;
+}
+
+.hy-select-multiple ::ng-deep nz-select-search {
+  margin: 0;
+  width: 4px !important;
+}
+
+.hy-select-multiple ::ng-deep .ant-select-selection-item-remove i {
+  line-height: 0px;
+}
+
+.hy-select-box nz-select {
+  width: 100%;
+}
+
+.hy-select-option-hide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  opacity: 0;
+}
+
+.hy-select-option {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 5px 12px;
+}
+
+:host {
+  .hy-select-nowrap-multiple {
+    min-width:120px;
+    ::ng-deep nz-select-top-control{
+      overflow: hidden;
+      position: relative;
+    }
+    ::ng-deep nz-select-search {
+      margin: 0;
+      width: 4px !important;
+      position: absolute;
+      max-width: 4px;
+      z-index: 1;
+    }
+    ::ng-deep nz-select-item {
+      background-color: transparent;
+      border: none;
+      padding-inline-start:0px;
+      position: absolute;
+      width: auto;
+      left: 0px;
+    }
+  }
+  .hy-select-nowrap-multiple-flex  {
+    ::ng-deep nz-select-item{
+      flex: 1;
+    }
+  }
+
+  .max-tag-placeholder {
+    width: 100%;
+    color: #333;
+    display: flex;
+    overflow: hidden;
+  
+    >div:nth-child(1) {
+      max-width: calc(100% - 48px);
+      display: flex;
+      flex-wrap: wrap;
+      float: left;
+  
+      >i {
+        line-height: 22px;
+        background: #f5f5f5;
+        border: 1px solid #f0f0f0;
+        border-radius: 2px;
+        height: 22px;
+        font-style: normal;
+        text-align: center;
+        min-width: 60px;
+        overflow: hidden;
+        display: block;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0 8px;
+        margin-inline-start:5px;
+        // margin-inline-end:4px;
+      }
+    }
+
+    >div:nth-child(2) {
+      margin-inline-start:3px;
+      // margin-inline-end:4px;
+      background: #f5f5f5;
+      border: 1px solid #f0f0f0;
+      border-radius: 2px;
+      text-align: center;
+      float: left;
+      width: 45px;
+      padding: 0 4px;
+      min-width: 45px;
+    }
+  }
+}
+

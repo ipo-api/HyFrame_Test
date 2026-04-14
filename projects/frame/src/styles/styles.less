@@ -1,0 +1,49 @@
+// @import './ng-zorro-antd.min.css';
+@import './hy-new.less';
+
+// 上右下左
+@edgeList:t,r,b,l;
+@edgeList2:top,right,bottom,left;
+
+// 边距像素
+@px:200;
+
+// 设置内边距
+.setPadding(@px) {
+    .forEdge(@j) when (@j < length(@edgeList)+1){
+        @edge:extract(@edgeList,@j);
+        @edge2:extract(@edgeList2,@j);
+        .p@{edge}@{px}{
+            padding-@{edge2}:(1px * @px) !important;
+        }
+        .p@{edge}-@{px}{
+            padding-@{edge2}:(1px * @px) !important;
+        }
+        .forEdge(@j+1);
+    }
+    .forEdge(1);
+}
+
+// 设置外边距
+.setMargin(@px) {
+    .forEdge(@j) when (@j < length(@edgeList)+1){
+        @edge:extract(@edgeList,@j);
+        @edge2:extract(@edgeList2,@j);
+        .m@{edge}@{px}{
+            margin-@{edge2}:(1px * @px) !important;
+        }
+        .m@{edge}-@{px}{
+            margin-@{edge2}:(1px * @px) !important;
+        }
+        .forEdge(@j+1);
+    }
+    .forEdge(1);
+}
+
+// 循环
+.forlist(@i) when (@i <@px+1) {
+  .setPadding(@i);
+  .setMargin(@i);
+  .forlist(@i+1);
+}
+.forlist(0);

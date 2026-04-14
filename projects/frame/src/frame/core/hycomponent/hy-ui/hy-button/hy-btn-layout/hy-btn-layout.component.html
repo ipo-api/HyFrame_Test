@@ -1,0 +1,12 @@
+<div class="padding-class "  title=""  >
+ <div class="hy-col-{{ cols }}">
+   <div class="margin-class">
+     <div [ngStyle]="{'margin-left':align == 'left'? offsetSubstrPx+'px': undefined,'width':contentWidth == undefined ? undefined:contentWidth+'px','margin-right':showTip?'8px':undefined}"
+       [ngClass]="{'align':align == 'right','colsAlign':contentWidth == undefined || flexSubstrPx == undefined}" >
+       <ng-content></ng-content>
+     </div>
+   </div>
+ </div>
+</div>
+
+

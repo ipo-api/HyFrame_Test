@@ -1,0 +1,87 @@
+.form-label {
+  &::ng-deep {
+    label {
+      position: relative;
+      padding-right: 10px;
+
+      span {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-wrap: break-word;
+        line-height: 30px;
+      }
+    }
+
+    label::after {
+      margin: 0;
+      display: none;
+    }
+  }
+}
+
+.form-label-no-label{
+  &::ng-deep {
+    label {
+      max-width: unset !important;
+      height: 30px;
+    }
+  }
+}
+
+.form-label-ellipsis,
+.form-label-ellipsis-ckRequired {
+  &::ng-deep {
+    label {
+      height: auto;
+      min-height: 30px;
+      max-width: 100%;
+
+      span {
+        display: block;
+        line-height: unset;
+        word-wrap: break-word;
+        word-break:keep-all;
+        white-space: initial;
+
+      }
+    }
+  }
+}
+
+.form-label-ellipsis {
+  &::ng-deep {
+    label {
+      span {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.form-label-ellipsis-ckRequired {
+  &::ng-deep {
+    label {
+      span {
+        width: calc(100% - 4px);
+      }
+    }
+  }
+}
+
+.hy-comm-label-box {
+  display: flex;
+  text-align: right;
+  margin-right: 4px;
+  // float: left;
+
+  nz-form-label {
+    width: 100%;
+    padding: 0px !important;
+  }
+}
+
+.hy-comm-label-box-no-label{
+  border: 1px solid transparent;
+}

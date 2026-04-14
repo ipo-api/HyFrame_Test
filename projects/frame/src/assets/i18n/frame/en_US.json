@@ -1,0 +1,124 @@
+{
+    "hyApi.请稍后再操作！":"Please operate later!",
+    "hyApi.数据正在加载中...":"Data is loading...",
+    "hyApi.确认":"Confirm",
+    "hyApi.取消":"Cancel",
+
+    "validator.该字段为必填项，不允许为空！":"This field is required and is not allowed to be empty",
+    "validator.长度不能少于":"The length cannot be less than $0 ",
+    "validator.长度不能大于":"The length cannot be greater than $0 ",
+    "validator.数值不能少于":"The value cannot be less than $0 ",
+    "validator.数值不能大于":"The value cannot be greater than $0 ",
+    "validator.必须是数字！":"Must be a number",
+    "validator.该字段的值范围不满足！":"The value range of this field is not satisfied",
+    "validator.该字段必须为整数！":"The field must be an integer",
+    "validator.文本前后不能包含空格！":"The text cannot contain spaces before or after it",
+
+    "hy-select.添加字典":"Add a dictionary",
+    "hy-select.字典已存在":"Dictionary already exists",
+    "hy-select.请选择":"Select",
+
+    "hy-checkbox.全选":"Select all",
+
+    "hy-step.返回":"Back",
+    "hy-step.下一步":"Next",
+    "hy-step.确认":"Confirm",
+
+    "hy-button.是否确认删除？":"Confirm deletion?",
+    "hy-button.删除":"Delete",
+    "hy-button.返回":"Back",
+    "hy-button.取消":"Cancel",
+    "hy-button.保存":"Save",
+    "hy-button.秒":"s",
+
+    "hy-queryShow.高级搜索":"Advanced search",
+
+    "hyb-button.秒":"second",
+
+    "hy-date.请选择日期":"Select date",
+    "hy-date.开始日期":"Start date",
+    "hy-date.结束日期":"End date",
+
+    "hy-readonly.复制成功":"The copy succeeded",
+    "hy-readonly.复制失败":"The copy failed",
+
+    "hy-time.请选择时间":"Select time",
+    "hy-time.格式错误":"Wrong format",
+    "hy-time.请选清除择时间":"Clear",
+
+    "hy-tree-select.请选择":"Select",
+
+    "hy-cell-btn.取消":"Cancel",
+    "hy-cell-btn.确认":"Confirm",
+    "hy-cell-btn.删除":"Delete",
+    "hy-cell-btn.编辑":"Edit",
+    "hy-cell-btn.查看":"View",
+    "hy-cell-btn.是否确认删除？":"Confirm deletion?",
+
+    "hy-glt.请输入":"Please enter",
+    "hy-glt.没有更多数据了":"No more data",
+    "hy-glt.验证码":"Code",
+    "hy-glt.所有数据":"All data",
+    "hy-glt.重置":"Reset",
+    "hy-glt.确认":"Confirm",
+    "hy-glt.刷新":"Refresh",
+    "hy-glt.上一页":"Previous page",
+    "hy-glt.下一页":"Next page",
+    "hy-glt.已选择所有页面全部数据":"All data on all pages selected",
+    "hy-glt.已选择本页$0条数据":"$0 pieces of data on this page have been selected",
+    "hy-glt.已选择$0条数据":"$0 pieces of data have been selected",
+    "hy-glt.总条数":"Total number: $0",
+    "hy-glt.总条数2":"Total number: ",
+    "hy-glt.查询中":"Querying",
+    "hy-glt.查看":"View",
+    "hy-glt.暂无数据":"No Data",
+
+    "hy-edit-table.存在未保存数据，不能编辑！":"There is unsaved data and cannot be edited!",
+    "hy-edit-table.程序异常！":"The program is abnormal!",
+    "hy-edit-table.本页数据":"Data on this page",
+    "hy-edit-table.所有数据":"All data",
+    "hy-edit-table.重置":"Reset",
+    "hy-edit-table.确认":"Confirm",
+    "hy-edit-table.总条数":"Total number: $0",
+
+    "hy-tabs.是否确认关闭当前页签？":"Are you sure to close the current tab?",
+
+    "hy-transfer.可选择项":"Optional items",
+    "hy-transfer.已选择项":"Selected item",
+
+    "hy-tree.请输入搜索内容":"Enter search content",
+
+    "hy-upload.上传":"Upload",
+    "hy-upload.格式":"format",
+    "hy-upload.上传中":"Uploading",
+    "hy-upload.开始上传":"Start upload",
+    "hy-upload.文件已存在":"File already exists",
+    "hy-upload.上传数量超出限制":"The number of uploads exceeds the limit",
+    "hy-upload.文件格式不正确，只支持$0格式":"The file format is incorrect, only $0 format is supported",
+    "hy-upload.上传的文件超出限定大小！文件大小不能超过":"The uploaded file exceeds the limit size! The file size cannot exceed:",
+    "hy-upload.上传的文件超出限定大小！":"The uploaded file exceeds the limit size!",
+    "hy-upload.删除文件":"Delete Files",
+
+    "hy-breadcrumb.返回":"Back",
+
+    "hyAcl.没有页面权限":"No page authority!",
+
+    "hyIo.文件正在下载中":"File downloading...",
+    "hyIo.操作失败":"Operation failed",
+    "hyIo.操作成功":"Successful operation",
+    "hyIo.登录超时,请重新登录":"Your session has timed out,please sign in again!",
+    "hyIo.服务环境异常,加密失败":"The service environment is abnormal, encryption failed",
+
+    "frameMenu.权限管理":"Authority managemen",
+    "frameMenu.用户管理":"User Management",
+    "frameMenu.角色管理":"Role management",
+
+    "header-menu.退出":"Sign out",
+
+    "main-page.许可已过期，为不影响系统正常使用，请联系管理员更换许可":"The license has expired. In order not to affect the normal use of the system, please contact the administrator to replace the license!",
+    "main-page.许可将于$0天后到期，为不影响系统正常使用，请及时更换许可":"The license will expire in $0 days. In order not to affect the normal use of the system, please replace the license in time",
+    "main-page.更换许可":"Replacement license",
+
+    "hy-group.删除":"Delete",
+    "hy-group.新增":"Add"
+}

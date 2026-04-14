@@ -1,0 +1,43 @@
+@import "~prismjs/themes/prism-okaidia.css";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/root";
+// @import './node_modules/bootstrap/scss/bootstrap-reboot.scss';
+
+html {
+    font-size: 15px;
+}
+
+.sbdocs-wrapper {
+    height: 100vh;
+    overflow: auto;
+}
+
+.storybook-ion-div {
+    height: 568px;
+
+    .storybook-ion-app {
+        margin: 0 auto;
+    }
+}
+
+.docs-story>div:nth-child(1) {
+    padding: 0;
+    width: 320px;
+    margin: 10px auto;
+    overflow: hidden;
+}
+
+.iconfont {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+#root{
+    height: 100vh;
+}

@@ -1,0 +1,37 @@
+
+.enable-button {
+  pointer-events: none;
+}
+
+.hy-button-style{
+  margin: 6px 12px 6px 0;
+  display: inline-block;
+}
+
+.enable{
+  color: #c0c0c0;
+}
+
+.blue{
+  color: #1890ff;
+}
+
+.red{
+  color: #fe4f4b;
+}
+
+.orange{
+  color: #ff8e09;
+}
+
+.green{
+  color: #52c41a
+}
+
+.gray{
+  color: #666;
+}
+
+.pointer{
+  cursor: pointer;
+}

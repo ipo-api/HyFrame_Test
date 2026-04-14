@@ -1,0 +1,24 @@
+<div style="padding: 16px;position: relative" *ngIf="show">
+
+  <nz-table *ngIf="tempConfig.tempType=='table'" #basicTable [nzData]="data" nzSize="small" [nzPageSize]="tempConfig.pageSize||10"  [nzScroll]="tempConfig.scroll"   >
+    <thead>
+    <tr [ngClass]="{'hide':!tempConfig.showHead}">
+      <th [nzShowCheckbox]="false" [nzChecked]="null" nzWidth="22px" style="padding: 0"></th>
+      <ng-container *ngFor="let cell of tempConfig.cellConfigs">
+        <th *ngIf="cell['type'] && (cell['type'] == 'nzIcon' || cell['type'] == 'hyIcon')"  nzWidth="22px" ></th>
+        <th *ngIf="!cell['type'] || cell['type'] == 'text'" [nzWidth]="cell['width']" >{{cell['title']}}</th>
+      </ng-container>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tData of basicTable.data">
+      <td [nzShowCheckbox] ="true" [nzChecked]="tData.checked" [nzDisabled]="disabled||tData['disabled']" (nzCheckedChange)="onItemSelect(tData)"   style="padding: 0 8px 0 0" ></td>
+      <ng-container *ngFor="let cell of tempConfig.cellConfigs">
+        <td *ngIf="cell['type'] && cell['type'] == 'hyIcon'"  style="padding-right: 0"><hy-icon [hyIconName]="tData[cell['name']]" [iconStyle]="{fontSize:' 14px',color: '#888'}" ></hy-icon></td>
+        <td *ngIf="cell['type'] && cell['type'] == 'nzIcon'"  style="padding-right: 0"><hy-icon [nzIconName]="tData[cell['name']]" [iconStyle]="{fontSize:' 14px',color: '#888'}" ></hy-icon></td>
+        <td *ngIf="!cell['type'] || cell['type'] == 'text'" nzBreakWord>{{tData[cell["name"]]}}</td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </nz-table>
+</div>

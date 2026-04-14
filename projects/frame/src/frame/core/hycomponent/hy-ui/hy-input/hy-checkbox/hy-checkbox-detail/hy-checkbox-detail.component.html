@@ -1,0 +1,39 @@
+<div style="display: none"> <input [formControl]="inPutFormControl" [ngModel]="_realData" ></div>
+
+
+<div *ngIf="showCheckAll" style="height: 32px; line-height: 32px;">
+  <label nz-checkbox [(ngModel)]="checkedAll" [nzIndeterminate]="indeterminate" (ngModelChange)="updateAllChecked($event)">{{i18nService.getFrameI18n('hy-checkbox.全选')}}</label>
+</div>
+
+<nz-checkbox-wrapper *ngIf="flex !== undefined">
+  <div class="hy-checkbox-div" *ngFor="let item of _items; let index = index"   [ngStyle]="{'width':_flexOnelineWidth=='auto'?'auto':flex/_flexOnelineWidth+'px'}">
+    <label
+      nz-checkbox
+      nz-tooltip
+      [nzTooltipMouseEnterDelay]="2"
+      [nzTooltipTitle]="item.text"
+      [ngModel]="_checkboxArray[index]"
+      nzValue="{{ item.text }}"
+      [nzDisabled]="enable || _enableAllow ? (_enableAllow && _enableAllow.indexOf(this.SPIT + item.id + this.SPIT) != -1) ? false : true : false"
+      (ngModelChange)="clickCheck(index)"
+      >{{ item.text }}</label
+    >
+  </div>
+</nz-checkbox-wrapper>
+
+<nz-checkbox-wrapper style="width: 100%;" *ngIf="flex == undefined"  [ngStyle]="{'margin-top':!showCheckAll ? '4px' : '0px'}">
+  <div class="hy-row">
+    <div class="hy-checkbox-div-clos" [ngClass]="{'hy-checkbox-div-clos-ellipsis':isEllipsis}"  *ngFor="let item of _items; let index = index" [ngStyle]="{'width':_onelineWidth+'%'}" >
+      <label
+        nz-tooltip
+        [nzTooltipMouseEnterDelay]="2"
+        [nzTooltipTitle]="item.text"
+        nz-checkbox
+        [ngModel]="_checkboxArray[index]"
+        nzValue="{{ item.text }}"
+        [nzDisabled]="enable || _enableAllow ? (_enableAllow && _enableAllow.indexOf(this.SPIT + item.id + this.SPIT) != -1) ? false : true : false"
+        (ngModelChange)="clickCheck(index)"
+        >{{ item.text }}</label>
+    </div>
+  </div>
+</nz-checkbox-wrapper>

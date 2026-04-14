@@ -1,0 +1,21 @@
+<div class="containerDiv">
+  <div class="btnPositon breadcrumbBtnPositon" *ngIf="showReturnButton">
+    <button nz-button  type="button" nzType="default" style="border-radius: 0; border-right: 0; padding: 0 10px;" [title]="'hy-breadcrumb.返回' | i18nF" (click)="returnBack()">
+      <img style="position: relative; bottom: 1px;" src="../assets/images/frame/return.png" />
+    </button>
+  </div>
+  <div class="inputPosition">
+    <div class="breadcrumb-style">
+      <nz-breadcrumb [nzSeparator]="iconTemplate">
+        <nz-breadcrumb-item *ngFor="let data of mutiTitle;let index = index">
+          <span *ngIf="data.route && data.route.length > 0">
+            <a (click)="routerLinkClick(data.route)"  [ngClass]="{'noHover-a':index == mutiTitle.length-1}">{{ data.title | i18n }}</a>
+          </span>
+
+          <span *ngIf="!data.route">{{ data.title | i18n }}</span>
+        </nz-breadcrumb-item>
+      </nz-breadcrumb>
+      <ng-template #iconTemplate>{{ nzSeparatorIcon }}</ng-template>
+    </div>
+  </div>
+</div>

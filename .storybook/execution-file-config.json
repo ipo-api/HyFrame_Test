@@ -1,0 +1,17 @@
+[
+    {
+        "executionPath":"projects/frame/src/frame/core/_init/initframe.service.ts",
+        "libraryPath":"projects/frame/src/frame/core/_init/initframe-lib.service.ts",
+        "storybookPath":"projects/frame/src/frame/core/_init/initframe-storybook.service.ts"
+    },
+    {
+        "executionPath":"projects/frame/src/frame/core/service/server-time.ts",
+        "libraryPath":"projects/frame/src/frame/core/service/server-time-lib.ts",
+        "storybookPath":"projects/frame/src/frame/core/service/server-time-storybook.ts"
+    },
+    {
+        "executionPath":"projects/frame/src/frame/core/service/dic.service.ts",
+        "libraryPath":"projects/frame/src/frame/core/service/dic-lib.service.ts",
+        "storybookPath":"projects/frame/src/frame/core/service/dic-storybook.service.ts"
+    }
+]

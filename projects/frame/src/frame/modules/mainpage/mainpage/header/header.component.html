@@ -1,0 +1,43 @@
+<nz-header class="hy-head">
+  <div class="hy-collapsed" (click)="_headerClickF()">
+    <hy-icon class="trigger"  [hyIconName]="isCollapsed ? 'menuUnfold' : 'menuFold'"></hy-icon>
+  </div>
+
+  <ul class="hy-navbar-right hy-navbar-height">
+    <li class="hy-navbar-right-style" nz-dropdown nzTrigger="click" [nzDropdownMenu]="nzDropdownTheme" nzPlacement="bottomRight" *ngIf="isShowTheme">
+      <a href="javascript:;" style="padding-top: 4px;">
+        <i style="font-size: 22px;" nz-icon nzType="setting" nzTheme="outline"></i>
+      </a>
+      
+      <!-- <a href="javascript:;" (click)="showMenuFunc()" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" [nzOverlayStyle]="{'margin-top':'2px'}" (nzVisibleChange)="visibleChange($event)">
+        <span class="hy-navbar-user-touxiang touxiang-style" [ngClass]="{'touxiang-style-hover':showBackground}">
+          <i style="font-size: 22px;" nz-icon nzType="setting" nzTheme="outline"></i>
+        </span>
+      </a> -->
+    </li>
+    <li class="hy-navbar-right-style" >
+      <a href="javascript:;" (click)="showMenuFunc()" nz-dropdown nzTrigger="click" [(nzVisible)]="showBackground" [nzDropdownMenu]="menu" [nzOverlayStyle]="{'margin-top':'2px'}" (nzVisibleChange)="visibleChange($event)">
+        <span class="hy-navbar-user-touxiang touxiang-style" [ngClass]="{'touxiang-style-hover':showBackground}"><img src="../assets/images/new_mainpage/touxiang.png" /></span>
+        <!--登陆名UI效果说去掉-->
+        <!--<span class="hy-topbar-user-username" style="margin: 0 12px 0 8px;">{{ loginUser.name }}</span>-->
+        <!--<i class="arrow-shallow"></i>-->
+      </a>
+      <!--<div class="hy-drop-down" *ngIf="showMenu">-->
+        <!--<header-menu [userPanelData]="userPanelData" [offClick]="clickedOutside" (onClick_title)="click($event)"> </header-menu>-->
+      <!--</div>-->
+    </li>
+  </ul>
+</nz-header>
+
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <header-menu [userPanelData]="userPanelData" [isHasLogoutFn]="isHasLogoutFn" (onClick_title)="click($event)" (onClick_logout)="logout()"> </header-menu>
+</nz-dropdown-menu>
+
+<nz-dropdown-menu #nzDropdownTheme>
+  <ul nz-menu nzSelectable>
+    <li nz-menu-item  (click)="setTheme('dark')">暗夜主题</li>
+    <li nz-menu-item  (click)="setTheme('light')">默认主题</li>
+    <li nz-menu-item  (click)="setTheme('test')">测试主题</li>
+  </ul>
+</nz-dropdown-menu>

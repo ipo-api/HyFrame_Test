@@ -1,0 +1,32 @@
+<div #selectBox>
+  <nz-select
+  [ngStyle]="selectStyle"
+  [nzDisabled]="!enable"
+  [nzShowSearch]="showFilter"
+  [nzSize]="size"
+  (nzOnSearch)="nzOnSearch($event)"
+  [nzAllowClear]="allowClear"
+  [nzPlaceHolder]="placeholder || i18nService.getFrameI18n('hy-select.请选择')"
+  (ngModelChange)="onModelChange($event)"
+  (nzOpenChange)="hyOpenChange($event)"
+  [(ngModel)]="datas"
+  [nzMode]="_mode"
+  [nzMaxTagCount]="maxTagCount"
+  [ngClass]="{'hy-select-multiple':mode === 'multiple' || mode === 'nowrapMultiple','hy-select-nowrap-multiple':mode === 'nowrapMultiple','hy-select-nowrap-multiple-flex':isHySelectNowrapMultipleFlex}"
+  [nzMaxTagPlaceholder]="mode === 'nowrapMultiple' ? tagPlaceHolder : null"
+  (nzScrollToBottom)="nzScrollToBottom()"
+  >
+    <nz-option *ngFor="let dicValue of items" [nzValue]="dicValue.id" [nzLabel]="dicValue.text"></nz-option>
+  </nz-select>
+</div>
+<ng-template #tagPlaceHolder let-selectedList>
+  <div class="max-tag-placeholder">
+    <div #maxTagPlaceholder>
+      <i *ngFor="let item of tagList" [title]="item.text">{{item.text}}</i>
+    </div>
+    <div [ngStyle]="{'opacity':overflowNumber ? '1' : '0','display':overflowNumber ? 'block' : 'none'}">+{{overflowNumber > 99 ? 99 : overflowNumber}}...</div> 
+  </div>
+</ng-template>
+
+<!-- 此span用于修复ng-zorro-antd@13的多选bug -->
+<span *ngIf="mode === 'multiple' || mode === 'nowrapMultiple'" style="opacity: 0;position: fixed;left: -1000px;" #searchValueSpan>{{selectSearchValue}}</span>

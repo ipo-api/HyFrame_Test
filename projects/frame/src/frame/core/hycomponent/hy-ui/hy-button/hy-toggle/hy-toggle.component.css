@@ -1,0 +1,19 @@
+/*说明文字*/
+.hy-explain-text {
+  font-size: 12px;
+  padding-left: 8px;
+  color: #888;
+  vertical-align: middle;
+}
+
+.tipStyleClass-toggle{
+  line-height: unset;
+  vertical-align: middle;
+}
+
+/*tip底部文字提示样式*/
+.tipBottom{
+  font-size: 12px;
+  color: #888;
+}
+

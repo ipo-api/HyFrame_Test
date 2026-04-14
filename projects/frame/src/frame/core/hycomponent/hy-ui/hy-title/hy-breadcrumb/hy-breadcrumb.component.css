@@ -1,0 +1,48 @@
+.breadcrumb-style{
+  border: 1px solid #e4e4e4;
+  background-color: #fff;
+  list-style: none;
+  padding: 5px 14px;
+  height: 32px;
+}
+
+a{
+  text-decoration: none;
+}
+
+/*输入框和按钮的布局*/
+.containerDiv{
+  width:100%;
+  display:table;         /*table布局*/
+}
+
+
+.btnPositon{
+  width:30px;
+  height:100%;
+  display:table-cell;
+  vertical-align: top;
+}
+
+
+.inputPosition {
+  display: table-cell;
+  height:100%;
+  max-width: 100%;
+  /*overflow: hidden;*/
+  /*text-overflow: ellipsis;*/
+  /*white-space: nowrap;*/
+}
+
+/*覆盖面包屑按钮的hover\focus效果*/
+.breadcrumbBtnPositon  ::ng-deep button.ant-btn:hover, .ant-btn:focus{
+  border-color: #e4e4e4;
+}
+
+
+.noHover-a{
+  cursor: default;
+}
+.noHover-a:hover{
+  color: rgba(0, 0, 0, 0.45);
+}

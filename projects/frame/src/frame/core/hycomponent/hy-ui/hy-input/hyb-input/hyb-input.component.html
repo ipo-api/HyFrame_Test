@@ -1,0 +1,8 @@
+
+<input nz-input [class.inputReadOnly]="readOnly == true"    [class.ui-disabled]="disabled == false"  [attr.readonly]="disabled ? null:''"
+       [placeholder]="placeholder"
+       [disabled]="_enable"
+       [type]="type"
+       [nzSize]="size"
+       [ngStyle]="{'width':width}"
+       [(ngModel)]="modelService[tableService.modelName][modelName]" />
