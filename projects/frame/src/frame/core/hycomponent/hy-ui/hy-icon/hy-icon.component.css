@@ -18,23 +18,23 @@
 }
 
 .blue {
-  color: #1890ff;
+  color: var(--primary-color);
 }
 
 .red {
-  color: #fe4f4b;
+  color: var(--error-color);
 }
 
 .orange {
-  color: #ff8e09;
+  color: var(--warning-color);
 }
 
 .green {
-  color: #52c41a
+  color: var(--success-color);
 }
 
 .gray {
-  color: #666;
+  color: var(--grey-color);
 }
 
 .pointer {

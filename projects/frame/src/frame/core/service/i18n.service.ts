@@ -1,15 +1,41 @@
-import { Injectable } from '@angular/core';
+import { APP_INITIALIZER, Injectable, Provider } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { en_US, NzI18nService, zh_CN, zh_TW, zh_HK } from 'ng-zorro-antd/i18n';
-import { Subject } from 'rxjs';
+import { forkJoin, Observable, of, Subject } from 'rxjs';
 import { HyLanguageData } from './i18nInterface';
 import { ReuseStrategyService } from './reuseStrategy.service';
 import { AppGlobal } from '../../config/AppGlobal';
+import { catchError, concatMap, map, tap } from 'rxjs/operators';
+import { $hyapi } from '../../core/api/$hyapi';
+
+/**
+ * 统一初始化提供者
+ * @param options 初始化配置
+ */
+export function provideHyI18nInit(FrameConfig: any, ApiConfig: any): Provider[] {
+  // 初始化 Provider 数组
+  const providers: Provider[] = [];
+
+  console.log(FrameConfig.i18nLanguage);
+
+  providers.push({
+    provide: APP_INITIALIZER,
+    useFactory: (initService: I18nService) => () => initService.init(FrameConfig, ApiConfig),
+    deps: [I18nService],
+    multi: true
+  });
+
+  return providers;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class I18nService {
+  private ApiConfig: any;
+
+  private FrameConfig: any;
+
   /** 当前语言 */
   private _language: HyLanguageData;
   public set language(value: HyLanguageData | undefined | null) {
@@ -40,11 +66,29 @@ export class I18nService {
    * 设置语言用于国际化。
    *
    * @param {HyLanguageData} language - 要设置的语言数据。
-   * @param {boolean} [isLogout=false] - 可选参数，指示用户是否已登录。默认值为 `false`。
-   * @returns {void}
+   * @returns {Observable<any>} 返回 Observable，用于异步处理
    */
-  public setLanguage(language: HyLanguageData) {
-    this.setLanguageData(language);
+  public setLanguage(language: HyLanguageData, isSubscribe?: boolean): Observable<any> {
+    if (isSubscribe) {
+      return this.setLanguageData(language, isSubscribe);
+    }
+    this.setLanguageData(language).subscribe();;
+  }
+
+  /** 
+   * 初始化国际化语言
+   * @param FrameConfig - 框架配置
+   * @param ApiConfig - API配置
+   * @returns {Observable<any>} 返回 Observable，用于异步处理
+   */
+  public init(FrameConfig: any, ApiConfig: any) {
+    this.ApiConfig = ApiConfig;
+    this.FrameConfig = FrameConfig;
+    return this.getLanguageList().pipe(
+      concatMap(data => this.getUserLanguage(data)),
+      concatMap(data => this.setLanguageData(data, true)),
+      map(() => of(true))
+    );
   }
 
   /** 创建订阅 */
@@ -153,9 +197,9 @@ export class I18nService {
     let newValue = i18nData?.[key] || key;
     if (arr?.length > 0) {
       const newValueArr = this.splitStringWithPlaceholders(newValue);
-      for(let i = 0; i < arr.length; i++){
-        const index = newValueArr.indexOf('$'+i);
-        if(index !== -1){
+      for (let i = 0; i < arr.length; i++) {
+        const index = newValueArr.indexOf('$' + i);
+        if (index !== -1) {
           newValueArr[index] = arr[i];
         }
       }
@@ -164,63 +208,109 @@ export class I18nService {
     return newValue;
   }
 
-   /**
-   * 拆分含有$0、$1等占位符的字符串
-   * @param text 要拆分的字符串，如"AcctShowPwd.div.密码：$0，$1"
-   * @returns 拆分后的数组，如['AcctShowPwd.div.密码：','$0','，','$1']
-   */
-   private splitStringWithPlaceholders(text: string): string[] {
+  /**
+  * 拆分含有$0、$1等占位符的字符串
+  * @param text 要拆分的字符串，如"AcctShowPwd.div.密码：$0，$1"
+  * @returns 拆分后的数组，如['AcctShowPwd.div.密码：','$0','，','$1']
+  */
+  private splitStringWithPlaceholders(text: string): string[] {
     // 正则表达式匹配$后跟数字的模式
     const regex = /(\$\d+)/g;
-    
+
     // 使用正则表达式拆分字符串
     const parts: string[] = [];
     let lastIndex = 0;
     let match;
-    
+
     while ((match = regex.exec(text)) !== null) {
 
       // 添加占位符前的文本
       if (match.index > lastIndex) {
         parts.push(text.substring(lastIndex, match.index));
       }
-      
+
       // 添加占位符
       parts.push(match[0]);
-      
+
       lastIndex = match.index + match[0].length;
     }
-    
+
     // 添加最后一段文本（如果有）
     if (lastIndex < text.length) {
       parts.push(text.substring(lastIndex));
     }
-    
+
     return parts;
   }
 
-  private setLanguageData(language: HyLanguageData) {
-    const getList = [];
-    getList.push(this.http.get('assets/i18n/app/' + language.id + '.json?' + new Date().getTime()).toPromise());
-    getList.push(this.http.get('assets/i18n/frame/' + language.id + '.json?' + new Date().getTime()).toPromise());
-    Promise.all(getList).then(res => {
-      this.language = language;
-      this.i18nData = res[0] || {};
-      this.i18nFrameData = res[1] || {};
-      if (language.id === 'zh_CN') {
-        this.nzI18nService.setLocale(zh_CN);
-      }
-      if (language.id === 'zh_HK') {
-        zh_HK.Empty.description = '暫無數據';
-        this.nzI18nService.setLocale(zh_HK);
-      }
-      if (language.id === 'en_US') {
-        this.nzI18nService.setLocale(en_US);
-      }
+  private setLanguageData(language: HyLanguageData, isSubscribe?: true): Observable<any>;
+  private setLanguageData(language: HyLanguageData, isSubscribe?: false): void;
+  private setLanguageData(language: HyLanguageData, isSubscribe?: boolean): Observable<any> | void {
+    if (isSubscribe) {
+      return this.setLanguageData$(language);
+    } else {
+      this.setLanguageData$(language).subscribe();
+    }
+  }
 
-      this.reuseStrategyClear();
-      this.changeSubject(language);
-    })
+
+  /** 
+   * 设置语言数据
+   * @param language 语言数据
+   */
+  private setLanguageData$(language: HyLanguageData) {
+    const appI18n$ = this.http.get('assets/i18n/app/' + language.id + '.json?' + new Date().getTime());
+    const frameI18n$ = this.http.get('assets/i18n/frame/' + language.id + '.json?' + new Date().getTime());
+    return forkJoin([appI18n$, frameI18n$]).pipe(
+      tap(([appI18n, frameI18n]) => {
+        this.language = language;
+        this.i18nData = appI18n || {};
+        this.i18nFrameData = frameI18n || {};
+        if (language.id === 'zh_CN') {
+          this.nzI18nService.setLocale(zh_CN);
+        }
+        if (language.id === 'zh_HK') {
+          zh_HK.Empty.description = '暫無數據';
+          this.nzI18nService.setLocale(zh_HK);
+        }
+        if (language.id === 'en_US') {
+          this.nzI18nService.setLocale(en_US);
+        }
+        this.reuseStrategyClear();
+        this.changeSubject(language);
+      })
+    )
+  }
+
+  /** 
+   * 获取用户语言
+   * @param languageList 支持的语言列表
+   * @returns Observable<HypLanguageData> 用户选择语言
+   */
+  public getUserLanguage(languageList: HyLanguageData[]): Observable<HyLanguageData> {
+    return this.http.post<any>('Action/ConsLanguage/get', {}).pipe(
+      map(res => {
+        if (res?.datas?.i18n) {
+          const language = languageList.find(item => item.id === res.datas.i18n);
+          if (language) {
+            return language;
+          }
+          return languageList[0];
+        }
+        return languageList[0];
+      }),
+      catchError(() => of(languageList[0]))
+    )
+  }
+
+  /** 
+   * 获取国际化语言列表
+   */
+  private getLanguageList(): Observable<HyLanguageData[]> {
+    return this.http.post<any>(this.ApiConfig.system.getLanguageList || 'Service/ConsLanguage/getModules_ShowMenu', {}, {}).pipe(
+      map(res => res.datas.i18nLanguages || this.FrameConfig.i18nLanguages),
+      catchError(() => of(this.FrameConfig.i18nLanguages))
+    )
   }
 
   /** 如果有路由复用则清空路由复用缓存，并且回到路由复用的第一页 */

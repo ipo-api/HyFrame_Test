@@ -877,13 +877,13 @@ const TipTemplate: Story<HyToggleComponent> = (args: any) => {
         
         <ng-template #advancedTemplate>
           <div style="width: 300px;">
-            <h5 style="margin: 0 0 8px 0; color: #1890ff;">高级设置说明</h5>
+            <h5 style="margin: 0 0 8px 0; color: var(--primary-color);">高级设置说明</h5>
             <ul style="margin: 0; padding-left: 16px; font-size: 12px;">
               <li>启用高级性能优化</li>
               <li>开启调试模式</li>
               <li>允许实验性功能</li>
             </ul>
-            <div style="margin-top: 8px; font-size: 12px; color: #ff4d4f;">
+            <div style="margin-top: 8px; font-size: 12px; color: var(--warning-color);">
               ⚠️ 仅供专业用户使用
             </div>
           </div>
@@ -1509,7 +1509,7 @@ eventHandling.args = {
     const log = `[${new Date().toLocaleTimeString()}] 主题切换: ${theme === 'dark' ? '深色模式' : '浅色模式'}`;
     const logElement = document.getElementById('eventLog');
     if (logElement) {
-      logElement.innerHTML += `<div style="color: #1890ff;">${log}</div>`;
+      logElement.innerHTML += `<div style="color: var(--primary-color);">${log}</div>`;
       logElement.scrollTop = logElement.scrollHeight;
     }
   },
@@ -1538,7 +1538,7 @@ eventHandling.args = {
     const log = `[${new Date().toLocaleTimeString()}] 模块状态: ${value === 'enabled' ? '已启用' : '已禁用'}`;
     const logElement = document.getElementById('eventLog');
     if (logElement) {
-      logElement.innerHTML += `<div style="color: #52c41a;">${log}</div>`;
+      logElement.innerHTML += `<div style="color: var(--success-color);">${log}</div>`;
       logElement.scrollTop = logElement.scrollHeight;
     }
   },
@@ -1553,11 +1553,10 @@ eventHandling.args = {
       // 停止数据统计
       $hyapi.msg.createTips('info', '数据统计已关闭');
     }
-    
     const log = `[${new Date().toLocaleTimeString()}] 统计功能: ${value === 'on' ? '开启数据收集' : '停止数据收集'}`;
     const logElement = document.getElementById('eventLog');
     if (logElement) {
-      logElement.innerHTML += `<div style="color: #722ed1;">${log}</div>`;
+      logElement.innerHTML += `<div style="color: var(--primary-color);">${log}</div>`;
       logElement.scrollTop = logElement.scrollHeight;
     }
   }
@@ -1833,11 +1832,11 @@ const ExplainTemplate: Story<HyToggleComponent> = (args: any) => {
         <ng-template #performanceExplainTemplate>
           <div style="font-size: 13px; color: #666; margin-top: 4px;">
             <div style="display: flex; align-items: center; margin-bottom: 4px;">
-              <span style="color: #1890ff;">⚡</span>
+              <span style="color: var(--primary-color);">⚡</span>
               <span style="margin-left: 4px;">启用后可提升系统响应速度</span>
             </div>
             <div style="display: flex; align-items: center;">
-              <span style="color: #faad14;">⚠️</span>
+              <span style="color: var(--warning-color);">⚠️</span>
               <span style="margin-left: 4px;">可能会增加内存使用量</span>
             </div>
           </div>
@@ -1938,7 +1937,7 @@ explainText.parameters = {
       实验性功能，可能不稳定
     </div>
     <div>
-      <a href="#" style="color: #1890ff;">查看详细说明</a>
+      <a href="#" style="color: var(--primary-color);">查看详细说明</a>
     </div>
   </div>
 </ng-template>

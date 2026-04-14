@@ -39,8 +39,9 @@
             ],
             "styles": [
               "./storybook.scss",
-              "projects/frame/src/assets/themes/style.light.css",
-              "projects/frame/src/styles/styles.less"
+              "projects/frame/src/styles/styles.less",
+              "./node_modules/hy-frame-pro/styles/themes/style.purple.css",
+              "./node_modules/hy-frame-pro/styles/styles.less"
             ],
             "scripts": [
               "node_modules/prismjs/prism.js",

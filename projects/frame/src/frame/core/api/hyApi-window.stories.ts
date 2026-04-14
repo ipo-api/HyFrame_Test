@@ -615,7 +615,7 @@ class WindowUsageExamples {
   return {
     props: args,
     template: `
-      <div style="border:2px solid #1890ff;padding:15px;margin-bottom:15px;border-radius:8px">
+      <div style="border:2px solid var(--primary-color);padding:15px;border-radius:8px">
         <h2>⚙️ 窗口特性配置功能</h2>
         <p><strong>高级配置:</strong> 窗口尺寸、位置控制、界面定制、响应式适配</p>
         
@@ -633,12 +633,12 @@ class WindowUsageExamples {
         
         <div style="margin-top:15px">
           <h4>📋 窗口特性完整配置指南:</h4>
-          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:11px;line-height:1.3;overflow-x:auto;border-left:4px solid #1890ff"><code>{{windowFeaturesCode}}</code></pre>
+          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:11px;line-height:1.3;overflow-x:auto;border-left:4px solid var(--primary-color)"><code>{{windowFeaturesCode}}</code></pre>
         </div>
         
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;margin-top:15px">
-          <div style="padding:15px;background:#f0f9ff;border-radius:4px;border:1px solid #91d5ff">
-            <h5 style="color:#1890ff;margin:0 0 10px 0">📏 尺寸位置</h5>
+          <div style="padding:15px;background:#f0f9ff;border-radius:4px;border:1px solid var(--primary-color)">
+            <h5 style="color:var(--primary-color);margin:0 0 10px 0">📏 尺寸位置</h5>
             <ul style="margin:0;padding-left:20px;font-size:12px">
               <li>width/height: 窗口尺寸</li>
               <li>left/top: 窗口位置</li>
@@ -646,8 +646,8 @@ class WindowUsageExamples {
               <li>响应式适配</li>
             </ul>
           </div>
-          <div style="padding:15px;background:#f0f9ff;border-radius:4px;border:1px solid #91d5ff">
-            <h5 style="color:#1890ff;margin:0 0 10px 0">🎛️ 界面控制</h5>
+          <div style="padding:15px;background:#f0f9ff;border-radius:4px;border:1px solid var(--primary-color)">
+            <h5 style="color:var(--primary-color);margin🎛️ 界面控制</h5>
             <ul style="margin:0;padding-left:20px;font-size:12px">
               <li>menubar: 菜单栏</li>
               <li>toolbar: 工具栏</li>
@@ -655,8 +655,8 @@ class WindowUsageExamples {
               <li>resizable: 可调整</li>
             </ul>
           </div>
-          <div style="padding:15px;background:#f0f9ff;border-radius:4px;border:1px solid #91d5ff">
-            <h5 style="color:#1890ff;margin:0 0 10px 0">🔧 高级功能</h5>
+          <div style="padding:15px;background:#f0f9ff;border-radius:4px;border:1px solid var(--primary-color)">
+            <h5 style="color:var(--primary-color);margin:0 0 10px 0">🔧 高级功能</h5>
             <ul style="margin:0;padding-left:20px;font-size:12px">
               <li>配置构建器</li>
               <li>预设模板</li>
@@ -1496,8 +1496,8 @@ class WindowErrorHandler {
   return {
     props: args,
     template: `
-      <div style="border:2px solid #1890ff;padding:15px;margin-bottom:15px;border-radius:8px;background:linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%)">
-        <h2 style="color:#1890ff">📚 $hyapi.window 完整功能手册</h2>
+      <div style="border:2px solid var(--primary-color);padding:15px;margin-bottom:15px;border-radius:8px;background:linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%)">
+        <h2 style="color:var(--primary-color)">📚 $hyapi.window 完整功能手册</h2>
         <p><strong>终极指南:</strong> 窗口操作的所有功能、配置选项、最佳实践、错误处理</p>
         
         <div style="margin:15px 0">
@@ -1508,34 +1508,34 @@ class WindowErrorHandler {
         
         <div style="margin-top:15px">
           <h4>📋 完整API参考和最佳实践:</h4>
-          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:10px;line-height:1.3;overflow-x:auto;border-left:4px solid #1890ff;max-height:600px;overflow-y:auto"><code>{{completeWindowCode}}</code></pre>
+          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:10px;line-height:1.3;overflow-x:auto;border-left:4px solid var(--primary-color);max-height:600px;overflow-y:auto"><code>{{completeWindowCode}}</code></pre>
         </div>
         
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:15px;margin-top:15px">
-          <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h5 style="color:#52c41a;margin:0 0 5px 0">🪟 open</h5>
+          <div style="padding:10px;background:#ffffff;border:1px solid var(--success-color);border-radius:4px;text-align:center">
+            <h5 style="color:var(--success-color);margin:0 0 5px 0">🪟 open</h5>
             <p style="margin:0;font-size:11px">打开新窗口</p>
           </div>
-          <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h5 style="color:#1890ff;margin:0 0 5px 0">⚙️ features</h5>
+          <div style="padding:10px;background:#ffffff;border:1px solid var(--primary-color);border-radius:4px;text-align:center">
+            <h5 style="color:var(--primary-color);margin:0 0 5px 0">⚙️ features</h5>
             <p style="margin:0;font-size:11px">窗口特性配置</p>
           </div>
-          <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h5 style="color:#fa8c16;margin:0 0 5px 0">🌍 i18n</h5>
+          <div style="padding:10px;background:#ffffff;border:1px solid var(--warning-color);border-radius:4px;text-align:center">
+            <h5 style="color:var(--warning-color);margin:0 0 5px 0">🌍 i18n</h5>
             <p style="margin:0;font-size:11px">国际化支持</p>
           </div>
-          <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h5 style="color:#722ed1;margin:0 0 5px 0">🎯 target</h5>
+          <div style="padding:10px;background:#ffffff;border:1px solid var(--primary-color);border-radius:4px;text-align:center">
+            <h5 style="color:var(--primary-color);margin:0 0 5px 0">🎯 target</h5>
             <p style="margin:0;font-size:11px">目标窗口控制</p>
           </div>
         </div>
         
-        <div style="margin-top:20px;padding:20px;background:#ffffff;border:2px solid #52c41a;border-radius:8px">
-          <h4 style="margin:0 0 15px 0;color:#52c41a">🎓 窗口操作最佳实践总结</h4>
+        <div style="margin-top:20px;padding:20px;background:#ffffff;border:2px solid var(--primary-color);border-radius:8px">
+          <h4 style="margin:0 0 15px 0;color:var(--primary-color)">🎓 窗口操作最佳实践总结</h4>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
             <div>
-              <h5 style="color:#1890ff;margin:0 0 10px 0">✅ 推荐做法</h5>
-              <ul style="margin:0;padding-left:20px;color:#666;font-size:13px">
+              <h5 style="color:var(--primary-color);margin:0 0 10px 0">✅ 推荐做法</h5>
+              <ul style="margin:0;padding-left:20px;color:var(--primary-color);font-size:13px">
                 <li>使用有意义的窗口命名，便于管理和复用</li>
                 <li>根据内容类型选择合适的窗口尺寸和位置</li>
                 <li>内部页面启用国际化，外部链接谨慎使用</li>
@@ -1545,8 +1545,8 @@ class WindowErrorHandler {
               </ul>
             </div>
             <div>
-              <h5 style="color:#f5222d;margin:0 0 10px 0">❌ 避免做法</h5>
-              <ul style="margin:0;padding-left:20px;color:#666;font-size:13px">
+              <h5 style="color:var(--error-color);margin:0 0 10px 0">❌ 避免做法</h5>
+              <ul style="margin:0;padding-left:20px;color:var(--error-color);font-size:13px">
                 <li>不要忽略弹窗权限检查和错误处理</li>
                 <li>避免打开过多窗口影响用户体验</li>
                 <li>不要在移动端使用复杂的窗口特性</li>
@@ -1558,9 +1558,9 @@ class WindowErrorHandler {
           </div>
         </div>
         
-        <div style="margin-top:15px;padding:15px;background:#fff9e6;border-radius:8px;border-left:5px solid #faad14">
-          <h4 style="margin:0 0 10px 0;color:#faad14">💡 开发提示</h4>
-          <p style="margin:0;color:#666;font-size:13px">
+        <div style="margin-top:15px;padding:15px;background:#fff9e6;border-radius:8px;border-left:5px solid var(--warning-color)">
+          <h4 style="margin:0 0 10px 0;color:var(--warning-color)">💡 开发提示</h4>
+          <p style="margin:0;color:var(--warning-color);font-size:13px">
             $hyapi.window 提供了灵活强大的窗口管理能力，支持窗口尺寸定制、位置控制、国际化集成等高级特性。
             从简单的链接跳转到复杂的多窗口应用，都能够轻松应对。
             <br><br>

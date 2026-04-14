@@ -37,6 +37,7 @@
     "@angular/platform-browser-dynamic": "13.3.11",
     "@angular/router": "13.3.11",
     "bootstrap": "^5.3.8",
+    "hy-frame-pro": "^1.0.0-beta.49",
     "less-plugin-clean-css": "1.5.1",
     "less-plugin-npm-import": "2.1.0",
     "prismjs": "^1.30.0",

@@ -336,7 +336,7 @@ class DictionaryCacheManager {
     return {
         props: args,
         template: `
-      <div style="border:2px solid #13c2c2;padding:15px;margin-bottom:15px;border-radius:8px">
+      <div style="border:2px solid var(--primary-color);padding:15px;margin-bottom:15px;border-radius:8px">
         <h2>📚 基础字典操作功能</h2>
         <p><strong>核心功能:</strong> 字典数据获取、缓存管理、服务器同步、数据转换</p>
         
@@ -354,12 +354,12 @@ class DictionaryCacheManager {
         
         <div style="margin-top:15px">
           <h4>📋 基础字典操作详解:</h4>
-          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:11px;line-height:1.3;overflow-x:auto;border-left:4px solid #13c2c2"><code>{{basicDicCode}}</code></pre>
+          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:11px;line-height:1.3;overflow-x:auto;border-left:4px solid var(--primary-color);max-height:600px;overflow-y:auto"><code>{{basicDicCode}}</code></pre>
         </div>
         
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;margin-top:15px">
           <div style="padding:15px;background:#e6fffb;border-radius:4px;border:1px solid #87e8de">
-            <h5 style="color:#13c2c2;margin:0 0 10px 0">📖 字典获取</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 10px 0">📖 字典获取</h5>
             <ul style="margin:0;padding-left:20px;font-size:12px">
               <li>get(): 智能获取</li>
               <li>getFromCache(): 缓存获取</li>
@@ -368,7 +368,7 @@ class DictionaryCacheManager {
             </ul>
           </div>
           <div style="padding:15px;background:#e6fffb;border-radius:4px;border:1px solid #87e8de">
-            <h5 style="color:#13c2c2;margin:0 0 10px 0">💾 缓存管理</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 10px 0">💾 缓存管理</h5>
             <ul style="margin:0;padding-left:20px;font-size:12px">
               <li>cache(): 缓存数据</li>
               <li>智能缓存策略</li>
@@ -377,7 +377,7 @@ class DictionaryCacheManager {
             </ul>
           </div>
           <div style="padding:15px;background:#e6fffb;border-radius:4px;border:1px solid #87e8de">
-            <h5 style="color:#13c2c2;margin:0 0 10px 0">🔧 工具方法</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 10px 0">🔧 工具方法</h5>
             <ul style="margin:0;padding-left:20px;font-size:12px">
               <li>isDicTmp(): 类型判断</li>
               <li>getDicTextFromCache(): 文本获取</li>
@@ -698,7 +698,7 @@ export class UserListComponent implements OnInit {
     return {
         props: args,
         template: `
-      <div style="border:2px solid #eb2f96;padding:15px;margin-bottom:15px;border-radius:8px">
+      <div style="border:2px solid var(--primary-color);padding:15px;margin-bottom:15px;border-radius:8px">
         <h2>🔤 字典文本转换功能</h2>
         <p><strong>核心能力:</strong> 字典值转文本、批量转换、多选处理、数据格式化</p>
         
@@ -716,12 +716,12 @@ export class UserListComponent implements OnInit {
         
         <div style="margin-top:15px">
           <h4>📋 字典文本转换完整解决方案:</h4>
-          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:11px;line-height:1.3;overflow-x:auto;border-left:4px solid #eb2f96"><code>{{dicTextCode}}</code></pre>
+          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:11px;line-height:1.3;overflow-x:auto;border-left:4px solid var(--primary-color);max-height:600px;overflow-y:auto"><code>{{dicTextCode}}</code></pre>
         </div>
         
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;margin-top:15px">
           <div style="padding:15px;background:#fff0f6;border-radius:4px;border:1px solid #ffadd2">
-            <h5 style="color:#eb2f96;margin:0 0 10px 0">🔤 文本转换</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 10px 0">🔤 文本转换</h5>
             <ul style="margin:0;padding-left:20px;font-size:12px">
               <li>单值转换</li>
               <li>多值分隔符处理</li>
@@ -730,7 +730,7 @@ export class UserListComponent implements OnInit {
             </ul>
           </div>
           <div style="padding:15px;background:#fff0f6;border-radius:4px;border:1px solid #ffadd2">
-            <h5 style="color:#eb2f96;margin:0 0 10px 0">💼 应用场景</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 10px 0">💼 应用场景</h5>
             <ul style="margin:0;padding-left:20px;font-size:12px">
               <li>表格数据显示</li>
               <li>表单数据格式化</li>
@@ -739,7 +739,7 @@ export class UserListComponent implements OnInit {
             </ul>
           </div>
           <div style="padding:15px;background:#fff0f6;border-radius:4px;border:1px solid #ffadd2">
-            <h5 style="color:#eb2f96;margin:0 0 10px 0">🔧 工具功能</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 10px 0">🔧 工具功能</h5>
             <ul style="margin:0;padding-left:20px;font-size:12px">
               <li>字典映射创建</li>
               <li>对象属性转换</li>
@@ -1634,8 +1634,8 @@ class DictionaryDebugger {
     return {
         props: args,
         template: `
-      <div style="border:2px solid #1890ff;padding:15px;margin-bottom:15px;border-radius:8px;background:linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%)">
-        <h2 style="color:#1890ff">📚 $hyapi.dic 完整功能手册</h2>
+      <div style="border:2px solid var(--primary-color);padding:15px;margin-bottom:15px;border-radius:8px;background:linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%)">
+        <h2 style="color:var(--primary-color);h2>
         <p><strong>终极指南:</strong> 字典数据的所有功能、管理策略、最佳实践、性能优化</p>
         
         <div style="margin:15px 0">
@@ -1646,16 +1646,16 @@ class DictionaryDebugger {
         
         <div style="margin-top:15px">
           <h4>📋 完整API参考和最佳实践:</h4>
-          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:10px;line-height:1.3;overflow-x:auto;border-left:4px solid #1890ff;max-height:600px;overflow-y:auto"><code>{{completeDicCode}}</code></pre>
+          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:10px;line-height:1.3;overflow-x:auto;border-left:4px solid var(--primary-color);max-height:600px;overflow-y:auto"><code>{{completeDicCode}}</code></pre>
         </div>
         
         <div style="display:grid;grid-template-columns:repeat(7, 1fr);gap:10px;margin-top:15px">
           <div style="padding:8px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h6 style="color:#13c2c2;margin:0 0 3px 0;font-size:11px">📖 get</h6>
+            <h6 style="color:var(--primary-color);margin:0 0 3px 0;font-size:11px">📖 get</h6>
             <p style="margin:0;font-size:9px">智能获取</p>
           </div>
           <div style="padding:8px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h6 style="color:#13c2c2;margin:0 0 3px 0;font-size:11px">💾 getFromCache</h6>
+            <h6 style="color:var(--primary-color);margin:0 0 3px 0;font-size:11px">💾 getFromCache</h6>
             <p style="margin:0;font-size:9px">缓存获取</p>
           </div>
           <div style="padding:8px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
@@ -1667,24 +1667,24 @@ class DictionaryDebugger {
             <p style="margin:0;font-size:9px">异步获取</p>
           </div>
           <div style="padding:8px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h6 style="color:#eb2f96;margin:0 0 3px 0;font-size:11px">🔤 getDicTextFromCache</h6>
+            <h6 style="color:var(--primary-color);margin:0 0 3px 0;font-size:11px">🔤 getDicTextFromCache</h6>
             <p style="margin:0;font-size:9px">文本转换</p>
           </div>
           <div style="padding:8px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h6 style="color:#722ed1;margin:0 0 3px 0;font-size:11px">🔍 isDicTmp</h6>
+            <h6 style="color:var(--primary-color);margin:0 0 3px 0;font-size:11px">🔍 isDicTmp</h6>
             <p style="margin:0;font-size:9px">类型判断</p>
           </div>
           <div style="padding:8px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h6 style="color:#fa8c16;margin:0 0 3px 0;font-size:11px">💾 cache</h6>
+            <h6 style="color:var(--primary-color);margin:0 0 3px 0;font-size:11px">💾 cache</h6>
             <p style="margin:0;font-size:9px">缓存数据</p>
           </div>
         </div>
         
-        <div style="margin-top:20px;padding:20px;background:#ffffff;border:2px solid #52c41a;border-radius:8px">
-          <h4 style="margin:0 0 15px 0;color:#52c41a">🎓 字典管理最佳实践总结</h4>
+        <div style="margin-top:20px;padding:20px;background:#ffffff;border:2px solid var(--primary-color);border-radius:8px">
+          <h4 style="margin:0 0 15px 0;color:var(--primary-color)">🎓 字典管理最佳实践总结</h4>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
             <div>
-              <h5 style="color:#1890ff;margin:0 0 10px 0">✅ 推荐做法</h5>
+              <h5 style="color:var(--primary-color);margin:0 0 10px 0">✅ 推荐做法</h5>
               <ul style="margin:0;padding-left:20px;color:#666;font-size:13px">
                 <li>使用DictionaryService统一管理字典操作</li>
                 <li>设置合理的缓存过期时间和清理策略</li>

@@ -373,23 +373,23 @@
 }
 
 .blue{
-  color: #1890ff;
+  color: var(--primary-color);
 }
 
 .red{
-  color: #fe4f4b;
+  color: var(--error-color);
 }
 
 .orange{
-  color: #ff8e09;
+  color: var(--warning-color);
 }
 
 .green{
-  color: #52c41a
+  color: var(--success-color);
 }
 
 .gray{
-  color: #888;
+  color: var(--grey-color);
 }
 
 .cell-pre{
@@ -410,7 +410,7 @@
 }
 
 .hy-cell-background-blue{
-  background-color: #1890ff;
+  background-color: var(--primary-color);
   color: #fff;
 }
 
@@ -420,17 +420,17 @@
 }
 
 .hy-cell-background-orange{
-  background-color: #ff8e09;
+  background-color: var(--warning-color);
   color: #fff;
 }
 
 .hy-cell-background-green{
-  background-color: #52c41a;
+  background-color: var(--success-color);
   color: #fff;
 }
 
 .hy-cell-background-gray{
-  background-color: #888;
+  background-color: var(--grey-color);
   color: #fff;
 }
 

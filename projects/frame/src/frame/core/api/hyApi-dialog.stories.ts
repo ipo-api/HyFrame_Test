@@ -1441,13 +1441,21 @@ export class DialogExampleComponent implements OnDestroy {
               <li>深度监控</li>
               <li>批量关闭</li>
             </ul>
+          <div style="padding:15px;background:#f9f0ff;border-radius:4px;border:1px solid var(--primary-color)">
+            <h5 style="color:var(--primary-color);margin:0 0 10px 0">📚 栈管理</h5>
+            <ul style="margin:0;padding-left:20px;font-size:12px">
+              <li>弹窗层次控制</li>
+              <li>LIFO关闭策略</li>
+              <li>深度监控</li>
+              <li>批量关闭</li>
+            </ul>
           </div>
-          <div style="padding:15px;background:#f9f0ff;border-radius:4px;border:1px solid #d3adf7">
-            <h5 style="color:#722ed1;margin:0 0 10px 0">🔄 队列管理</h5>
+          <div style="padding:15px;background:#f9f0ff;border-radius:4px;border:1px solid var(--primary-color)">
+            <h5 style="color:var(--primary-color);margin:0 0 10px 0">🔄 队列管理</h5>
             <ul style="margin:0;padding-left:20px;font-size:12px">
               <li>并发控制</li>
               <li>顺序处理</li>
-              <li>队列状态</li>
+              <
               <li>优先级支持</li>
             </ul>
           </div>
@@ -1805,7 +1813,6 @@ export class DialogDemoComponent implements OnInit, OnDestroy {
 
 .user-info h3 {
   margin-bottom: 15px;
-  color: #1890ff;
 }
 
 .user-info p {
@@ -2029,8 +2036,8 @@ class DialogPerformanceOptimizer {
   return {
     props: args,
     template: `
-      <div style="border:2px solid #1890ff;padding:15px;margin-bottom:15px;border-radius:8px;background:linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%)">
-        <h2 style="color:#1890ff">📚 $hyapi.dialog 完整功能手册</h2>
+      <div style="border:2px solid var(--primary-color);padding:15px;margin-bottom:15px;border-radius:8px;background:linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%)">
+        <h2 style="color:var(--primary-color);">📚 hyapi.dialog 完整功能手册</h2>
         <p><strong>终极指南:</strong> 模板弹窗的所有功能、配置选项、最佳实践、性能优化</p>
         
         <div style="margin:15px 0">
@@ -2041,33 +2048,33 @@ class DialogPerformanceOptimizer {
         
         <div style="margin-top:15px">
           <h4>📋 完整API参考和最佳实践:</h4>
-          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:10px;line-height:1.3;overflow-x:auto;border-left:4px solid #1890ff;max-height:600px;overflow-y:auto"><code>{{completeDialogCode}}</code></pre>
+          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:10px;line-height:1.3;overflow-x:auto;border-left:4px solid var(--primary-color);max-height:600px;overflow-y:auto"><code>{{completeDialogCode}}</code></pre>
         </div>
         
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:15px;margin-top:15px">
           <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h5 style="color:#13c2c2;margin:0 0 5px 0">🎭 show</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 5px 0">🎭 show</h5>
             <p style="margin:0;font-size:11px">显示模板弹窗</p>
           </div>
           <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h5 style="color:#eb2f96;margin:0 0 5px 0">🛠️ updateConfig</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 5px 0">🛠️ updateConfig</h5>
             <p style="margin:0;font-size:11px">动态配置更新</p>
           </div>
           <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h5 style="color:#722ed1;margin:0 0 5px 0">❌ close</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 5px 0">❌ close</h5>
             <p style="margin:0;font-size:11px">关闭指定弹窗</p>
           </div>
           <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h5 style="color:#fa8c16;margin:0 0 5px 0">🗑️ closeAll</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 5px 0">🗑️ closeAll</h5>
             <p style="margin:0;font-size:11px">关闭所有弹窗</p>
           </div>
         </div>
         
-        <div style="margin-top:20px;padding:20px;background:#ffffff;border:2px solid #52c41a;border-radius:8px">
-          <h4 style="margin:0 0 15px 0;color:#52c41a">🎓 模板弹窗最佳实践总结</h4>
+        <div style="margin-top:20px;padding:20px;background:#ffffff;border:2px solid var(--primary-color);border-radius:8px">
+          <h4 style="margin:0 0 15px 0;color:var(--primary-color);">🎓 模板弹窗最佳实践总结</h4>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
             <div>
-              <h5 style="color:#1890ff;margin:0 0 10px 0">✅ 推荐做法</h5>
+              <h5 style="color:var(--primary-color);margin:0 0 10px 0">✅ 推荐做法</h5>
               <ul style="margin:0;padding-left:20px;color:#666;font-size:13px">
                 <li>使用ViewChild获取模板引用，确保类型安全</li>
                 <li>在组件销毁时清理所有弹窗，防止内存泄漏</li>
@@ -2078,7 +2085,7 @@ class DialogPerformanceOptimizer {
               </ul>
             </div>
             <div>
-              <h5 style="color:#f5222d;margin:0 0 10px 0">❌ 避免做法</h5>
+              <h5 style="color:var(--error-color);margin:0 0 10px 0">❌ 避免做法</h5>
               <ul style="margin:0;padding-left:20px;color:#666;font-size:13px">
                 <li>不要在弹窗中执行长时间的同步操作</li>
                 <li>避免过深的弹窗嵌套，影响用户体验</li>
@@ -2091,8 +2098,8 @@ class DialogPerformanceOptimizer {
           </div>
         </div>
         
-        <div style="margin-top:15px;padding:15px;background:#fff9e6;border-radius:8px;border-left:5px solid #faad14">
-          <h4 style="margin:0 0 10px 0;color:#faad14">💡 开发提示</h4>
+        <div style="margin-top:15px;padding:15px;background:#fff9e6;border-radius:8px;border-left:5px solid var(--primary-color)">
+          <h4 style="margin:0 0 10px 0;color:var(--primary-color);">💡 开发提示</h4>
           <p style="margin:0;color:#666;font-size:13px">
             $hyapi.dialog 提供了强大的模板弹窗能力，支持完全自定义的内容和交互。
             从简单的信息展示到复杂的表单编辑，从单个弹窗到弹窗管理系统，都能够灵活应对。

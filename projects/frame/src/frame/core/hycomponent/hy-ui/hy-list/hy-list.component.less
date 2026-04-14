@@ -20,21 +20,21 @@
         text-overflow: ellipsis;
     }
     .list:hover{
-        border-left: 5px solid #1890ff;
+        border-left: 5px solid var(--primary-color);
         background-color: #e6f8ff;
         cursor: pointer;
     }
 }
 
 .selected{
-    border-left: 5px solid #1890ff !important;
-    background-color: #e6f8ff;
+    border-left: 5px solid var(--primary-color) !important;
+    background-color: var(--primary-color-bg);
     font-weight: bold;
 }
 
 .hovered{
-    border-left: 5px solid #1890ff !important;
-    background-color: #e6f8ff;
+    border-left: 5px solid var(--primary-color) !important;
+    background-color: var(--primary-color-bg);
 }
 
 .no-border{
@@ -43,26 +43,26 @@
 
 .left-border{
     border: none !important;
-    border-left: 1px solid #e4e4e4 !important;
+    border-left: 1px solid var(--border-color-base) !important;
 }
 
 .right-border{
     border: none !important;
-    border-right: 1px solid #e4e4e4 !important;
+    border-right: 1px solid var(--border-color-base) !important;
 }
 
 .top-border{
     border: none !important;
-    border-top: 1px solid #e4e4e4 !important;
+    border-top: 1px solid var(--border-color-base) !important;
 }
 
 .bottom-border{
     border: none !important;
-    border-bottom: 1px solid #e4e4e4 !important;
+    border-bottom: 1px solid var(--border-color-base) !important;
 }
 
 .listPop{
-    border: 1px solid;
+    border: 1px solid var(--border-color-base);
     padding: none;
     .operation-list{
         border: 1px solid;

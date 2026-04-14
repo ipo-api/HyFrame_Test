@@ -525,7 +525,7 @@ const Template4: Story<HyFlexBoxDirective> = (args: any) => {
             </div>
             <div style="height: 150px; display: flex; align-items: end; gap: 10px;">
               <div *ngFor="let item of chartData" 
-                   style="flex: 1; background: #1890ff; color: white; text-align: center; border-radius: 4px 4px 0 0; position: relative; display: flex; flex-direction: column; justify-content: end;"
+                   style="flex: 1; background: var(--primary-color); color: white; text-align: center; border-radius: 4px 4px 0 0; position: relative; display: flex; flex-direction: column; justify-content: end;"
                    [style.height.px]="item.value / 5">
                 <div style="padding: 5px; font-size: 12px;">{{item.value}}</div>
               </div>

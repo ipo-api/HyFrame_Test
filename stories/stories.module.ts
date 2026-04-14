@@ -13,6 +13,8 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { ModelService } from '../projects/frame/src/frame/core/common/domain/service/model.service';
 import { ValidatorFnsService } from "projects/frame/src/frame/core/func/check/validator-fns.service";
+import { StorybookWrapperComponent } from "../.storybook/storybook-wrapper";
+
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
@@ -21,9 +23,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
 
 @NgModule({
   imports: [DemoModule, RouterModule, NzIconModule.forRoot(icons), HttpClientModule, MarkdownModule.forRoot({ loader: HttpClient })],
-  declarations: [],
+  declarations: [StorybookWrapperComponent],
   providers: [HyapiService, ValidatorFnsService, MarkdownService],
-  exports: [MarkdownModule]
+  exports: [MarkdownModule,StorybookWrapperComponent]
 })
 export class StoriesModule {
   constructor(public i18nService: I18nService, public hyapiService: HyapiService, public dicService: DicService, private ioService: IOService, private modelService: ModelService, private initFrameService: InitFrameService) {

@@ -268,14 +268,6 @@
   background-color: #fafafa;
 } */
 
-/*虚拟滚动列表td样式*/
-:host ::ng-deep nz-table-inner-scroll .hyGltTr:nth-child(odd) td {
-  background-color: #fafafa;
-}
-
-:host ::ng-deep nz-table-inner-scroll .hyGltTr:nth-child(even) td {
-  background-color: #ffff;
-}
 
 :host ::ng-deep nz-table-inner-scroll .hyGltTr:hover td {
   background-color: #e6f7ff;
@@ -480,7 +472,7 @@
 .no-total-page-more:hover {
   >span {
     opacity: 0;
-    color: #1890ff;
+    color: var(--primary-color);
     transition: all 0.3s;
   }
 
@@ -515,11 +507,11 @@
 
 .no-total-page-default {
   cursor: pointer !important;
-  color: #1890ff;
+  color: var(--primary-color);  
 }
 
 .no-total-page-default:hover {
-  color: #40a9ff;
+  color: var(--primary-color-bg);
 }
 
 :host .hy-glt-tip {
@@ -527,7 +519,7 @@
   height: 30px;
   line-height: 30px;
   text-align: center;
-  background: #E2F6FF;
+  background: var(--primary-color-bg);
 
   >td {
     position: relative;
@@ -545,12 +537,12 @@
 }
 
 :host .hy-glt-refresh-div:hover .hy-glt-refresh {
-  color: #40a9ff;
+  color: var(--primary-color-bg);
   transform: rotate(180deg);
 }
 
 :host .hy-glt-refresh {
-  color: #3d8df8;
+  color: var(--primary-color);  
   transition: all .3s;
   border-radius: 50%;
   border: 1px solid transparent;

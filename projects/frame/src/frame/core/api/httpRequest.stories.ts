@@ -159,7 +159,7 @@ $hyapi.io.post(mds, 'http://api.example.com/user/create', userData, {
   return {
     props: args,
     template: `
-      <div style="border:2px solid #1890ff;padding:15px;margin-bottom:15px;border-radius:8px">
+      <div>
         <h2>📡 基础POST请求详细示例</h2>
         <p><strong>业务场景:</strong> 用户注册/创建新用户</p>
         <p><strong>学习要点:</strong> 了解基础请求结构、响应处理、错误分类</p>
@@ -170,7 +170,7 @@ $hyapi.io.post(mds, 'http://api.example.com/user/create', userData, {
         
         <div style="margin-top:15px">
           <h4>📋 完整代码示例:</h4>
-          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:12px;line-height:1.4;overflow-x:auto;border-left:4px solid #1890ff"><code>{{basicPostCode}}</code></pre>
+          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:12px;line-height:1.4;overflow-x:auto;border-left:4px solid var(--primary-color);"><code>{{basicPostCode}}</code></pre>
         </div>
         
         <div style="margin-top:10px;padding:10px;background:#e6f7ff;border-radius:4px">
@@ -1985,7 +1985,7 @@ $hyapi.io.post(mds, url, data, config, secretOpt);`;
   return {
     props: args,
     template: `
-      <div style="border:2px solid #1890ff;padding:15px;margin-bottom:15px;border-radius:8px;background:linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%)">
+      <div style="border:2px solid var(--primary-color);padding:15px;margin-bottom:15px;border-radius:8px;background:linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%)">
         <h2>📚 完整配置选项汇总</h2>
         <p><strong>终极指南:</strong> $hyapi.io.post方法的所有配置选项、常用模式、最佳实践</p>
         
@@ -1997,7 +1997,7 @@ $hyapi.io.post(mds, url, data, config, secretOpt);`;
         
         <div style="margin-top:15px">
           <h4>📋 完整配置参考手册:</h4>
-          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:10px;line-height:1.3;overflow-x:auto;border-left:4px solid #1890ff;max-height:600px;overflow-y:auto"><code>{{configCode}}</code></pre>
+          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:10px;line-height:1.3;overflow-x:auto;border-left:4px solid var(--primary-color);maxoverflow-y:auto"><code>{{configCode}}</code></pre>
         </div>
         
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:15px;margin-top:15px">
@@ -2039,7 +2039,7 @@ $hyapi.io.post(mds, url, data, config, secretOpt);`;
           <h4 style="margin:0 0 15px 0;color:#52c41a">🎓 最佳实践总结</h4>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
             <div>
-              <h5 style="color:#1890ff;margin:0 0 10px 0">✅ 推荐做法</h5>
+              <h5 style="color:var(--primary-color);margin:0 0 10px 0">✅ 推荐做法</h5>
               <ul style="margin:0;padding-left:20px;color:#666;font-size:13px">
                 <li>根据业务场景选择合适的配置模式</li>
                 <li>敏感数据务必启用字段级加密</li>

@@ -41,16 +41,16 @@ li:focus {
 }
 
 .login-out-li:hover a span {
-  color: #1890ff;
+  color: var(--primary-color);
 }
 
 .login-out-li:hover .icon-hover-class {
-  color: #1890ff;
+  color: var(--primary-color);
 }
 
 
 :host ::ng-deep .ant-dropdown-menu-item:hover, .ant-dropdown-menu-submenu-title:hover {
-  color: #1890ff;
+  color: var(--primary-color);
   background-color: transparent;
 }
 

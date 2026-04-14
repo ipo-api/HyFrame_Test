@@ -158,7 +158,7 @@ const MultiRecordTemplate: Story = (args: any) => {
   return {
     props: args,
     template: `
-      <div style="border:2px solid #1890ff;padding:15px;margin-bottom:15px;border-radius:8px">
+      <div style="border:2px solid var(--primary-color);padding-bottom:15px;border-radius:8px">
         <h2>📊 多记录表操作</h2>
         <p><strong>GLT模型:</strong> 列表数据和分页信息管理</p>
         

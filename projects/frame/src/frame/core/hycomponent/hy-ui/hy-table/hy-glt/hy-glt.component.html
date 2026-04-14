@@ -106,7 +106,7 @@
           </tr>
           <tr *ngIf="isShowTip && (checkedNum > 0 || _spreadCheckedData.size > 0 || selectAllPage)" class="hy-glt-tip" >
             <td [attr.colspan]="tableService.heads.length + (showCheckbox ? 1 : 0) + (showRadio ? 1 : 0) + (showOrderNum ? 1 : 0) + (showExpand ? 1 : 0)">
-              <div [ngStyle]="{'width':tipWidth,top:0}" style="min-width: 100px;position: absolute;color:#5188CE">
+              <div [ngStyle]="{'width':tipWidth,top:0}" style="min-width: 100px;position: absolute;color:var(--primary-color)">
                 <span *ngIf="isAllDisplayDataChecked && selectAllPage">{{i18nService.getFrameI18n('hy-glt.已选择所有页面全部数据')}}</span>
                 <span *ngIf="!selectAllPage && !isSpreadCheckbox">{{i18nService.getFrameI18n('hy-glt.已选择本页$0条数据',[checkedNum])}}</span>
                 <span *ngIf="!selectAllPage && isSpreadCheckbox">{{i18nService.getFrameI18n('hy-glt.已选择$0条数据',[_spreadCheckedData.size])}}</span>

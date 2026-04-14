@@ -96,7 +96,7 @@ const RouteForwardTemplate: Story = (args: any) => {
   return {
     props: args,
     template: `
-      <div style="border:2px solid #1890ff;padding:15px;margin-bottom:15px;border-radius:8px">
+      <div style="border:2px solid var(--primary-color);padding-bottom:15px;border-radius:8px">
         <h2>➡️ 路由前进操作</h2>
         <p><strong>前进导航:</strong> 进入下一级路由并管理缓存状态</p>
         

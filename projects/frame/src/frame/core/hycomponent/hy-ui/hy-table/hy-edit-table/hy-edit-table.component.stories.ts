@@ -114,8 +114,8 @@ const Template: Story<HyEditTableComponent> = (args: any) => {
     props: args,
     template: `
     <hy-form [(formValid)]="formValid">
-      <hy-button (onClick)="addUser(hyEditTable)" type="primary" title="新增"></hy-button>
-      <hy-button (onClick)="search()" type="primary" title="搜索"></hy-button>
+      <hy-button (onClick)="addUser(hyEditTable)" type="primary" title="新增" [check]="false"></hy-button>
+      <hy-button (onClick)="search()" type="primary" title="搜索" [check]="false"></hy-button>
       <hy-edit-table
         #hyEditTable
         title="可编辑表格" 
@@ -151,12 +151,7 @@ const Template: Story<HyEditTableComponent> = (args: any) => {
             <hy-readonly [noLabel]="true" [noColon]="true" model="id"></hy-readonly>
           </td>
           <td *ngFor="let listItem of list;let i = index;">
-            <div *ngIf="false">
-              <hy-number [noColon]="true" model="age" [ckRequired]="true" [labelWidth]="'15px'"></hy-number>
-            </div>
-            <div *ngIf="false">
-              <hy-number [noColon]="true" model="age" [ckRequired]="true" [labelWidth]="'15px'"></hy-number>
-            </div>
+            <hy-number [noColon]="true" model="age" [ckRequired]="true" [labelWidth]="'15px'"></hy-number>
           </td>
           <td>
             <hy-date [noColon]="true" model="birthday" [ckRequired]="true" [labelWidth]="'15px'"></hy-date>

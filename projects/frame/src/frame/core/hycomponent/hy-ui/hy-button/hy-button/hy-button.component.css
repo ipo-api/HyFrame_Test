@@ -25,9 +25,9 @@
   color: #666;
 }
 
-.btn-hover:hover hy-icon,.btn-hover-dashed hy-icon:hover{
+/* .btn-hover:hover hy-icon,.btn-hover-dashed hy-icon:hover{
   color: #40a9ff;
-}
+} */
 
 .btn-hover-primary hy-icon,.btn-hover-primary:hover hy-icon{
   color: #fff;

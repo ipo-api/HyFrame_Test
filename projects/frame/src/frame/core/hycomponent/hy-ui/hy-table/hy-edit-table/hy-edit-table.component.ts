@@ -476,13 +476,13 @@ export class HyEditTableComponent extends HyBaseTable implements OnInit, OnChang
         }
       }
     });
+    if (this.isAddRowNow) {
+      this.isAddRowNow = false;
+    }
+    if (this.isEditRowNow) {
+      this.isEditRowNow = false;
+    }
     setTimeout(() => {
-      if (this.isAddRowNow) {
-        this.isAddRowNow = false;
-      }
-      if (this.isEditRowNow) {
-        this.isEditRowNow = false;
-      }
       this.setHeadStyle();
     }, 100);
 
@@ -503,6 +503,8 @@ export class HyEditTableComponent extends HyBaseTable implements OnInit, OnChang
 
     //判断如果存在可编辑的状态，就不新增
     if (option) {
+      console.log(this.editCache);
+
       for (let key in this.editCache) {
         if (typeof (this.editCache[key].edit) != 'undefined' && this.editCache[key].edit === true) {
           $hyapi.msg.createTips('error', this.i18nService.getFrameI18n('hy-edit-table.存在未保存数据，不能编辑！'));

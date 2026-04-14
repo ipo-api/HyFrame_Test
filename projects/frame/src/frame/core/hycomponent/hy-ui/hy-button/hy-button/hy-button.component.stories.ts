@@ -79,7 +79,7 @@ const ContentProjectionTemplate: Story<HyButtonComponent> = (args: any) => ({
         
         <!-- 复杂HTML内容投射 -->
         <hy-button type="dashed" (onClick)="handleClick('复杂投射')">
-          <span style="color: #1890ff;">
+          <span>
             <i nz-icon nzType="plus"></i>
             <strong>添加项目</strong>
           </span>
@@ -135,7 +135,7 @@ contentProjection.parameters = {
 支持任意复杂的HTML结构，包括样式和嵌套元素：
 \\\`\\\`\\\`html
 <hy-button type="dashed">
-  <span style="color: #1890ff;">
+  <span>
     <i nz-icon nzType="plus"></i>
     <strong>添加项目</strong>
   </span>
@@ -185,7 +185,7 @@ contentProjection.parameters = {
     
     <!-- 复杂HTML内容投射 -->
     <hy-button type="dashed" (onClick)="handleClick('复杂')">
-      <span style="color: #1890ff;">
+      <span>
         <i nz-icon nzType="plus"></i>
         <strong>添加项目</strong>
       </span>

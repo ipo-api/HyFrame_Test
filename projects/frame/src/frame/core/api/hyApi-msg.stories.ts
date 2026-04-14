@@ -197,16 +197,16 @@ showMaintenanceNotice() {
             <h5 style="color:#52c41a;margin:0 0 5px 0">✅ Success</h5>
             <p style="margin:0;font-size:12px">操作成功确认</p>
           </div>
-          <div style="padding:10px;background:#fff2f0;border-radius:4px;border:1px solid #ffb3b3">
-            <h5 style="color:#f5222d;margin:0 0 5px 0">❌ Error</h5>
+          <div style="padding:10px;background:#fff2f0;border-radius:4px;border:1px solid var(--error-color)">
+            <h5 style="color:var(--error-color);margin:0 0 5px 0">❌ Error</h5>
             <p style="margin:0;font-size:12px">错误异常通知</p>
           </div>
-          <div style="padding:10px;background:#fffbe6;border-radius:4px;border:1px solid #ffe58f">
-            <h5 style="color:#faad14;margin:0 0 5px 0">⚠️ Warning</h5>
+          <div style="padding:10px;background:#fffbe6;border-radius:4px;border:1px solid var(--warning-color)">
+            <h5 style="color:var(--warning-color);margin:0 0 5px 0">⚠️ Warning</h5>
             <p style="margin:0;font-size:12px">风险操作警告</p>
           </div>
           <div style="padding:10px;background:#f0f9ff;border-radius:4px;border:1px solid #91d5ff">
-            <h5 style="color:#1890ff;margin:0 0 5px 0">ℹ️ Info</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 5px 0">ℹ️ Info</h5>
             <p style="margin:0;font-size:12px">一般信息提示</p>
           </div>
         </div>
@@ -393,7 +393,7 @@ messageHelper.showTips('success', '数据已保存');  // 3秒内重复，不显
   return {
     props: args,
     template: `
-      <div style="border:2px solid #1890ff;padding:15px;margin-bottom:15px;border-radius:8px">
+      <div style="border:2px solid var(--primary-color);padding:15px;margin-bottom:15px;border-radius:8px">
         <h2>🔔 轻量级提示功能</h2>
         <p><strong>核心特点:</strong> 不打断操作、自动消失、轻量快速、适合频繁提示</p>
         
@@ -417,12 +417,12 @@ messageHelper.showTips('success', '数据已保存');  // 3秒内重复，不显
         
         <div style="margin-top:15px">
           <h4>📋 轻量级提示详细说明:</h4>
-          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:11px;line-height:1.3;overflow-x:auto;border-left:4px solid #1890ff"><code>{{createTipsCode}}</code></pre>
+          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:11px;line-height:1.3;overflow-x:auto;border-left:4px solid var(--primary-color)"><code>{{createTipsCode}}</code></pre>
         </div>
         
         <div style="display:flex;gap:15px;margin-top:15px">
           <div style="flex:1;padding:15px;background:#f0f9ff;border-radius:4px;border:1px solid #91d5ff">
-            <h5 style="color:#1890ff;margin:0 0 10px 0">🔔 createTips 特点</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 10px 0">🔔 createTips 特点</h5>
             <ul style="margin:0;padding-left:20px;font-size:12px">
               <li>轻量级，不阻断操作</li>
               <li>自动消失(默认3秒)</li>
@@ -431,7 +431,7 @@ messageHelper.showTips('success', '数据已保存');  // 3秒内重复，不显
             </ul>
           </div>
           <div style="flex:1;padding:15px;background:#f9f0ff;border-radius:4px;border:1px solid #d3adf7">
-            <h5 style="color:#722ed1;margin:0 0 10px 0">💬 show 特点</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 10px 0">💬 show 特点</h5>
             <ul style="margin:0;padding-left:20px;font-size:12px">
               <li>重要消息确认</li>
               <li>支持回调处理</li>
@@ -1795,36 +1795,35 @@ class MessageMemoryGuard {
   return {
     props: args,
     template: `
-      <div style="border:2px solid #1890ff;padding:15px;margin-bottom:15px;border-radius:8px;background:linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%)">
-        <h2 style="color:#1890ff">📚 $hyapi.msg 完整功能手册</h2>
-        <p><strong>终极指南:</strong> 所有消息功能、配置选项、最佳实践、性能优化</p>
+      <div style="border:2px solid var(--primary-color);padding:15px;margin-bottom:15px;border-radius:8px;background:linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%)">
+        <h2 style="color:var(--primary-color);margin:0 0 10px 0">📚 $hyapi.msg 完整功能手册</h2>
         
         <div style="margin:15px 0">
           <button nz-button nzType="primary" size="large" (click)="allFeaturesDemo()">
-            📋 查看完整功能手册
+            📋 查看完整手册 
           </button>
         </div>
         
         <div style="margin-top:15px">
           <h4>📋 完整API参考和最佳实践:</h4>
-          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:10px;line-height:1.3;overflow-x:auto;border-left:4px solid #1890ff;max-height:600px;overflow-y:auto"><code>{{completeCode}}</code></pre>
+          <pre style="background:#f6f8fa;padding:15px;border-radius:6px;font-size:10px;line-height:1.3;overflow-x:auto;border-left:4px solid var(--primary-color);max-height:600px;overflow-y:auto"><code>{{completeCode}}</code></pre>
         </div>
         
         <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;gap:15px;margin-top:15px">
           <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h5 style="color:#52c41a;margin:0 0 5px 0">💬 show</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 5px 0">💬 show</h5>
             <p style="margin:0;font-size:11px">重要消息确认</p>
           </div>
           <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h5 style="color:#1890ff;margin:0 0 5px 0">🔔 createTips</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 5px 0">🔔 createTips</h5>
             <p style="margin:0;font-size:11px">轻量级提示</p>
           </div>
           <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h5 style="color:#fa8c16;margin:0 0 5px 0">❓ confirm</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 5px 0">❓ confirm</h5>
             <p style="margin:0;font-size:11px">确认对话框</p>
           </div>
           <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
-            <h5 style="color:#722ed1;margin:0 0 5px 0">⏳ loading</h5>
+            <h5 style="color:var(--primary-color);margin:0 0 5px 0">⏳ loading</h5>
             <p style="margin:0;font-size:11px">加载状态</p>
           </div>
           <div style="padding:10px;background:#ffffff;border:1px solid #d9d9d9;border-radius:4px;text-align:center">
@@ -1833,11 +1832,11 @@ class MessageMemoryGuard {
           </div>
         </div>
         
-        <div style="margin-top:20px;padding:20px;background:#ffffff;border:2px solid #52c41a;border-radius:8px">
-          <h4 style="margin:0 0 15px 0;color:#52c41a">🎓 消息组件最佳实践总结</h4>
+        <div style="margin-top:20px;padding:20px;background:#ffffff;border:2px solid var(--primary-color);border-radius:8px">
+          <h4 style="margin:0 0 15px 0;color:var(--primary-color)">🎓 消息组件最佳实践总结</h4>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
             <div>
-              <h5 style="color:#1890ff;margin:0 0 10px 0">✅ 推荐做法</h5>
+              <h5 style="color:var(--primary-color);margin:0 0 10px 0">✅ 推荐做法</h5>
               <ul style="margin:0;padding-left:20px;color:#666;font-size:13px">
                 <li>根据消息重要性选择合适的显示方式</li>
                 <li>重要操作使用confirm确认，状态反馈使用createTips</li>
@@ -1848,7 +1847,7 @@ class MessageMemoryGuard {
               </ul>
             </div>
             <div>
-              <h5 style="color:#f5222d;margin:0 0 10px 0">❌ 避免做法</h5>
+              <h5 style="color:var(--error-color);margin:0 0 10px 0">❌ 避免做法</h5>
               <ul style="margin:0;padding-left:20px;color:#666;font-size:13px">
                 <li>不要过度使用show，频繁打断用户操作</li>
                 <li>避免遗忘关闭loading造成界面阻塞</li>
@@ -1861,9 +1860,9 @@ class MessageMemoryGuard {
           </div>
         </div>
         
-        <div style="margin-top:15px;padding:15px;background:#fff9e6;border-radius:8px;border-left:5px solid #faad14">
-          <h4 style="margin:0 0 10px 0;color:#faad14">💡 开发提示</h4>
-          <p style="margin:0;color:#666;font-size:13px">
+        <div style="margin-top:15px;padding:15px;background:#fff9e6;border-radius:8px;border-left:5px solid var(--primary-color)">
+          <h4 style="margin:0 0 10px 0;color:var(--primary-color)">💡 开发提示</h4>
+          <p style="margin:0;color:var(--primary-color);font-size:13px">
             $hyapi.msg 是HyFrame框架的核心消息系统，提供了完整的用户交互反馈机制。
             从简单的状态提示到复杂的表单验证，从确认对话框到加载状态管理，涵盖了前端开发中所有常见的消息处理场景。
             <br><br>

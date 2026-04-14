@@ -7,7 +7,7 @@
 }
 
 .red span{
-  color: #fe4f4b;
+  color: var(--error-color);
 }
 
 .enable span{
@@ -15,17 +15,17 @@
 }
 
 .blue span{
-  color: #1890ff;
+  color: var(--primary-color);
 }
 
 .orange span{
-  color: #ff8e09;
+  color: var(--warning-color);
 }
 
 .green span{
-  color: #52c41a
+  color: var(--success-color);
 }
 
 .gray span{
-  color: #666;
+  color: var(--grey-color);
 }

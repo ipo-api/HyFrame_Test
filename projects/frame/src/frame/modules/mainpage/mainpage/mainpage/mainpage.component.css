@@ -102,7 +102,7 @@ li {
 }
 
 .menu-item:hover {
-  background-color: #1890ff;
+  background-color: var(--primary-color);  
 }
 .systemsMenuName {
   line-height: 36px;

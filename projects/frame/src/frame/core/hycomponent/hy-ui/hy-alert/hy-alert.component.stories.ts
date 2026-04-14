@@ -5,8 +5,9 @@ import { BaseModule } from '../../../../base/base.module';
 import { HyAlertComponent } from './hy-alert.component';
 import { unit } from '../../../../../../../../storybookUnit';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { $hyapi } from '../../../_index';
+import { $hyapi, ModelService, TableService } from '../../../_index';
 import { previewTemplate } from 'storybook-addon-preview';
+import { StoriesModule } from 'stories/stories.module';
 
 const argTypes = unit.createArgTypes('HyAlertComponent');
 export default {
@@ -14,7 +15,8 @@ export default {
   component: HyAlertComponent,
   decorators: [
     moduleMetadata({
-      imports: [CommonModule, BrowserAnimationsModule, BaseModule],
+      imports: [CommonModule, BrowserAnimationsModule, BaseModule, StoriesModule],
+      providers: [TableService, { provide: ModelService }]
     }),
   ],
   argTypes
@@ -939,7 +941,7 @@ const AdvancedTemplate: Story<HyAlertComponent> = (args: any) => ({
         </hy-alert>
         
         <ng-template #messageTemplate>
-          <span style="font-weight: bold; color: #1890ff;">
+          <span style="font-weight: bold; color: var(--primary-color);">
             📢 重要通知：
           </span>
           <span>系统将进行版本更新</span>
@@ -964,7 +966,7 @@ const AdvancedTemplate: Story<HyAlertComponent> = (args: any) => ({
               <li>密码强度较低</li>
               <li>未绑定手机号</li>
             </ul>
-            <a href="#" style="color: #faad14; text-decoration: underline;">
+            <a href="#" style="color: var(--warning-color); text-decoration: underline;">
               立即前往安全中心 →
             </a>
           </div>
@@ -982,7 +984,7 @@ const AdvancedTemplate: Story<HyAlertComponent> = (args: any) => ({
         </hy-alert>
         
         <ng-template #closeButtonTemplate>
-          <span style="color: #52c41a; font-weight: bold;">
+          <span style="color: var(--primary-color); font-weight: bold;">
             📥 下载文件
           </span>
         </ng-template>
@@ -1052,11 +1054,11 @@ advanced.parameters = {
 </hy-alert>
 
 <ng-template #messageTemplate>
-  <span style="font-weight: bold; color: #1890ff;">
+  <span style="font-weight: bold; color: var(--primary-color);">
     📢 系统通知：
   </span>
   <span>新版本 v2.0 已发布</span>
-  <a href="#" style="margin-left: 8px; color: #1890ff;">
+  <a href="#" style="margin-left: 8px; color: var(--primary-color);">
     查看更新日志
   </a>
 </ng-template>

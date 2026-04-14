@@ -23,9 +23,9 @@
 
 
 .search-inco:hover{
-  color: #1890ff;
+  color: var(--primary-color);
 }
 
 .show{
-  color: #1890ff;
+  color: var(--primary-color);
 }

@@ -30,13 +30,13 @@
 
 
 .blue{
-  background-color: #1890ff;
+  background-color: var(--primary-color); 
 }
 
 .red{
-  background-color: #fe4f4b;
+  background-color: var(--error-color);
 }
 
 .gray{
-  background-color: #666;
+  background-color: var(--grey-color);
 }

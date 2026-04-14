@@ -25,7 +25,7 @@ i {
   text-decoration: none;
   word-wrap: break-word;
   background-color: rgba(255, 64, 41, 0.75);
-  border-radius: 4px;
+  border-radius: var(--border-radius-base);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
