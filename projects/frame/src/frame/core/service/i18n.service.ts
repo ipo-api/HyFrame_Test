@@ -6,7 +6,6 @@ import { HyLanguageData } from './i18nInterface';
 import { ReuseStrategyService } from './reuseStrategy.service';
 import { AppGlobal } from '../../config/AppGlobal';
 import { catchError, concatMap, map, tap } from 'rxjs/operators';
-import { $hyapi } from '../../core/api/$hyapi';
 
 /**
  * 统一初始化提供者
@@ -66,13 +65,19 @@ export class I18nService {
    * 设置语言用于国际化。
    *
    * @param {HyLanguageData} language - 要设置的语言数据。
-   * @returns {Observable<any>} 返回 Observable，用于异步处理
+   * @param {boolean} isSubscribe - 是否自动订阅，默认为 true（自动订阅）
+   * @returns {Observable<any> | void} 当 isSubscribe=false 时返回 Observable，否则自动订阅返回 void
    */
-  public setLanguage(language: HyLanguageData, isSubscribe?: boolean): Observable<any> {
-    if (isSubscribe) {
-      return this.setLanguageData(language, isSubscribe);
+  public setLanguage(language: HyLanguageData, isSubscribe: false): Observable<any>;
+  public setLanguage(language: HyLanguageData, isSubscribe?: true): void;
+  public setLanguage(language: HyLanguageData, isSubscribe?: boolean): Observable<any> | void {
+    const obs$ = this.setLanguageData$(language);
+    
+    if (isSubscribe === false) {
+      return obs$;
     }
-    this.setLanguageData(language).subscribe();;
+    
+    obs$.subscribe();
   }
 
   /** 
@@ -86,7 +91,7 @@ export class I18nService {
     this.FrameConfig = FrameConfig;
     return this.getLanguageList().pipe(
       concatMap(data => this.getUserLanguage(data)),
-      concatMap(data => this.setLanguageData(data, true)),
+      concatMap(data => this.setLanguageData$(data)),
       map(() => of(true))
     );
   }
@@ -242,17 +247,6 @@ export class I18nService {
 
     return parts;
   }
-
-  private setLanguageData(language: HyLanguageData, isSubscribe?: true): Observable<any>;
-  private setLanguageData(language: HyLanguageData, isSubscribe?: false): void;
-  private setLanguageData(language: HyLanguageData, isSubscribe?: boolean): Observable<any> | void {
-    if (isSubscribe) {
-      return this.setLanguageData$(language);
-    } else {
-      this.setLanguageData$(language).subscribe();
-    }
-  }
-
 
   /** 
    * 设置语言数据
